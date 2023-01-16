@@ -1,0 +1,37 @@
+html, body {
+    background: #c5c1b9;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #c5c1b9, #f6d593);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #c5c1b9, #f6d593); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.lineaSuperior{
+    border: 1px solid #000; 
+    padding:1px; 
+    background-color: black;
+}
+.caja{
+    margin-top: 20px; 
+    padding: 20px;
+    border-radius : 5px;
+}
+.cajaimagenes{
+    margin-top: 18px;
+}
+.btn{
+    margin-top: 5px;
+}        
+.filaDescripcion {
+    padding: 15px;
+}
+.lineaInferior{
+    border: 1px solid rgb(125, 117, 117); 
+    padding:1px; 
+    background-color: rgb(125, 117, 117);
+}
+.tabulador:first-letter {
+    margin-left: 15px;
+}
+
+.imagen-centrada{
+    margin: 0 auto;
+}

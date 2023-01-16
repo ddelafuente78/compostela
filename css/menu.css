@@ -1,0 +1,5 @@
+html, body {
+    background: #c5c1b9;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #c5c1b9, #f6d593);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #c5c1b9, #f6d593); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
