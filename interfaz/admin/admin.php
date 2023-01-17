@@ -95,7 +95,7 @@
           <div class="col-1">
             <div id="sidebar" class="sidebar">
               <ul class="menu">
-                <li><a href="#">Pedidos</a></li>
+                <li><a href="pedidos.php?tipo=prep">Pedidos</a></li>
                 <li><a href="#">Productos</a></li>
                 <li><a href="#">Usuarios</a></li>
                 <li><a href="#">Reportes</a></li>

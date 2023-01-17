@@ -59,6 +59,13 @@
             padding-left: 5px;
           }
 
+          .sidebar .menusel{
+            color:#fff;
+            background-color: #f90;
+            border-radius: 5px;
+            padding-left: 5px;
+          }
+
           #contenido {
            margin-left: 150px;
           }
@@ -68,6 +75,7 @@
             padding:0;
             list-style-type:none; 
           }
+
           #menuhorizontal a {
             width:100px;
             text-decoration:none;
@@ -86,25 +94,76 @@
 
           #menuhorizontal a:hover {
             background-color:#336699;
+            color:#fff;
+          }
+
+          #menuhorizontal .seleccionado {
+            background-color:#336699;
+            color:#fff;
+          }
+
+          .lineaSuperior{
+            margin-top: 5px;
+            border: 1px solid #000; 
+            padding:1px; 
+            background-color: black;
           }
       </style>
     </head>
     <body>
       
       <?php
-        include '../../../helper/conexion.php';
-        include '../../../helper/validar_usuario.php';
+        include '../../helper/conexion.php';
+        include '../../helper/validar_usuario.php';
 
+        if($_GET) {
+          switch($_GET['tipo']){
+            case 'prep':
+              $query = "SELECT pc.codigo, pc.fecha_entrega,
+                          if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
+                          d.razon_social, u.nombre
+                        FROM compostela.pedidoscab pc 
+                          join estados e on pc.estado_id = e.id
+                          join destinatarios d on pc.destinatario_id = d.id
+                          join usuarios u on pc.usuario_id = u.id
+                        Where estado_id = 1
+                        ORDER BY prioridad_urgente desc, fecha_entrega;";
+              break;
+            case 'desp':
+              $query = "SELECT pc.codigo, pc.fecha_entrega,
+                          if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
+                          d.razon_social, u.nombre
+                        FROM compostela.pedidoscab pc 
+                          join estados e on pc.estado_id = e.id
+                          join destinatarios d on pc.destinatario_id = d.id
+                          join usuarios u on pc.usuario_id = u.id
+                        Where estado_id = 2
+                        ORDER BY prioridad_urgente desc, fecha_entrega;";
+              break;
+              case 'entr':
+                $query = "SELECT pc.codigo, pc.fecha_entrega,
+                            if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
+                            d.razon_social, u.nombre
+                          FROM compostela.pedidoscab pc 
+                            join estados e on pc.estado_id = e.id
+                            join destinatarios d on pc.destinatario_id = d.id
+                            join usuarios u on pc.usuario_id = u.id
+                          Where estado_id = 3
+                          ORDER BY prioridad_urgente desc, fecha_entrega;";
+                break;
+              default:
+                $query = "SELECT pc.codigo, pc.fecha_entrega,
+                            if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
+                            d.razon_social, u.nombre
+                          FROM compostela.pedidoscab pc 
+                            join estados e on pc.estado_id = e.id
+                            join destinatarios d on pc.destinatario_id = d.id
+                            join usuarios u on pc.usuario_id = u.id;";
+          }
 
-        $pedidosprearando = mysqli_query($conexion, "SELECT pc.codigo, pc.fecha_entrega,
-                                        if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
-                                        d.razon_social, u.nombre
-                                        FROM compostela.pedidoscab pc 
-                                        join estados e on pc.estado_id = e.id
-                                        join destinatarios d on pc.destinatario_id = d.id
-                                        join usuarios u on pc.usuario_id = u.id
-                                        where estado_id =1
-                                        order by prioridad_urgente desc, fecha_entrega;");
+        }
+        
+        $pedidosprearando = mysqli_query($conexion, $query);
       ?>
       <div class='Container'>
         <div class='row'>
@@ -133,7 +192,7 @@
           <div class="col-1">
             <div id="sidebar" class="sidebar">
               <ul class="menu">
-                <li><a href="#">Pedidos</a></li>
+                <li><a class="menusel" href="pedidos.php?tipo=prep">Pedidos</a></li>
                 <li><a href="#">Productos</a></li>
                 <li><a href="#">Usuarios</a></li>
                 <li><a href="#">Reportes</a></li>
@@ -145,20 +204,22 @@
             <div class="container-fluid">
               <div class="row">
                 <ul id="menuhorizontal">
-                  <li><a href="#">En preparacion</a></li>
-                  <li><a href="#">Despachado</a></li>
-                  <li><a href="#">Entregado</a></li>
+                  <li><a <?php if($_GET['tipo']=='prep'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=prep">En preparacion</a></li>
+                  <li><a <?php if($_GET['tipo']=='desp'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=desp">Despachado</a></li>
+                  <li><a <?php if($_GET['tipo']=='entr'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=entr">Entregado</a></li>
                 </ul>
               </div>
               <div class="row">
+                <div class="lineaSuperior"></div>
+        <?php echo $_GET['tipo'] ?>
                 <table class="table table-striped">
                   <thead>
                     <tr>
                       <th>Codigo</th>
                       <th>Prioridad</th>
-                      <th>fecha entrega</th>  
-                      <th>destinatario</th>
-                      <th>usuario</th>
+                      <th>Fecha entrega</th>  
+                      <th>Destinatario</th>
+                      <th>Usuario</th>
                       <th></th>
                     </tr>
                   </thead>
