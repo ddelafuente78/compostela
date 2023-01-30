@@ -220,6 +220,7 @@
                       <th>Destinatario</th>
                       <th>Usuario</th>
                       <th></th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -234,8 +235,20 @@
                         <td><?php echo $fila['nombre'] ?></td>
 
                         <td class="text-right">
+                          <span title="Actualizar pedido">
                             <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['codigo'] ?>" role="button" href="#" 
-                              onClick="getButtontoOpen(<?php echo $fila['codigo'] ?>)">Actualizar...</a>
+                              href="pedidosupd?codigo=<?php echo $fila['codigo'] ?>)">
+                              <i class="bi bi-pencil-square"></i>
+                            </a>
+                          </span>
+                        </td>
+                        <td class="text-right">
+                          <span title="ver detalle">
+                            <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['codigo'] ?>" role="button" href="#" 
+                              href="pedidosdetalle?codigo=<?php echo $fila['codigo'] ?>)">
+                              <i class="bi bi-search"></i>
+                            </a>
+                          </sapn>
                         </td>
                         <?php
                           }

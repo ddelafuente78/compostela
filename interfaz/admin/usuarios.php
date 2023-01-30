@@ -182,8 +182,12 @@
                         <td><?php echo $fila['rol'] ?></td>
 
                         <td class="text-right">
+                          <span title="Actualizar usuario">
                             <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['id'] ?>" role="button" href="#" 
-                              onClick="getButtontoOpen(<?php echo $fila['id'] ?>)">Actualizar...</a>
+                              onClick="getButtontoOpen(<?php echo $fila['id'] ?>)">
+                              <i class="bi bi-pencil-square"></i>
+                            </a>
+                          </span>
                         </td>
                         <?php
                           }

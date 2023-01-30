@@ -115,9 +115,55 @@
       <?php
         include '../../helper/conexion.php';
         include '../../helper/validar_usuario.php';
+
+        if($_GET) {
+          switch($_GET['tipo']){
+            case 'prep':
+              $query = "SELECT pc.codigo, pc.fecha_entrega,
+                          if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
+                          d.razon_social, u.nombre
+                        FROM compostela.pedidoscab pc 
+                          join estados e on pc.estado_id = e.id
+                          join destinatarios d on pc.destinatario_id = d.id
+                          join usuarios u on pc.usuario_id = u.id
+                        Where estado_id = 1
+                        ORDER BY prioridad_urgente desc, fecha_entrega;";
+              break;
+            case 'desp':
+              $query = "SELECT pc.codigo, pc.fecha_entrega,
+                          if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
+                          d.razon_social, u.nombre
+                        FROM compostela.pedidoscab pc 
+                          join estados e on pc.estado_id = e.id
+                          join destinatarios d on pc.destinatario_id = d.id
+                          join usuarios u on pc.usuario_id = u.id
+                        Where estado_id = 2
+                        ORDER BY prioridad_urgente desc, fecha_entrega;";
+              break;
+              case 'entr':
+                $query = "SELECT pc.codigo, pc.fecha_entrega,
+                            if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
+                            d.razon_social, u.nombre
+                          FROM compostela.pedidoscab pc 
+                            join estados e on pc.estado_id = e.id
+                            join destinatarios d on pc.destinatario_id = d.id
+                            join usuarios u on pc.usuario_id = u.id
+                          Where estado_id = 3
+                          ORDER BY prioridad_urgente desc, fecha_entrega;";
+                break;
+              default:
+                $query = "SELECT pc.codigo, pc.fecha_entrega,
+                            if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
+                            d.razon_social, u.nombre
+                          FROM compostela.pedidoscab pc 
+                            join estados e on pc.estado_id = e.id
+                            join destinatarios d on pc.destinatario_id = d.id
+                            join usuarios u on pc.usuario_id = u.id;";
+          }
+
+        }
         
-        $query = "Select * from articulos"; 
-        $productos = mysqli_query($conexion, $query);
+        $pedidosprearando = mysqli_query($conexion, $query);
       ?>
       <div class='Container'>
         <div class='row'>
@@ -146,10 +192,10 @@
           <div class="col-1">
             <div id="sidebar" class="sidebar">
               <ul class="menu">
-                <li><a href="pedidos.php?tipo=prep">Pedidos</a></li>
-                <li><a class="menusel" href="#">Articulos</a></li>
+                <li><a class="menusel" href="pedidos.php?tipo=prep">Pedidos</a></li>
+                <li><a href="articulos.php">Articulos</a></li>
                 <li><a href="usuarios.php">Usuarios</a></li>
-                <li><a href="reportes.php">Reportes</a></li>
+                <li><a href="Reportes.php">Reportes</a></li>
                 <li><a href="#">Opcion 5</a></li>
               </ul>
             </div>
@@ -157,43 +203,39 @@
           <div class="col-11">
             <div class="container-fluid">
               <div class="row">
-                <div class="col-2">
-                  <button class="btn-primary">Nuevo articulo</button>
-                </div>
-                <div class="lineaSuperior"></div>
+                <ul id="menuhorizontal">
+                  <li><a <?php if($_GET['tipo']=='prep'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=prep">En preparacion</a></li>
+                  <li><a <?php if($_GET['tipo']=='desp'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=desp">Despachado</a></li>
+                  <li><a <?php if($_GET['tipo']=='entr'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=entr">Entregado</a></li>
+                </ul>
               </div>
               <div class="row">
+                <div class="lineaSuperior"></div>
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>Nombre</th>
-                      <th>Descripcion</th>
-                      <th>Foto 1</th>  
-                      <th>Foto 2</th>
-                      <th>Stock minimo</th>
-                      <th>Stock</th>
+                      <th>Codigo</th>
+                      <th>Prioridad</th>
+                      <th>Fecha entrega</th>  
+                      <th>Destinatario</th>
+                      <th>Usuario</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                      foreach ($productos as $fila) { 
+                      foreach ($pedidosprearando as $fila) { 
                     ?>
                       <tr>
+                        <td><?php echo $fila['codigo'] ?></td>
+                        <td><?php echo $fila['prioridad'] ?></td>
+                        <td><?php echo $fila['fecha_entrega'] ?></td>
+                        <td><?php echo $fila['razon_social'] ?></td>
                         <td><?php echo $fila['nombre'] ?></td>
-                        <td><?php echo $fila['descripcion'] ?></td>
-                        <td><?php echo $fila['foto1'] ?></td>
-                        <td><?php echo $fila['foto2'] ?></td>
-                        <td><?php echo $fila['stock_minimo'] ?></td>
-                        <td><?php echo $fila['stock_minimo'] ?></td>
 
                         <td class="text-right">
-                          <span title="Actualizar articulo">
-                            <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['id'] ?>" role="button" 
-                              href="#" onClick="getButtontoOpen(<?php echo $fila['id'] ?>)">
-                              <i class="bi bi-pencil-square"></i>
-                            </a>
-                          </span>
+                            <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['codigo'] ?>" role="button" href="#" 
+                              onClick="getButtontoOpen(<?php echo $fila['codigo'] ?>)">Actualizar...</a>
                         </td>
                         <?php
                           }
