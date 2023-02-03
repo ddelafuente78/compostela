@@ -129,7 +129,7 @@
                         Where estado_id = 1
                         ORDER BY prioridad_urgente desc, fecha_entrega;";
               break;
-            case 'desp':
+            case 'env':
               $query = "SELECT pc.codigo, pc.fecha_entrega,
                           if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
                           d.razon_social, u.nombre
@@ -205,7 +205,7 @@
               <div class="row">
                 <ul id="menuhorizontal">
                   <li><a <?php if($_GET['tipo']=='prep'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=prep">En preparacion</a></li>
-                  <li><a <?php if($_GET['tipo']=='desp'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=desp">Despachado</a></li>
+                  <li><a <?php if($_GET['tipo']=='env'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=env">Enviado</a></li>
                   <li><a <?php if($_GET['tipo']=='entr'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=entr">Entregado</a></li>
                 </ul>
               </div>
@@ -236,8 +236,8 @@
 
                         <td class="text-right">
                           <span title="Actualizar pedido">
-                            <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['codigo'] ?>" role="button" href="#" 
-                              href="pedidosupd?codigo=<?php echo $fila['codigo'] ?>)">
+                            <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['codigo'] ?>" role="button" 
+                              href="pedidosupd.php?codigo=<?php echo $fila['codigo'] ?>">
                               <i class="bi bi-pencil-square"></i>
                             </a>
                           </span>
@@ -245,7 +245,7 @@
                         <td class="text-right">
                           <span title="ver detalle">
                             <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['codigo'] ?>" role="button" href="#" 
-                              href="pedidosdetalle?codigo=<?php echo $fila['codigo'] ?>)">
+                              href="pedidosdetalle?codigo=<?php echo $fila['codigo'] ?>">
                               <i class="bi bi-search"></i>
                             </a>
                           </sapn>

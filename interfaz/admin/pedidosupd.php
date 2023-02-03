@@ -108,6 +108,10 @@
             padding:1px; 
             background-color: black;
           }
+
+          .sombra {
+            text-shadow: 1px -2px 3px orange;
+          }
       </style>
     </head>
     <body>
@@ -116,54 +120,43 @@
         include '../../helper/conexion.php';
         include '../../helper/validar_usuario.php';
 
-        if($_GET) {
-          switch($_GET['tipo']){
-            case 'prep':
-              $query = "SELECT pc.codigo, pc.fecha_entrega,
-                          if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
-                          d.razon_social, u.nombre
-                        FROM compostela.pedidoscab pc 
-                          join estados e on pc.estado_id = e.id
-                          join destinatarios d on pc.destinatario_id = d.id
-                          join usuarios u on pc.usuario_id = u.id
-                        Where estado_id = 1
-                        ORDER BY prioridad_urgente desc, fecha_entrega;";
-              break;
-            case 'desp':
-              $query = "SELECT pc.codigo, pc.fecha_entrega,
-                          if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
-                          d.razon_social, u.nombre
-                        FROM compostela.pedidoscab pc 
-                          join estados e on pc.estado_id = e.id
-                          join destinatarios d on pc.destinatario_id = d.id
-                          join usuarios u on pc.usuario_id = u.id
-                        Where estado_id = 2
-                        ORDER BY prioridad_urgente desc, fecha_entrega;";
-              break;
-              case 'entr':
-                $query = "SELECT pc.codigo, pc.fecha_entrega,
-                            if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
-                            d.razon_social, u.nombre
-                          FROM compostela.pedidoscab pc 
-                            join estados e on pc.estado_id = e.id
-                            join destinatarios d on pc.destinatario_id = d.id
-                            join usuarios u on pc.usuario_id = u.id
-                          Where estado_id = 3
-                          ORDER BY prioridad_urgente desc, fecha_entrega;";
-                break;
-              default:
-                $query = "SELECT pc.codigo, pc.fecha_entrega,
-                            if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
-                            d.razon_social, u.nombre
-                          FROM compostela.pedidoscab pc 
-                            join estados e on pc.estado_id = e.id
-                            join destinatarios d on pc.destinatario_id = d.id
-                            join usuarios u on pc.usuario_id = u.id;";
+        if($_POST){
+          $codigo = $_POST['codigo'];
+          $qryUpdate = "update pedidoscab set estado_id = " . $_POST['estado'] . " where codigo = '" . $_POST['codigo'] . "'";
+          $update = mysqli_query($conexion, $qryUpdate);
+          
+          $qrybulto = "select count(*) as total from bultos where codigo_pago='". $codigo . "'";
+          $count = mysqli_query($conexion, $qrybulto);
+          $data=mysql_fetch_assoc($count);
+          
+          if($data['total'] == 0){
+            $insbulto = "insert into bultos values(default," . $POST['id'] . ",'" . $codigo . "'," . $POST['cantidad'] . "," . $POST['peso'] . "," . $POST['tamanio'] .")";
+            $insert = mysqli_query($conexion, $insbulto);
+          }else{
+            $updbulto = "update bultos set cantidad=" . $POST['cantidad'] . ", peso=" . $POST['peso'] . ", tamanio='" . $POST['tamanio'] . " where id=" . $POST['id'];
+            $update = mysqli_query($conexion, $updbulto);
           }
-
+          
         }
+
+        if($_GET) {
+          $codigo = $_GET['codigo'];
+        }
+
+        $query = "SELECT pc.id, pc.codigo, pc.fecha_entrega,
+                      if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
+                      d.razon_social, u.nombre, e.descripcion
+                    FROM compostela.pedidoscab pc 
+                      join estados e on pc.estado_id = e.id
+                      join destinatarios d on pc.destinatario_id = d.id
+                      join usuarios u on pc.usuario_id = u.id
+                      left join bultos b on b.idpago = pc.id
+                    where pc.codigo='". $codigo ."';";
+
+        $pedido = mysqli_query($conexion, $query);
+        $fila = mysqli_fetch_array($pedido);
         
-        $pedidosprearando = mysqli_query($conexion, $query);
+        
       ?>
       <div class='Container'>
         <div class='row'>
@@ -202,48 +195,66 @@
           </div>
           <div class="col-11">
             <div class="container-fluid">
-              <div class="row">
-                <ul id="menuhorizontal">
-                  <li><a <?php if($_GET['tipo']=='prep'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=prep">En preparacion</a></li>
-                  <li><a <?php if($_GET['tipo']=='desp'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=desp">Despachado</a></li>
-                  <li><a <?php if($_GET['tipo']=='entr'){ echo 'class="seleccionado"';} ?> href="pedidos.php?tipo=entr">Entregado</a></li>
-                </ul>
+              <div class="row">  
+                <div class="lineaSuperior"></div>
               </div>
               <div class="row">
-                <div class="lineaSuperior"></div>
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Codigo</th>
-                      <th>Prioridad</th>
-                      <th>Fecha entrega</th>  
-                      <th>Destinatario</th>
-                      <th>Usuario</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                      foreach ($pedidosprearando as $fila) { 
-                    ?>
-                      <tr>
-                        <td><?php echo $fila['codigo'] ?></td>
-                        <td><?php echo $fila['prioridad'] ?></td>
-                        <td><?php echo $fila['fecha_entrega'] ?></td>
-                        <td><?php echo $fila['razon_social'] ?></td>
-                        <td><?php echo $fila['nombre'] ?></td>
-
-                        <td class="text-right">
-                            <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['codigo'] ?>" role="button" href="#" 
-                              onClick="getButtontoOpen(<?php echo $fila['codigo'] ?>)">Actualizar...</a>
-                        </td>
-                        <?php
-                          }
-                        ?>
-                      </tr>
-                  </tbody>
-                </table> 
+                <div>
+                  <span class="sombra">Codigo:</span>
+                    <?php echo $fila['codigo']; ?>
+                </div> 
               <div>
+              <div class="row">
+                <div>
+                  <span class="sombra">Prioridad:</span>
+                  <?php echo $fila['prioridad']; ?> 
+                </div>
+              <div>
+              <div class="row">
+                <div>
+                  <span class="sombra">Fecha entrega:</span>
+                  <?php echo $fila['fecha_entrega']; ?> 
+                </div>
+              <div>
+              <div class="row">
+                <div>
+                  <span class="sombra">Destinatario:</span>
+                  <?php echo $fila['razon_social']; ?>
+                </div> 
+              <div>
+              <div class="row">
+                <div>
+                  <span class="sombra">Usuario:</span>
+                  <?php echo $fila['nombre']; ?>
+                </div> 
+              <div>
+              <div class="row">  
+                <div class="lineaSuperior"></div>
+              </div>
+              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                <input type="hidden" name='id' value="<?php echo $fila['id']; ?>">
+                <input type="hidden" name='codigo' value="<?php echo $fila['codigo']; ?>">
+                <div class="row">
+                  <span class="sombra">Estado:</span>
+                  <div>  
+                    <input type="radio" name="estado" value="1" <?php if($fila['descripcion']=='Preparando'){echo 'checked';} ?>/> Preparando &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="estado" value="2" <?php if($fila['descripcion']=='Enviado'){echo 'checked';} ?>/> Enviado &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="estado" value="3" <?php if($fila['descripcion']=='Entregado'){echo 'checked';} ?>/> Entregado
+                  </div>
+                  <div class="row">
+                    <span class="sombra">Bultos:</span>
+                    <label for="cantidad" class="form-label">Cantidad:</label>
+                    <input type="number" class="form-control" id="cantidad" name="cantidad">
+                    <label for="peso" class="form-label">Peso:</label>
+                    <input type="number" step="any" class="form-control" id="peso" name="peso">
+                    <label for="tamanio" class="form-label">Tamaño:</label>
+                    <input type="number" step="any" class="form-control" id="tamanio" name="tamanio">
+                  </div>
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-success">Actualizar</button>
+                <span style='font-size: xx-large;'><i class="bi bi-check-square"></i></span>
+              </form>
             </div>
           </div>
         </div>
