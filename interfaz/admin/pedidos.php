@@ -196,7 +196,7 @@
                 <li><a href="articulos.php">Articulos</a></li>
                 <li><a href="usuarios.php">Usuarios</a></li>
                 <li><a href="Reportes.php">Reportes</a></li>
-                <li><a href="#">Opcion 5</a></li>
+                <li><a href="#">Transporte</a></li>
               </ul>
             </div>
           </div>
@@ -236,7 +236,7 @@
 
                         <td class="text-right">
                           <span title="Actualizar pedido">
-                            <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['codigo'] ?>" role="button" 
+                            <a class="btn btn-outline-danger btn-sm botonborrar" id="btnActualizar<?php echo $fila['codigo'] ?>" role="button" 
                               href="pedidosupd.php?codigo=<?php echo $fila['codigo'] ?>">
                               <i class="bi bi-pencil-square"></i>
                             </a>
@@ -244,8 +244,8 @@
                         </td>
                         <td class="text-right">
                           <span title="ver detalle">
-                            <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['codigo'] ?>" role="button" href="#" 
-                              href="pedidosdetalle?codigo=<?php echo $fila['codigo'] ?>">
+                            <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['codigo'] ?>" role="button" 
+                              href="pedidosdetalle.php?codigo=<?php echo $fila['codigo'] ?>">
                               <i class="bi bi-search"></i>
                             </a>
                           </sapn>

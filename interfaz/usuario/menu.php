@@ -24,7 +24,7 @@
       
       <div class="row"> 
         <div class="col-md">        
-          <div class="card bg-success text-white">
+          <div class="card bg-danger text-white">
             <div class="card-body">
               <h4 class="card-title">
               <i class="bi bi-card-checklist"></i>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="col-md">        
-          <div class="card bg-warning text-white">
+          <div class="card bg-danger text-white">
             <div class="card-body">
               <h4 class="card-title">
                 <i class="bi bi-binoculars"></i>
@@ -65,7 +65,7 @@
       <div class="row" style="padding-top: 10px">
         
         <div class="col-md col-4">        
-          <div class="card bg-info text-white">
+          <div class="card bg-danger text-white">
             <div class="card-body">
               <h4 class="card-title">
                 <i class="bi bi-shield-check"></i>
@@ -75,7 +75,19 @@
             </div>
           </div>          
         </div>
-        <div class="col-md"></div>
+
+        <div class="col-md col-4">        
+          <div class="card bg-danger text-white">
+            <div class="card-body">
+              <h4 class="card-title">
+                <i class="bi bi-shield-check"></i>
+                Compras</h4>
+              <p class="card-text"></p>
+              <a href="#" class="btn btn-primary">Entrar</a>
+            </div>
+          </div>          
+        </div>
+
         <div class="col-md"></div>        
       
       </div> 

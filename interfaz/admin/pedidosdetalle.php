@@ -23,11 +23,11 @@
             left: 10px;
           }
 
-          #contenido {
+        #contenido {
             margin-left:0;
           }
 
-          .sidebar {
+        .sidebar {
             position: fixed;
             top: -10px;
             bottom: 10px;
@@ -35,52 +35,52 @@
             z-index: 1;
           }
 
-          .sidebar ul, .sidebar li {
+        .sidebar ul, .sidebar li {
             margin:0;
             padding:0;
             margin-left: 10px ;
             list-style:none inside;
           }
 
-          .sidebar ul {
+        .sidebar ul {
             margin: 4rem auto;
             display: block;
             width: 80%;
             min-width:120px;
           }
 
-          .sidebar a {
+        .sidebar a {
             display: block;
             font-size: 120%;
             color: #fff;
             text-decoration: none;
           }
 
-          .sidebar a:hover{
+        .sidebar a:hover{
             color:#fff;
             background-color: #f90;
             border-radius: 5px;
             padding-left: 5px;
           }
 
-          .sidebar .menusel{
+        .sidebar .menusel{
             color:#fff;
             background-color: #f90;
             border-radius: 5px;
             padding-left: 5px;
           }
 
-          #contenido {
+        #contenido {
            margin-left: 150px;
           }
 
-          #menuhorizontal {
+        #menuhorizontal {
             margin:0;
             padding:0;
             list-style-type:none; 
           }
 
-          #menuhorizontal a {
+        #menuhorizontal a {
             width:100px;
             text-decoration:none;
             text-align:center;
@@ -92,33 +92,33 @@
             width: 150px;
           }
 
-          #menuhorizontal li {
+        #menuhorizontal li {
             float:left;
           }
 
-          #menuhorizontal a:hover {
+        #menuhorizontal a:hover {
             background-color:#336699;
             color:#fff;
           }
 
-          #menuhorizontal .seleccionado {
+        #menuhorizontal .seleccionado {
             background-color:#336699;
             color:#fff;
           }
 
-          .lineaSuperior{
+        .lineaSuperior{
             margin-top: 5px;
             border: 1px solid #000; 
             padding:1px; 
             background-color: black;
           }
 
-          .sombra {
+        .sombra {
             text-shadow: 1px -2px 3px orange;
           }
 
           /* Fondo modal: negro con opacidad al 50% */
-          .modal {
+        .modal {
             display: none; /* Por defecto, estará oculto */
             position: fixed; /* Posición fija */
             z-index: 1; /* Se situará por encima de otros elementos de la página*/
@@ -131,7 +131,7 @@
             background-color: rgba(0,0,0,0.5); /* Color negro con opacidad del 50% */
           }
 
-          .contenido-modal {
+        .contenido-modal {
             position: relative; /* Relativo con respecto al contenedor -modal- */
             background-color: white;
             margin: auto; /* Centrada */
@@ -152,8 +152,8 @@
             to {top:0; opacity:1}
           }
 
-          /* The Modal (background) */
-          .modal {
+        /* The Modal (background) */
+        .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
@@ -166,14 +166,45 @@
             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
           }
 
-          /* Modal Content/Box */
-          .modal-content {
+        /* Modal Content/Box */
+        .modal-content {
             background-color: #fefefe;
             margin: 15% auto; /* 15% from the top and centered */
             padding: 20px;
             border: 1px solid #888;
             width: 80%; /* Could be more or less, depending on screen size */
             }
+        
+        .bulto {
+          margin-left: 30px;
+        }
+        .bulto span {
+          text-decoration: underline;
+        }
+
+        table {
+          border-collapse: collapse;
+        }
+
+        th  {
+          border-right: 1px solid #fff;
+          border-bottom: 1px solid #fff;
+          padding: 0.5em;
+          background-color:#ff9800;;
+        }
+        td {
+          border: 1px solid #000;
+          padding: .5em;
+          width:100px;
+          text-align:center;
+        }
+        tr:nth-child(odd) {
+          background-color:#c9c9c9;;
+        }
+
+        tr:nth-child(even) {
+          background-color:#dcdcdc;
+        }
       </style>
     </head>
     <body>
@@ -184,26 +215,6 @@
         </div>
       </div>
       <?php
-        $actualizacion=false;
-        if($_POST){
-          $codigo = $_POST['codigo'];
-          $qryUpdate = "update pedidoscab set estado_id = " . $_POST['estado'] . " where codigo = '" . $_POST['codigo'] . "'";
-          $update = mysqli_query($conexion, $qryUpdate);
-          
-          $qrybulto = "select count(*) as total from bultos where codigo_pago='". $codigo . "'";
-          $count = mysqli_query($conexion, $qrybulto);
-          $data=mysqli_fetch_assoc($count);
-          
-          if($data['total'] == 0){
-            $insbulto = "insert into bultos values(default," . $_POST['id'] . ",'" . $codigo . "'," . $_POST['cantidad'] . "," . $_POST['peso'] . "," . $_POST['tamanio'] .")";
-            $insert = mysqli_query($conexion, $insbulto) or die("Error en la insercion en la tabla de bulto " . mysqli_error($conexion));
-          }else{
-            $updbulto = "update bultos set cantidad=" . $_POST['cantidad'] . ", idpeso=" . $_POST['peso'] . ", idtamanio=" . $_POST['tamanio'] . " where idPago=" . $_POST['id'];
-            $update = mysqli_query($conexion, $updbulto) or die("Error en la actualizacion de la tabla de bulto " . mysqli_error($conexion));
-          }
-          $actualizacion=true;
-        }
-
         if($_GET) {
           $codigo = $_GET['codigo'];
         }
@@ -222,15 +233,23 @@
         $pedido = mysqli_query($conexion, $query);
         $fila = mysqli_fetch_array($pedido);
 
+        $qryDetalle = "SELECT cantidad, nombre, descripcion 
+                        FROM pedidosdet pd 
+                        JOIN articulos a on pd.articulo_id = a.id
+                        WHERE pd.pedidoscab_codigo = '". $codigo . "'";
+        $rsDetalle =  mysqli_query($conexion, $qryDetalle);
+
         $selBulto = "SELECT * FROM bultos WHERE codigo_pago = '" . $codigo . "'";
         $rsBulto = mysqli_query($conexion, $selBulto);
         $filaBulto = mysqli_fetch_array($rsBulto);
         
-        $selpesos = "SELECT * FROM pesos";
+        $selpesos = "SELECT * FROM pesos where id = " . $filaBulto['idpeso'];
         $rsPesos = mysqli_query($conexion, $selpesos);
+        $filapeso = mysqli_fetch_array($rsPesos);
 
-        $seltamanios = "SELECT * FROM tamanios";
+        $seltamanios = "SELECT * FROM tamanios where id = " . $filaBulto['idtamanio'];
         $rsTamanio = mysqli_query($conexion, $seltamanios);
+        $filatamanio = mysqli_fetch_array($rsTamanio);
 
       ?>
       <div class='Container'>
@@ -240,7 +259,7 @@
             <header class="d-flex flex-wrap py-3 mb-5 border-bottom">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <div class="container">
-                  <a class="navbar-brand" href="#"><?php echo 'usuario' //$_SESSION['usuario'] ?></a>
+                  <a class="navbar-brand" href="#"><?php echo $_SESSION['usuario'] ?></a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -303,65 +322,78 @@
                   <?php echo $fila['nombre']; ?>
                 </div> 
               <div>
+              <div class="row">
+                <div>  
+                  <span class="sombra">Estado:</span>
+                  <?php echo $fila['descripcion']; ?>
+                </div>
+              </div>
+
               <div class="row">  
                 <div class="lineaSuperior"></div>
               </div>
-              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                <input type="hidden" name='id' value="<?php echo $fila['id']; ?>">
-                <input type="hidden" name='codigo' value="<?php echo $fila['codigo']; ?>">
-                <div class="row">
-                  <span class="sombra">Estado:</span>
-                  <div>  
-                    <input type="radio" name="estado" value="1" <?php if($fila['descripcion']=='Preparando'){echo 'checked';} ?>/> Preparando &nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="estado" value="2" <?php if($fila['descripcion']=='Enviado'){echo 'checked';} ?>/> Enviado &nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="estado" value="3" <?php if($fila['descripcion']=='Entregado'){echo 'checked';} ?>/> Entregado
-                  </div>
-                  <div class="row">
-                    <span class="sombra">Bultos:</span>
-                    <label for="cantidad" class="form-label">Cantidad:</label>
-                    <input type="number" class="form-control" id="cantidad" name="cantidad" value="<?php if(isset($filaBulto)){echo $filaBulto['cantidad'];} else{ echo '0';}?>">
 
-                    <label for="peso" class="form-label">Peso:</label>
-                    <select class="form-select mb-3" id="peso" name="peso"> 
-                      <?php
-                        foreach ($rsPesos as $p) { 
-                      ?>
-                        <option value="<?php echo $p['id'] ?>" <?php if($p['id']==$fila['idpeso']){echo 'selected';} ?> ><?php echo $p['descripcion'] ?></option>
-                      <?php   
-                        }
-                      ?> 
-                    </select>
+              <span class="sombra">Bultos:</span>
 
-                    <label for="tamanio" class="form-label">Tamaño:</label>
-                    <select class="form-select mb-3" id="tamanio" name="tamanio"> 
-                      <?php
-                        foreach ($rsTamanio as $t) { 
-                      ?>
-                        <option value="<?php echo $t['id'] ?>" <?php if($t['id']==$fila['idtamanio']){echo 'selected';} ?> ><?php echo $t['descripcion'] ?></option>
-                      <?php
-                        }
-                      ?> 
-                    </select>
-                  </div>
+              <div class="row">
+                <div class='bulto'>
+                  <span>Cantidad:</span>
+                  <?php echo $filaBulto['cantidad']; ?>
                 </div>
-                <button type="submit" class="btn btn-success">Actualizar</button>
-              </form>
+              </div>
+
+              <div class="row">
+                <div class='bulto'>
+                  <span>Peso:</span>
+                  <?php echo $filapeso['descripcion']; ?>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class='bulto'>
+                  <span>Tamaño:</span>
+                  <?php echo $filatamanio['descripcion']; ?>
+                </div>
+              </div>
+
+              <div class="row">  
+                <div class="lineaSuperior"></div>
+              </div>
+
+              <span class="sombra">Detalle:</span>
+
+              <div class="row text-center">
+                <div class="col-8">
+                  <table style="width:100%">
+                    <tr>
+                      <th>nombre</th>
+                      <th>descripcion</th>
+                      <th>cantidad</th>
+                    </tr>
+                    <?php
+                      foreach ($rsDetalle as $linea) { 
+                    ?>
+                    <tr>
+                      <td>
+                        <?php echo $linea['nombre']; ?>
+                      </td>
+                      <td>
+                        <?php echo $linea['descripcion']; ?>
+                      </td>
+                      <td>
+                        <?php echo $linea['cantidad']; ?>
+                      </td>
+                    </tr>
+                    <?php
+                      }
+                    ?>
+                  </table>
+                </div>
+              </div> 
             </div>
           </div>
         </div>
       </div>
-      <script language="javascript">
-        <?php
-          if($actualizacion){
-            echo "let mimodal = document.getElementById('ModalProductoOk');" ;
-            echo "mimodal.style.display='block';" ;
-            echo "setTimeout(function() {" ;
-            echo "let mimodal = document.getElementById('ModalProductoOk');" ;
-            echo "mimodal.style.display='none';" ;
-            echo "}, 2000); ";
-        }
-      ?>  
-      </script>
       
     </body>
 </html> 

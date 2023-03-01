@@ -7,7 +7,7 @@
 
         $registros = mysqli_query($conexion, "select * from usuarios where email = '" . $_POST["email"] . 
                 "' and password = '" . $_POST["password"] . "'") or
-                die("Problemas en el select:" . mysqli_error($conexion));
+                die("Problemas en el select de login:" . mysqli_error($conexion));
              
         if($registros->num_rows==0){
             $error = true;
@@ -18,7 +18,7 @@
             if ($usu['rol'] == "cliente"){
                 header("Location: interfaz/usuario/menu.php");
             } else {
-                header("Location: interfaz/admin/admin.php");
+                header("Location: interfaz/admin/pedidos.php?tipo=prep");
             }      
         }
     }

@@ -108,6 +108,26 @@
             padding:1px; 
             background-color: black;
           }
+
+          span img {
+            border: 1px solid #ddd; /* Gray border */
+            border-radius: 4px;  /* Rounded border */
+            padding: 5px; /* Some padding */
+            width: 150px; /* Set a small width */
+            height: 50%; /* Set a small width */
+          }
+
+          span img:hover {
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+          }
+
+          .imagengrande{
+            display:none; 
+            position:absolute; 
+            z-index: 1;
+            width:1%;
+          }
+
       </style>
     </head>
     <body>
@@ -126,7 +146,7 @@
             <header class="d-flex flex-wrap py-3 mb-5 border-bottom">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <div class="container">
-                  <a class="navbar-brand" href="#">usuario:</a>
+                  <a class="navbar-brand" href="#"><?php $_SESSION["usuario"] ?></a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -150,7 +170,7 @@
                 <li><a class="menusel" href="#">Articulos</a></li>
                 <li><a href="usuarios.php">Usuarios</a></li>
                 <li><a href="reportes.php">Reportes</a></li>
-                <li><a href="#">Opcion 5</a></li>
+                <li><a href="#">Transporte</a></li>
               </ul>
             </div>
           </div>
@@ -158,7 +178,9 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-2">
-                  <button class="btn-primary">Nuevo articulo</button>
+                  <a href="articulonuevo.php">
+                    <button class="btn-primary">Nuevo articulo</button>
+                  </a>
                 </div>
                 <div class="lineaSuperior"></div>
               </div>
@@ -177,13 +199,30 @@
                   </thead>
                   <tbody>
                     <?php
+                      $IDfoto = 0;
                       foreach ($productos as $fila) { 
                     ?>
                       <tr>
                         <td><?php echo $fila['nombre'] ?></td>
                         <td><?php echo $fila['descripcion'] ?></td>
-                        <td><?php echo $fila['foto1'] ?></td>
-                        <td><?php echo $fila['foto2'] ?></td>
+                        <td>
+                          <div id="<?php echo $IDfoto?>" class="modal-content imagengrande">
+                              <img src="../../imagenes/<?php echo $fila['foto1']?>"/>
+                          </div>
+                          <span title="<?php echo $fila['foto1']?>">
+                            <img src="../../imagenes/<?php echo $fila['foto1']?>" onmouseover="mostrar(event,<?php echo $IDfoto?>);"
+                            onmouseout="ocultar(<?php echo $IDfoto++?>);"/>
+                          </span>
+                        </td>
+                        <td>
+                          <div id="<?php echo $IDfoto?>" class="modal-content imagengrande"  >
+                              <img src="../../imagenes/<?php echo $fila['foto2']?>"/>
+                          </div>
+                          <span title="<?php echo $fila['foto2']?>">
+                            <img src="../../imagenes/<?php echo $fila['foto2']?>" onmouseover="mostrar(event,<?php echo $IDfoto?>);"
+                            onmouseout="ocultar(<?php echo $IDfoto++?>);"/>
+                          </span>
+                        </td>
                         <td><?php echo $fila['stock_minimo'] ?></td>
                         <td><?php echo $fila['stock_minimo'] ?></td>
 
@@ -195,6 +234,7 @@
                             </a>
                           </span>
                         </td>
+                        <div>
                         <?php
                           }
                         ?>
@@ -206,5 +246,18 @@
           </div>
         </div>
       </div>
+      <script>
+          function mostrar(evt, elemento){
+            let foto = document.getElementById(elemento);
+            foto.style.display="inline";
+            foto.style.top = evt.clientY + "px";
+            foto.style.left = evt.clientX + "px";
+
+          };
+
+          function ocultar(elemento){
+            document.getElementById(elemento).style.display="none";
+          }
+        </script>
     </body>
 </html> 
