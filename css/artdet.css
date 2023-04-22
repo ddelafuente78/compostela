@@ -4,6 +4,23 @@ html, body {
     background: linear-gradient(to bottom, #c5c1b9, #f6d593); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+
+.cssanimation, .cssanimation span {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.cssanimation span { display: inline-block }
+.infinite { animation-iteration-count: infinite !important }
+
+.lightning { animation-name: lightning }
+
+@keyframes lightning {
+    from, 50%, to { opacity: 1 }
+    25%, 75% { opacity: 0 }
+}
+
+
 .lineaSuperior{
     border: 1px solid #000; 
     padding:1px; 
@@ -34,4 +51,9 @@ html, body {
 
 .imagen-centrada{
     margin: 0 auto;
+}
+.fondopedido {
+    background: #eacda3;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #f6d593, #c5c1b9);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #f6d593, #c5c1b9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }

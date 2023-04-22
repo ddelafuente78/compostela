@@ -4,24 +4,55 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
             integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <Style>
-            .cssanimation, .cssanimation span {
-                animation-duration: 1s;
-                animation-fill-mode: both;
-            }
+        <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
 
-            .cssanimation span { display: inline-block }
-            .infinite { animation-iteration-count: infinite !important }
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
 
-            .lightning { animation-name: lightning }
-            
-            @keyframes lightning {
-                from, 50%, to { opacity: 1 }
-                25%, 75% { opacity: 0 }
-            }
-        </Style>
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        </style>
     </head>
     <body>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>La cantidad pedida es mayor al stock disponible!!</p>
+            </div>
+        </div>
         <?php
             include '../../helper/conexion.php';
             include '../../helper/validar_usuario.php';
@@ -33,8 +64,9 @@
 
             $registros = mysqli_query($conexion, "SELECT ar.nombre, ca.cantidad, ca.nro_pedido
                                 FROM compostela.carrito ca
-                                    join articulos ar on ca.articulos_id = ar.id;" ) or
-                                die("Problemas en el select:" . mysqli_error($conexion));
+                                    join articulos ar on ca.articulos_id = ar.id
+                                where ca.nro_pedido='" . $_SESSION['nropedido'] . "';" ) or
+                                    die("Problemas en el select:" . mysqli_error($conexion));
 
             $carrito =  mysqli_fetch_all($registros, MYSQLI_ASSOC);
 
@@ -51,13 +83,16 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="../login.php">Home</a>                    
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="menu.php">Menu</a>                    
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="articulos.php">Articulos</a>                    
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="carrito.php">Carrito</a>                    
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="../../login.php">Cerrar</a>                    
                                 </li>
                             </ul>
                         </div>
@@ -68,28 +103,30 @@
                 <div class="col-8">
                     <div class="lineaSuperior"></div>
                     <div id="slideshow" class='cajaimagenes'>
-                        <img src="../../imagenes/<?php echo $articulo["foto1"] ?>" alt="<?php echo $articulo["foto1"] ?>" class="img-thumbnail imagen-centrada" />
-                        <img src="../../imagenes/<?php echo $articulo["foto2"] ?>" alt="<?php echo $articulo["foto2"] ?>" class="img-thumbnail imagen-centrada"/>
+                        <img src="../../imagenes/productos/<?php echo $articulo["foto1"] ?>" alt="<?php echo $articulo["foto1"] ?>" class="img-thumbnail imagen-centrada" />
+                        <img src="../../imagenes/productos/<?php echo $articulo["foto2"] ?>" alt="<?php echo $articulo["foto2"] ?>" class="img-thumbnail imagen-centrada"/>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="lineaSuperior"></div>
-                    <div class="card caja">
+                    <div class="card caja fondopedido" style='border: 1px solid white;'>
                         <div class="card-body">
                             <h4 class="card-title"><div class="cssanimation lightning">producto: <?php echo $articulo["nombre"] ?> </div></h4>
                             <p class="card-text">
                                 <form class="custom-form" action="carrito.php" method="post">
                                     <label  class="form-label">Stock: <?php echo $articulo["stock"] ?></label><br>
-                                    <label for="cantidad" class="form-label">cuanto?:</label>
-                                    <input type="text" class="form-control" id="cantidad" name="cantidad">
-                                    <button type="submit" class="btn btn-primary">Pedir</button>
+                                    <label for="cantidad" class="form-label">cantidad:</label>
+                                    <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="0"
+                                    onblur="controlStock();">
+                                    <button type="submit" class="btn btn-primary" id='btnPedir' disabled>Pedir</button>
                                     <input type="hidden" name='id_articulo' value=<?php echo $articulo["id"] ?>>
+                                    <input type="hidden" id='stock' value=<?php echo $articulo["stock"] ?>>
                                 </form> 
                             </p>
                         </div>        
                     </div>
-                    <div style="margin:10px 50px">
-                        <h6>Productos en carrito</h6> 
+                    <div style="margin:10px 20px">
+                        <h6>Productos en carrito:</h6> 
                         <?php
                             $i=1;
                             foreach ($carrito as $car) {
@@ -113,6 +150,37 @@
             </div>   
         </div>
         <script src="../../js/slider.js"></script>
+        <script lang='JavaScript'>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+            
+            function controlStock(){
+                let stock = document.getElementById('stock').value;
+                let cantidad = document.getElementById('cantidad').value;
+                if(parseInt(stock) < parseInt(cantidad)){
+                    
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("close")[0];
+                    //open the modal
+                    modal.style.display = "block";
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+
+                    document.getElementById('btnPedir').disabled = true;
+                } else {
+                    document.getElementById('btnPedir').disabled = false;
+                }
+            }
+            
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
     </body>
 <html>
 

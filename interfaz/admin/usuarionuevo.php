@@ -122,9 +122,9 @@
     </head>
     <body>
       <!-- Ventana modal, por defecto no visiblel -->
-      <div id="modalinsertarpedido" class="modal">
+      <div id="modalinsertarusuario" class="modal">
         <div class="contenido-modal">
-          <p>Se inserto el articulo.</p>
+          <p>Se inserto el usuario.</p>
         </div>
       </div>
       <?php
@@ -132,67 +132,19 @@
         include '../../helper/validar_usuario.php';
         include '../../modelo/clases.php';
 
-        function cargarArchivo($nroArchivo,$nombreArchivo){
-          $carpeta="../../imagenes/productos/";
-          $archivoFinal= $carpeta . $nombreArchivo;
-          //pathinfo: Devuelve información acerca de la ruta de un fichero
-          $tipoArchivoImagen = strtolower(pathinfo($_FILES["file" . $nroArchivo]["name"],PATHINFO_EXTENSION));
-          $ArchivoOK = true;
-          $check = getimagesize($_FILES["file" . $nroArchivo]["tmp_name"]);
-          
-          if($check !== false) {
-            $ArchivoOK = true;;
-          } else {
-            $ArchivoOK = false;
-          }
-
-          // verfica si existe el archivo
-          if (file_exists($archivoFinal)) {
-            $ArchivoOK = false;
-          }
-
-          // verifica el tamanio del archivo
-          if ($_FILES["file" . $nroArchivo]["size"] > 500000) {
-            
-            $ArchivoOK = false;
-          }
-
-          // permite ciertos formatos
-          if($tipoArchivoImagen != "jpg" && $tipoArchivoImagen != "png" && $tipoArchivoImagen != "jpeg" && $tipoArchivoImagen != "gif" ) {
-            $ArchivoOK = false;
-          }
-
-          
-          // verifica si el archivo es correcto para subir
-          if ($ArchivoOK == false) {
-            return false;
-          // Si todo esta ok, subimos el archivo
-          } else {
-            if (move_uploaded_file($_FILES["file" . $nroArchivo]["tmp_name"], $archivoFinal)) {
-              return true;
-            }else{
-              return false;
-            }         
-          }
-        }
         $insercion=false;
         if($_POST){
-      
-          $articulo = new articulo();
+          $usuario = new usuario();
           
-          $articulo->nombre=$_POST['nombre'];
-          $articulo->desscripcion=$_POST['descripcion'];
-          $articulo->foto1=$_FILES["file1"]["name"];
-          $articulo->foto2=$_FILES["file2"]["name"];
-          $articulo->stock=$_POST["stock"];
-          $articulo->stock_minimo=$_POST["stockminimo"];
+          $usuario->nombre=$_POST['nombre'];
+          $usuario->mail=$_POST['mail'];
+          $usuario->password=$_POST['password'];
+          $usuario->rol=$_POST['rol'];
           
-          if(cargarArchivo("2",$articulo->foto2) && cargarArchivo("1",$articulo->foto1)){
-            $insQuery = "INSERT INTO articulos VALUES(default,'" . $articulo->nombre . "','" . $articulo->foto1 . "','" . $articulo->foto2 .
-                        "','". $articulo->desscripcion . "'," . $articulo->stock . "," . $articulo->stock_minimo  . ", CURRENT_TIMESTAMP(), null);";
-            mysqli_query($conexion, $insQuery);
-            $insercion=true;
-          }
+          $insQuery = "INSERT INTO usuarios VALUES(default,'" . $usuario->mail . "','" . $usuario->nombre . "','" . $usuario->password . "','" . $usuario->rol . "');";
+          echo $insQuery;
+          mysqli_query($conexion, $insQuery);
+          $insercion=true;
         }
       ?>
       <div class='Container'>
@@ -223,8 +175,8 @@
             <div id="sidebar" class="sidebar">
               <ul class="menu">
                 <li><a href="pedidos.php?tipo=prep">Pedidos</a></li>
-                <li><a class="menusel" href="articulos.php">Articulos</a></li>
-                <li><a href="usuarios.php">Usuarios</a></li>
+                <li><a href="articulos.php">Articulos</a></li>
+                <li><a class="menusel" href="usuarios.php">Usuarios</a></li>
                 <li><a href="transporte.php">Transporte</a></li>
                 <li><a href="reportes.php">Reportes</a></li>
               </ul>
@@ -232,21 +184,20 @@
           </div>
           <div class="col-11">
             <div class='Container'>
-              <h1>Nuevo articulo</h1>
+              <h1>Nuevo usuario</h1>
               <div class="row">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
                   <label for="nombre">Nombre:</label>
                   <input type="text" id="nombre" name="nombre" placeholder="Sin nombre">
-                  <label for="descripcion">Descripcion:</label>
-                  <input type="text" id="descripcion" name="descripcion" placeholder="Sin descripcion">
-                  <label for="foto1">Foto 1:</label>
-                  <input type="file" id="file1" name="file1">
-                  <label for="foto2">Foto 2:</label>
-                  <input type="file" id="file2" name="file2">
-                  <label for="stock">Stock</label>
-                  <input type="number" id="stock" name="stock" placeholder="0">
-                  <label for="stockminimo">Stock minimo</label>
-                  <input type="number" id="stockminimo" name="stockminimo" placeholder="0">
+                  <label for="mail">Mail:</label>
+                  <input type="text" id="mail" name="mail" placeholder="Sin mail">
+                  <label for="password">Password:</label>
+                  <input type="text" id="password" name="password" placeholder="Sin password">
+                  <label for="rol">Rol:</label>
+                  <select class="form-select" id='rol' name='rol'>
+                    <option value="cliente">Cliente</option>
+                    <option value="admin">Administrador</option>
+                  </select>
                   <input type="submit" id="cargar" name="cargar" value="cargar">
                 </form>
               </div>
@@ -257,14 +208,14 @@
       <script language="javascript">
         <?php
           if($insercion){
-            echo "let mimodal = document.getElementById('modalinsertarpedido');" ;
+            echo "let mimodal = document.getElementById('modalinsertarusuario');" ;
             echo "mimodal.style.display='block';" ;
             echo "setTimeout(function() {" ;
-            echo "let mimodal = document.getElementById('modalinsertarpedido');" ;
+            echo "let mimodal = document.getElementById('modalinsertarusuario');" ;
             echo "mimodal.style.display='none';" ;
             echo "}, 2000); ";
-        }
-      ?>
-      </script>
+          }
+        ?>
+        </script>
     </body>
 </html> 

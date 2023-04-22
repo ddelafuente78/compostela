@@ -8,4 +8,29 @@
         public $cp;
         public $provincia;
     } 
+
+    class articulo {
+        public $id;
+        public $nombre;
+        public $descripcion;
+        public $foto1;
+        public $foto2;
+        public $stock;
+        public $stock_minimo;
+    }
+
+    class usuario {
+        public $id;
+        public $nombre;
+        public $mail;
+        public $password;
+        public $rol;
+    }
+
+    class transporte {
+        public $id;
+        public $nombre;
+        public $direccion;
+        public $telefono;
+    }
 ?>

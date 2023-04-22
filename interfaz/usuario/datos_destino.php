@@ -14,11 +14,11 @@
           .infinite { animation-iteration-count: infinite !important }
           .effect3d { animation-name: effect3d }
           @keyframes effect3d {
-          to {
-            text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 
-            0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 
-            0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15)
-          }
+            to {
+              text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 
+              0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 
+              0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15)
+            }
         }
     </style> 
   </head>
@@ -32,7 +32,7 @@
 
       $destinatario->provincia="Santa Fe";
 
-      if(${_POST}){
+      if($_POST){
         
         $consulta = mysqli_query(
           $conexion,
@@ -65,20 +65,20 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
           <div class="container">
             <a class="navbar-brand" href="#"><?php echo $_SESSION["usuario"]; ?></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="menu.php">Menu</a>                    
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="articulos.php">Articulos</a>                    
-                  </li>
-                </ul>
-              </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="menu.php">Menu</a>                    
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="articulos.php">Articulos</a>                    
+                </li>
+              </ul>
             </div>
+          </div>
         </nav>
       </header>
       <div class="row">
@@ -224,6 +224,10 @@
             <div class="mb-3">
               <label for="fecha" class="form-label">Fecha limite entrega.</label>
               <input type="Date" class="form-control" id="fecha" name="fecha" require>        
+            </div>
+            <div class="mb-3">
+              <label for="fecha" class="form-label">Numero de pedido.</label>
+              <input type="" class="form-control" id="nroasociado" name="nroasociado" require>        
             </div>
             <br>
             <button type="submit" class="btn btn-success">Finalizar</button>

@@ -30,28 +30,26 @@
 
         $masdediez = false;
         if($_POST){
-          
-          $cantidadCarrito = mysqli_query($conexion,"SELECT count(*) as total FROM carrito where nro_pedido = '" . $_SESSION['nropedido'] . "';");
+          $qryselcant = "SELECT count(*) as total FROM carrito where nro_pedido = '" . $_SESSION['nropedido'] . "';";
+          $cantidadCarrito = mysqli_query($conexion, $qryselcant);
           
           $RegCount = mysqli_fetch_array($cantidadCarrito);
 
-          if($RegCount['total'] <= 5){
-            $respuesta = mysqli_query($conexion, "insert into carrito values (default, 1," . $_POST['id_articulo'] . ", " 
-                    . $_POST['cantidad'] . ", default , '". $_SESSION['nropedido'] . "')");
+          if($RegCount['total'] <= 10){
+            $qryins = "insert into carrito values (default, 1," . $_POST['id_articulo'] . ", " 
+                      . $_POST['cantidad'] . ", default , '". $_SESSION['nropedido'] . "')";
+            mysqli_query($conexion,$qryins);
           }else{
             $masdediez = true;
           }
         }
       
-        $consulta = mysqli_query(
-          $conexion,
-            "select ca.id, ca.cantidad, ca.fecha_hora, ca.nro_pedido, ar.descripcion from carrito ca
-                join articulos ar on ca.articulos_id = ar.id  
-                where ca.nro_pedido='" . $_SESSION['nropedido'] . "' order by fecha_hora;"
+        $qryselcarrito = mysqli_query($conexion, "select ca.id, ca.cantidad, ca.fecha_hora, ca.nro_pedido, ar.descripcion 
+                            from carrito ca join articulos ar on ca.articulos_id = ar.id  
+                            where ca.nro_pedido='" . $_SESSION['nropedido'] . "' order by fecha_hora;"
           ) or die(mysqli_error($conexion));
 
-        $filas = mysqli_fetch_all($consulta, MYSQLI_ASSOC);
-
+        $filas = mysqli_fetch_all($qryselcarrito, MYSQLI_ASSOC);
       ?>
 
       <!-- Header -->
@@ -76,7 +74,7 @@
         </nav>
       </header>
       <h1 class="cssanimation effect3d">Detalle de pedido</h1>
-      <div style='float: right;'>Nro: <span style='font-weight:bold'><?php echo $_SESSION['nropedido']?></span></div>
+      <div style='float: right;'>Nro: <span style='font-weight:bold'><?php echo $_SESSION['id']?></span></div>
       <table class="table table-striped">
         <thead>
           <tr>

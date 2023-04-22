@@ -178,7 +178,7 @@
     </head>
     <body>
       <!-- Ventana modal, por defecto no visiblel -->
-      <div id="ModalProductoOk" class="modal">
+      <div id="ModalPedidoOk" class="modal">
         <div class="contenido-modal">
           <p>Se actualizo el pedido correctamente.</p>
         </div>
@@ -190,7 +190,7 @@
           $qryUpdate = "update pedidoscab set estado_id = " . $_POST['estado'] . " where codigo = '" . $_POST['codigo'] . "'";
           $update = mysqli_query($conexion, $qryUpdate);
           
-          $qrybulto = "select count(*) as total from bultos where codigo_pago='". $codigo . "'";
+          $qrybulto = "select count(*) as total from bultos where codigo_pedido='". $codigo . "'";
           $count = mysqli_query($conexion, $qrybulto);
           $data=mysqli_fetch_assoc($count);
           
@@ -198,7 +198,7 @@
             $insbulto = "insert into bultos values(default," . $_POST['id'] . ",'" . $codigo . "'," . $_POST['cantidad'] . "," . $_POST['peso'] . "," . $_POST['tamanio'] .")";
             $insert = mysqli_query($conexion, $insbulto) or die("Error en la insercion en la tabla de bulto " . mysqli_error($conexion));
           }else{
-            $updbulto = "update bultos set cantidad=" . $_POST['cantidad'] . ", idpeso=" . $_POST['peso'] . ", idtamanio=" . $_POST['tamanio'] . " where idPago=" . $_POST['id'];
+            $updbulto = "update bultos set cantidad=" . $_POST['cantidad'] . ", idpeso=" . $_POST['peso'] . ", idtamanio=" . $_POST['tamanio'] . " where idPedido=" . $_POST['id'];
             $update = mysqli_query($conexion, $updbulto) or die("Error en la actualizacion de la tabla de bulto " . mysqli_error($conexion));
           }
           $actualizacion=true;
@@ -216,13 +216,13 @@
                       join estados e on pc.estado_id = e.id
                       join destinatarios d on pc.destinatario_id = d.id
                       join usuarios u on pc.usuario_id = u.id
-                      left join bultos b on b.idpago = pc.id
+                      left join bultos b on b.idpedido = pc.id
                     WHERE pc.codigo='". $codigo ."';";
 
         $pedido = mysqli_query($conexion, $query);
         $fila = mysqli_fetch_array($pedido);
 
-        $selBulto = "SELECT * FROM bultos WHERE codigo_pago = '" . $codigo . "'";
+        $selBulto = "SELECT * FROM bultos WHERE codigo_pedido = '" . $codigo . "'";
         $rsBulto = mysqli_query($conexion, $selBulto);
         $filaBulto = mysqli_fetch_array($rsBulto);
         
@@ -240,14 +240,14 @@
             <header class="d-flex flex-wrap py-3 mb-5 border-bottom">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <div class="container">
-                  <a class="navbar-brand" href="#"><?php echo 'usuario' //$_SESSION['usuario'] ?></a>
+                  <a class="navbar-brand" href="#"><?php $_SESSION['usuario'] ?></a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="menu.php">Cerrar</a>                    
+                        <a class="nav-link active" aria-current="page" href="../../login.php">Cerrar</a>                    
                       </li>
                     </ul>
                   </div>
@@ -263,8 +263,8 @@
                 <li><a class="menusel" href="pedidos.php?tipo=prep">Pedidos</a></li>
                 <li><a href="articulos.php">Articulos</a></li>
                 <li><a href="usuarios.php">Usuarios</a></li>
+                <li><a href="transporte.php">Transporte</a></li>
                 <li><a href="Reportes.php">Reportes</a></li>
-                <li><a href="#">Transporte</a></li>
               </ul>
             </div>
           </div>
@@ -314,7 +314,6 @@
                   <div>  
                     <input type="radio" name="estado" value="1" <?php if($fila['descripcion']=='Preparando'){echo 'checked';} ?>/> Preparando &nbsp;&nbsp;&nbsp;
                     <input type="radio" name="estado" value="2" <?php if($fila['descripcion']=='Enviado'){echo 'checked';} ?>/> Enviado &nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="estado" value="3" <?php if($fila['descripcion']=='Entregado'){echo 'checked';} ?>/> Entregado
                   </div>
                   <div class="row">
                     <span class="sombra">Bultos:</span>
@@ -353,15 +352,14 @@
       <script language="javascript">
         <?php
           if($actualizacion){
-            echo "let mimodal = document.getElementById('ModalProductoOk');" ;
+            echo "let mimodal = document.getElementById('ModalPedidoOk');" ;
             echo "mimodal.style.display='block';" ;
             echo "setTimeout(function() {" ;
-            echo "let mimodal = document.getElementById('ModalProductoOk');" ;
+            echo "let mimodal = document.getElementById('ModalPedidoOk');" ;
             echo "mimodal.style.display='none';" ;
             echo "}, 2000); ";
         }
       ?>  
       </script>
-      
     </body>
 </html> 

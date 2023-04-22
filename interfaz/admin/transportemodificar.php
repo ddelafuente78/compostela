@@ -83,9 +83,9 @@
           border-radius: 4px;
           cursor: pointer;
         }
-
+        
         /* Fondo modal: negro con opacidad al 50% */
-        .modal {
+        .modalActualizacion {
             display: none; /* Por defecto, estará oculto */
             position: fixed; /* Posición fija */
             z-index: 1; /* Se situará por encima de otros elementos de la página*/
@@ -98,7 +98,7 @@
             background-color: rgba(0,0,0,0.5); /* Color negro con opacidad del 50% */
           }
 
-          .contenido-modal {
+          .contenido-modal-actualizacion {
             position: relative; /* Relativo con respecto al contenedor -modal- */
             background-color: white;
             margin: auto; /* Centrada */
@@ -122,78 +122,38 @@
     </head>
     <body>
       <!-- Ventana modal, por defecto no visiblel -->
-      <div id="modalinsertarpedido" class="modal">
-        <div class="contenido-modal">
-          <p>Se inserto el articulo.</p>
+      <div id="ModalTransporteOk" class="modalActualizacion">
+        <div class="contenido-modal-actualizacion">
+          <p>Se actualizo el trasporte.</p>
         </div>
       </div>
+      
       <?php
         include '../../helper/conexion.php';
         include '../../helper/validar_usuario.php';
         include '../../modelo/clases.php';
 
-        function cargarArchivo($nroArchivo,$nombreArchivo){
-          $carpeta="../../imagenes/productos/";
-          $archivoFinal= $carpeta . $nombreArchivo;
-          //pathinfo: Devuelve información acerca de la ruta de un fichero
-          $tipoArchivoImagen = strtolower(pathinfo($_FILES["file" . $nroArchivo]["name"],PATHINFO_EXTENSION));
-          $ArchivoOK = true;
-          $check = getimagesize($_FILES["file" . $nroArchivo]["tmp_name"]);
-          
-          if($check !== false) {
-            $ArchivoOK = true;;
-          } else {
-            $ArchivoOK = false;
-          }
-
-          // verfica si existe el archivo
-          if (file_exists($archivoFinal)) {
-            $ArchivoOK = false;
-          }
-
-          // verifica el tamanio del archivo
-          if ($_FILES["file" . $nroArchivo]["size"] > 500000) {
-            
-            $ArchivoOK = false;
-          }
-
-          // permite ciertos formatos
-          if($tipoArchivoImagen != "jpg" && $tipoArchivoImagen != "png" && $tipoArchivoImagen != "jpeg" && $tipoArchivoImagen != "gif" ) {
-            $ArchivoOK = false;
-          }
-
-          
-          // verifica si el archivo es correcto para subir
-          if ($ArchivoOK == false) {
-            return false;
-          // Si todo esta ok, subimos el archivo
-          } else {
-            if (move_uploaded_file($_FILES["file" . $nroArchivo]["tmp_name"], $archivoFinal)) {
-              return true;
-            }else{
-              return false;
-            }         
-          }
-        }
-        $insercion=false;
+        $transporte = new transporte();
+        $actualizacion=false;
         if($_POST){
-      
-          $articulo = new articulo();
-          
-          $articulo->nombre=$_POST['nombre'];
-          $articulo->desscripcion=$_POST['descripcion'];
-          $articulo->foto1=$_FILES["file1"]["name"];
-          $articulo->foto2=$_FILES["file2"]["name"];
-          $articulo->stock=$_POST["stock"];
-          $articulo->stock_minimo=$_POST["stockminimo"];
-          
-          if(cargarArchivo("2",$articulo->foto2) && cargarArchivo("1",$articulo->foto1)){
-            $insQuery = "INSERT INTO articulos VALUES(default,'" . $articulo->nombre . "','" . $articulo->foto1 . "','" . $articulo->foto2 .
-                        "','". $articulo->desscripcion . "'," . $articulo->stock . "," . $articulo->stock_minimo  . ", CURRENT_TIMESTAMP(), null);";
-            mysqli_query($conexion, $insQuery);
-            $insercion=true;
-          }
+
+          $transporte->id=$_POST['idactualizar'];
+          $transporte->nombre=$_POST['nombre'];
+          $transporte->direccion=$_POST['direccion'];
+          $transporte->telefono=$_POST["telefono"];
+
+          $qryUpdate = "UPDATE transportes SET nombre='" . $transporte->nombre . "', direccion='" . $transporte->direccion . 
+                        "', telefono='" . $transporte->telefono . "' where id=" . $transporte->id ;
+          mysqli_query($conexion, $qryUpdate);
+          $actualizacion=true;
         }
+        if($_GET){
+          $transporte->id=$_GET['id'];
+        }
+
+        $qrySelect = "SELECT * FROM transportes WHERE id=" . $transporte->id;
+        $rsTransporte = mysqli_query($conexion, $qrySelect);
+        $transporte = mysqli_fetch_array($rsTransporte);
       ?>
       <div class='Container'>
         <div class='row'>
@@ -223,48 +183,46 @@
             <div id="sidebar" class="sidebar">
               <ul class="menu">
                 <li><a href="pedidos.php?tipo=prep">Pedidos</a></li>
-                <li><a class="menusel" href="articulos.php">Articulos</a></li>
+                <li><a href="articulos.php">Articulos</a></li>
                 <li><a href="usuarios.php">Usuarios</a></li>
-                <li><a href="transporte.php">Transporte</a></li>
+                <li><a class="menusel" href="transporte.php">Transporte</a></li>
                 <li><a href="reportes.php">Reportes</a></li>
               </ul>
             </div>
           </div>
           <div class="col-11">
             <div class='Container'>
-              <h1>Nuevo articulo</h1>
+              <h1>Modificar transporte</h1>
               <div class="row">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name='idactualizar' value='<?php echo $transporte['id'] ?>'>
                   <label for="nombre">Nombre:</label>
-                  <input type="text" id="nombre" name="nombre" placeholder="Sin nombre">
-                  <label for="descripcion">Descripcion:</label>
-                  <input type="text" id="descripcion" name="descripcion" placeholder="Sin descripcion">
-                  <label for="foto1">Foto 1:</label>
-                  <input type="file" id="file1" name="file1">
-                  <label for="foto2">Foto 2:</label>
-                  <input type="file" id="file2" name="file2">
-                  <label for="stock">Stock</label>
-                  <input type="number" id="stock" name="stock" placeholder="0">
-                  <label for="stockminimo">Stock minimo</label>
-                  <input type="number" id="stockminimo" name="stockminimo" placeholder="0">
-                  <input type="submit" id="cargar" name="cargar" value="cargar">
+                  <input type="text" id="nombre" name="nombre" placeholder="Sin nombre"
+                  value='<?php echo $transporte['nombre'] ?>'>
+                  <label for="direccion">Direccion:</label>
+                  <input type="text" id="direccion" name="direccion" placeholder="Sin direccion"
+                  value='<?php echo $transporte['direccion'] ?>'>
+                  <label for="telefono">Telefono:</label>
+                  <input type="text" id="telefono" name="telefono" placeholder="Sin telefono"
+                  value='<?php echo $transporte['telefono'] ?>'>
+                  <input type="submit" id="modificar" name="modificar" value="Modificar">
                 </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <script language="javascript">
+      <script language='JavaScript'>
         <?php
-          if($insercion){
-            echo "let mimodal = document.getElementById('modalinsertarpedido');" ;
+          if($actualizacion){
+            echo "let mimodal = document.getElementById('ModalTransporteOk');" ;
             echo "mimodal.style.display='block';" ;
             echo "setTimeout(function() {" ;
-            echo "let mimodal = document.getElementById('modalinsertarpedido');" ;
+            echo "let mimodal = document.getElementById('ModalTransporteOk');" ;
             echo "mimodal.style.display='none';" ;
             echo "}, 2000); ";
-        }
-      ?>
+          }
+        ?>  
       </script>
     </body>
 </html> 

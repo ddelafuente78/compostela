@@ -16,10 +16,10 @@
       //si lo pide el usuario buscamos por nombre de articulo
       //sino mostramos todos.
 
-      $busqueda = "select * from articulos;";
+      $busqueda = "select * from articulos where fecha_baja is null;";
       if($_POST){
         if( $_POST['buscado'] <> ""){
-          $busqueda = "select * from articulos where match(nombre) against('" . $_POST['buscado'] . "');";
+          $busqueda = "select * from articulos where nombre like '" . $_POST['buscado'] . "%' and fecha_baja is null;;";
         }
       }
 
@@ -27,30 +27,34 @@
     
       $registros = mysqli_query($conexion, $busqueda) or
                 die("Problemas en el select:" . mysqli_error($conexion));
+
     ?> 
     <div class="container-fluid">
       
       <!-- Header -->
       <header class="d-flex flex-wrap py-3 mb-5 border-bottom">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-          <a class="navbar-brand" href="#"><?php echo $_SESSION["usuario"]; ?></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="menu.php">Menu</a>                    
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="carrito.php">Carrito</a>                    
-              </li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+          <div class="container">
+            <a class="navbar-brand" href="#"><?php echo $_SESSION["usuario"]; ?></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="menu.php">Menu</a>                    
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="carrito.php">Carrito</a>                    
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="../../login.php">Cerrar</a>                    
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
     
     <div class="row">
       <div class="col-12">
@@ -73,7 +77,7 @@
           ?>
           <div class="contenedor-card-item">
             <div class="contenedor-card-item-wrapper">
-              <a href="artdet.php?id=<?php echo $reg['id']?>"><img src='../../imagenes/<?php echo $reg['foto1'] ?>' alt=""></a>
+              <a href="artdet.php?id=<?php echo $reg['id']?>"><img src='../../imagenes/productos/<?php echo $reg['foto1'] ?>' alt=""></a>
               <div class="contenedor-info">
                 <div class="info">
                   <p class="titulo"><?php echo $reg['nombre'] ?></p>
@@ -85,7 +89,7 @@
             </div>
           </div>
           <?php
-            }
+            };
             mysqli_close($conexion); 
           ?>  
         </div>

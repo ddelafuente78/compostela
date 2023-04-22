@@ -18,7 +18,7 @@
     $resultId = array("id" => mysqli_insert_id($conexion));
   }else{
     $result =  mysqli_fetch_array($destinatarios);
-    $resultId = $result['id'];
+    $destinatarioId = $result['id'];
   }
 
   //Obteniene todos los productos del carrito.
@@ -26,9 +26,14 @@
                 die("Problemas en el select from carrito:" . mysqli_error($conexion));
 
   //insertar la cabecera del pedido
+  if($_POST['prioridad']=='normal'){
+    $prioridad=0;
+  }else{
+    $prioridad=1;
+  }
   
   $insertaPedidoCabecera = mysqli_query($conexion, "insert into pedidoscab values(default,'" . $_SESSION['nropedido'] . "',1,'" . $_POST['fecha'] . "'"
-  . ",1," . $resultId . "," . $_SESSION["id"] . ");") or 
+  . ",". $prioridad ."," . $destinatarioId . "," . $_SESSION["id"] . ", now() , " . $_POST['nroasociado']  . ");") or 
   die("Problemas en el insert cuando pasamos del carrito a pedidos:" . mysqli_error($conexion));
 
   $idpedido = mysqli_insert_id($conexion);
@@ -37,11 +42,11 @@
 
       if(controlarStock($conexion, $reg['articulos_id'], $reg['cantidad'] )){
         
-        $insertaPedidodetalle = mysqli_query($conexion, "insert into pedidosdet values(default,'" . $reg['articulos_id'] . "','". $_SESSION['nropedido'] . 
-                        "',  now() , " . $reg['cantidad'] . "," . $idpedido . ");" ) or 
+        mysqli_query($conexion, "insert into pedidosdet values(default,'" . $reg['articulos_id'] . "','". $_SESSION['nropedido'] . 
+                        "',". $reg['cantidad'] . "," . $idpedido . ");" ) or 
                         die("Problemas en el insert cuando pasamos del carrito a pedidos:" . mysqli_error($conexion));
         
-        $actualizarpedido = mysqli_query($conexion, "update articulos set stock = stock - " . $reg['cantidad'] . " where id = " . $reg['articulos_id'])
+        mysqli_query($conexion, "update articulos set stock = stock - " . $reg['cantidad'] . " where id = " . $reg['articulos_id'])
                       or die("Problemas en el update cuando actualizamos el stock:" . mysqli_error($conexion));
       }
   }

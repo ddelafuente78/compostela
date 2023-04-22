@@ -133,7 +133,7 @@
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="menu.php">Cerrar</a>                    
+                        <a class="nav-link active" aria-current="page" href="../../login.php">Cerrar</a>                    
                       </li>
                     </ul>
                   </div>
@@ -149,8 +149,8 @@
                 <li><a href="pedidos.php?tipo=prep">Pedidos</a></li>
                 <li><a href="articulos.php">Articulos</a></li>
                 <li><a href="usuarios.php">Usuarios</a></li>
+                <li><a href="transporte.php">Transporte</a></li>
                 <li><a class="menusel" href="#">Reportes</a></li>
-                <li><a href="#">Transporte</a></li>
               </ul>
             </div>
           </div>
