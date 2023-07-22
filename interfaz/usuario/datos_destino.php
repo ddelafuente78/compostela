@@ -81,11 +81,13 @@
           </div>
         </nav>
       </header>
+
       <div class="row">
         <div class="col-12">
           <h1 class="cssanimation effect3d" >Datos del destinatario...</h1>
         </div>
       </div>
+
       <div class="row">
         <div class="col-1">
         </div>
@@ -93,7 +95,8 @@
           <div class="mb-3">
               <form class="custom-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                 <label for="destinatario" class="form-label">Seleccione destinatario.</label>
-                <select class="form-select mb-3" id="destinatario" name="destinatario" onchange='this.form.submit()'> 
+                <select class="form-select mb-3" id="destinatario" name="destinatario" onchange='this.form.submit()'>
+                <option value="0" selected></option> 
                   <?php
                     foreach ($destinatarios as $dest) { 
                       if ($destinatario->id == $dest['id']) {
@@ -230,12 +233,13 @@
               <input type="" class="form-control" id="nroasociado" name="nroasociado" require>        
             </div>
             <br>
-            <button type="submit" class="btn btn-success">Finalizar</button>
           </form>
+          <button class="btn btn-success" id="btnfinalizar">Finalizar</button>
         </div>
         <div class="col-1">
         </div>
       </div> 
     </div>
+    <script src='../../js/datos_destino.js'></script>
   </body>
 </html>

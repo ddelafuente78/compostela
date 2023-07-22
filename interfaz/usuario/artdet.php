@@ -116,8 +116,7 @@
                                 <form class="custom-form" action="carrito.php" method="post">
                                     <label  class="form-label">Stock: <?php echo $articulo["stock"] ?></label><br>
                                     <label for="cantidad" class="form-label">cantidad:</label>
-                                    <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="0"
-                                    onblur="controlStock();">
+                                    <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="0">
                                     <button type="submit" class="btn btn-primary" id='btnPedir' disabled>Pedir</button>
                                     <input type="hidden" name='id_articulo' value=<?php echo $articulo["id"] ?>>
                                     <input type="hidden" id='stock' value=<?php echo $articulo["stock"] ?>>
@@ -154,9 +153,12 @@
             // Get the modal
             var modal = document.getElementById("myModal");
             
-            function controlStock(){
+            const inputElement = document.getElementById('cantidad');
+
+            inputElement.addEventListener('keyup', function(event) {
                 let stock = document.getElementById('stock').value;
                 let cantidad = document.getElementById('cantidad').value;
+                
                 if(parseInt(stock) < parseInt(cantidad)){
                     
                     // Get the <span> element that closes the modal
@@ -172,7 +174,7 @@
                 } else {
                     document.getElementById('btnPedir').disabled = false;
                 }
-            }
+            });
             
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {

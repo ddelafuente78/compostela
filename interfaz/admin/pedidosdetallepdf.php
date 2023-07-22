@@ -38,9 +38,9 @@ function Header()
     //Nro pedido
     $this->SetFont('Arial','',10);
     $this->Cell(150);
-    $this->Cell(330,1,'Nro pedido: ' . $this->codigo,0,1,'L');
+    $this->Cell(330,1,'Nro interno: ' . $this->codigo,0,1,'L');
     $this->Cell(150);
-    $this->Cell(330,10,'Nro asociado: '. $this->codigo_asociado,0,1,'L');
+    $this->Cell(330,10,'Nro pedido: '. $this->codigo_asociado,0,1,'L');
     $this->Cell(20);
     $this->Cell(1,1,'Usuario: '. $this->usuario,0,1,'L');
     $this->Cell(20);
