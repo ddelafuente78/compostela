@@ -30,7 +30,7 @@
       
         $consulta = mysqli_query(
           $conexion,
-            "SELECT distinct nro_pedido FROM compostela.carrito;"
+            "SELECT distinct nro_pedido FROM carrito;"
         ) or die(mysqli_error($conexion));
 
       $filas = mysqli_fetch_all($consulta, MYSQLI_ASSOC);

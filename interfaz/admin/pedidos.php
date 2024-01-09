@@ -7,20 +7,16 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
       <link rel="stylesheet" href="../../css/pedidos.css">
-    </head>
-    <body>
-      
       <?php
         include '../../helper/conexion.php';
         include '../../helper/validar_usuario.php';
-
         if($_GET) {
-          switch($_GET['tipo']){
+            switch($_GET['tipo']){
             case 'prep':
               $query = "SELECT pc.id, pc.codigo, pc.fecha_entrega,
                           if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
                           d.razon_social, u.nombre
-                        FROM compostela.pedidoscab pc 
+                        FROM pedidoscab pc 
                           join estados e on pc.estado_id = e.id
                           join destinatarios d on pc.destinatario_id = d.id
                           join usuarios u on pc.usuario_id = u.id
@@ -31,7 +27,7 @@
               $query = "SELECT pc.id, pc.codigo, pc.fecha_entrega,
                           if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
                           d.razon_social, u.nombre
-                        FROM compostela.pedidoscab pc 
+                        FROM pedidoscab pc 
                           join estados e on pc.estado_id = e.id
                           join destinatarios d on pc.destinatario_id = d.id
                           join usuarios u on pc.usuario_id = u.id
@@ -42,7 +38,7 @@
                 $query = "SELECT pc.id, pc.codigo, pc.fecha_entrega,
                             if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
                             d.razon_social, u.nombre
-                          FROM compostela.pedidoscab pc 
+                          FROM pedidoscab pc 
                             join estados e on pc.estado_id = e.id
                             join destinatarios d on pc.destinatario_id = d.id
                             join usuarios u on pc.usuario_id = u.id
@@ -53,24 +49,25 @@
                 $query = "SELECT pc.id, pc.codigo, pc.fecha_entrega,
                             if(prioridad_urgente = 1,'Urgente','Normal') as prioridad, 
                             d.razon_social, u.nombre
-                          FROM compostela.pedidoscab pc 
+                          FROM pedidoscab pc 
                             join estados e on pc.estado_id = e.id
                             join destinatarios d on pc.destinatario_id = d.id
                             join usuarios u on pc.usuario_id = u.id;";
           }
-
         }
         
         $pedidosprearando = mysqli_query($conexion, $query);
       ?>
-      <div class='Container'>
+    </head>
+    <body>
+      <div class='container-fluid'>
         <div class='row'>
           <div class="col-12">
             <!-- Header -->
             <header class="d-flex flex-wrap py-3 mb-5 border-bottom">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <div class="container">
-                  <a class="navbar-brand" href="#"><?php echo $_SESSION["usuario"] ?></a>
+                  <a class="navbar-brand" href="#"><?php echo $_SESSION["usuario"]; ?></a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -86,6 +83,7 @@
             </header>
           </div>
         </div>
+
         <div class="row">
           <div class="col-1">
             <div id="sidebar" class="sidebar">
@@ -94,7 +92,7 @@
                 <li><a href="articulos.php">Articulos</a></li>
                 <li><a href="usuarios.php">Usuarios</a></li>
                 <li><a href="transporte.php">Transporte</a></li>
-                <li><a href="Reportes.php">Reportes</a></li>
+                <li><a href="#">Reportes</a></li>
               </ul>
             </div>
           </div>

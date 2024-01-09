@@ -1,7 +1,0 @@
-id,nombre,foto1,foto2,descripcion,stock,stock_minimo,fecha_alta
-1,boligrafo,boligrafo_foto1.jpg,memoa4_foto1.jpg,"boligrafo blanco",500,0,"2016-11-22 00:00:00"
-2,boligrafo,boligrafo_foto1.jpg,boligrafo_foto2,"boligrafo blanco",500,0,"2016-11-22 00:00:00"
-3,"cuaderno a5",boligrafo_foto1.jpg,cuadernoa5_foto2,"cuaderno a5 azul",1000,300,"2016-11-22 00:00:00"
-4,"memo a4",memoa4_foto1.jpg,memoa4_foto2,"memo a4 ss",200,5,"2016-11-22 00:00:00"
-5,gacebo,cuadernoa5_foto1.jpg,gacebo_foto2,"gacebo 3x3",5,1,"2016-11-22 00:00:00"
-6,"hoja a5",cuadernoa5_foto1.jpg,boligrafohojaa5_foto2,"hoja a5 mista",10000,1000,"2016-11-22 00:00:00"

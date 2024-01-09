@@ -119,6 +119,7 @@
         $query = "Select * from articulos"; 
         $productos = mysqli_query($conexion, $query);
       ?>
+      
       <div class='Container'>
         <div class='row'>
           <div class="col-12">
@@ -142,6 +143,7 @@
             </header>
           </div>
         </div>
+        
         <div class="row">
           <div class="col-1">
             <div id="sidebar" class="sidebar">

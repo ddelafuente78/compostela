@@ -63,7 +63,7 @@
             $articulo = mysqli_fetch_array($registros);
 
             $registros = mysqli_query($conexion, "SELECT ar.nombre, ca.cantidad, ca.nro_pedido
-                                FROM compostela.carrito ca
+                                FROM carrito ca
                                     join articulos ar on ca.articulos_id = ar.id
                                 where ca.nro_pedido='" . $_SESSION['nropedido'] . "';" ) or
                                     die("Problemas en el select:" . mysqli_error($conexion));
