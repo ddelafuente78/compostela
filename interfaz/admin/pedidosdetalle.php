@@ -2,8 +2,8 @@
   <html>
     <head>
       <?php
-         require ('../../helper/conexion.php');
-         require ('../../helper/validar_usuario.php');
+        require ('../../helper/conexion.php');
+        require ('../../helper/validar_usuario.php');
       ?>
       <title>Administrador - compostela</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -12,199 +12,199 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
       <style>
         body {
-              font-family: "Segoe UI", sans-serif;
-              font-size:100%;
-          }
+    font-family: "Segoe UI", sans-serif;
+    font-size:100%;
+}
 
-        .menu {
-            background:#333;
-            width:100%;
-            height: 100%;
-            left: 10px;
-          }
+.menu {
+  background:#333;
+  width:100%;
+  height: 100%;
+  left: 10px;
+}
 
-        #contenido {
-            margin-left:0;
-          }
+#contenido {
+  margin-left:0;
+}
 
-        .sidebar {
-            position: fixed;
-            top: -10px;
-            bottom: 10px;
-            left: 0px ;
-            z-index: 1;
-          }
+.sidebar {
+  position: fixed;
+  top: -10px;
+  bottom: 10px;
+  left: 0px ;
+  z-index: 1;
+}
 
-        .sidebar ul, .sidebar li {
-            margin:0;
-            padding:0;
-            margin-left: 10px ;
-            list-style:none inside;
-          }
+.sidebar ul, .sidebar li {
+  margin:0;
+  padding:0;
+  margin-left: 10px ;
+  list-style:none inside;
+}
 
-        .sidebar ul {
-            margin: 4rem auto;
-            display: block;
-            width: 80%;
-            min-width:120px;
-          }
+.sidebar ul {
+  margin: 4rem auto;
+  display: block;
+  width: 80%;
+  min-width:120px;
+}
 
-        .sidebar a {
-            display: block;
-            font-size: 120%;
-            color: #fff;
-            text-decoration: none;
-          }
+.sidebar a {
+  display: block;
+  font-size: 120%;
+  color: #fff;
+  text-decoration: none;
+}
 
-        .sidebar a:hover{
-            color:#fff;
-            background-color: #f90;
-            border-radius: 5px;
-            padding-left: 5px;
-          }
+.sidebar a:hover{
+  color:#fff;
+  background-color: #f90;
+  border-radius: 5px;
+  padding-left: 5px;
+}
 
-        .sidebar .menusel{
-            color:#fff;
-            background-color: #f90;
-            border-radius: 5px;
-            padding-left: 5px;
-          }
+.sidebar .menusel{
+  color:#fff;
+  background-color: #f90;
+  border-radius: 5px;
+  padding-left: 5px;
+}
 
-        #contenido {
-           margin-left: 150px;
-          }
+#contenido {
+margin-left: 150px;
+}
 
-        #menuhorizontal {
-            margin:0;
-            padding:0;
-            list-style-type:none; 
-          }
+#menuhorizontal {
+  margin:0;
+  padding:0;
+  list-style-type:none; 
+}
 
-        #menuhorizontal a {
-            width:100px;
-            text-decoration:none;
-            text-align:center;
-            color:#ff0000;
-            background-color:#f7f8e8;
-            padding:3px 5px;
-            border-right:1px solid blue;
-            display:block;
-            width: 150px;
-          }
+#menuhorizontal a {
+  width:100px;
+  text-decoration:none;
+  text-align:center;
+  color:#ff0000;
+  background-color:#f7f8e8;
+  padding:3px 5px;
+  border-right:1px solid blue;
+  display:block;
+  width: 150px;
+}
 
-        #menuhorizontal li {
-            float:left;
-          }
+#menuhorizontal li {
+  float:left;
+}
 
-        #menuhorizontal a:hover {
-            background-color:#336699;
-            color:#fff;
-          }
+#menuhorizontal a:hover {
+  background-color:#336699;
+  color:#fff;
+}
 
-        #menuhorizontal .seleccionado {
-            background-color:#336699;
-            color:#fff;
-          }
+#menuhorizontal .seleccionado {
+  background-color:#336699;
+  color:#fff;
+}
 
-        .lineaSuperior{
-            margin-top: 5px;
-            border: 1px solid #000; 
-            padding:1px; 
-            background-color: black;
-          }
+.lineaSuperior{
+  margin-top: 5px;
+  border: 1px solid #000; 
+  padding:1px; 
+  background-color: black;
+}
 
-        .sombra {
-            text-shadow: 1px -2px 3px orange;
-          }
+.sombra {
+  text-shadow: 1px -2px 3px orange;
+}
 
-          /* Fondo modal: negro con opacidad al 50% */
-        .modal {
-            display: none; /* Por defecto, estará oculto */
-            position: fixed; /* Posición fija */
-            z-index: 1; /* Se situará por encima de otros elementos de la página*/
-            padding-top: 200px; /* El contenido estará situado a 200px de la parte superior */
-            left: 0;
-            top: 0;
-            width: 100%; /* Ancho completo */
-            height: 100%; /* Algura completa */
-            overflow: auto; /* Se activará el scroll si es necesario */
-            background-color: rgba(0,0,0,0.5); /* Color negro con opacidad del 50% */
-          }
+/* Fondo modal: negro con opacidad al 50% */
+.modal {
+  display: none; /* Por defecto, estará oculto */
+  position: fixed; /* Posición fija */
+  z-index: 1; /* Se situará por encima de otros elementos de la página*/
+  padding-top: 200px; /* El contenido estará situado a 200px de la parte superior */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Algura completa */
+  overflow: auto; /* Se activará el scroll si es necesario */
+  background-color: rgba(0,0,0,0.5); /* Color negro con opacidad del 50% */
+}
 
-        .contenido-modal {
-            position: relative; /* Relativo con respecto al contenedor -modal- */
-            background-color: white;
-            margin: auto; /* Centrada */
-            padding: 20px;
-            width: 60%;
-            -webkit-animation-name: animarsuperior;
-            -webkit-animation-duration: 0.5s;
-            animation-name: animarsuperior;
-            animation-duration: 0.5s;
-          }
-          /* Add Animation */
-          @-webkit-keyframes animatetop {
-            from {top:-300px; opacity:0} 
-            to {top:0; opacity:1}
-          }
-          @keyframes animarsuperior {
-            from {top:-300px; opacity:0}
-            to {top:0; opacity:1}
-          }
+.contenido-modal {
+  position: relative; /* Relativo con respecto al contenedor -modal- */
+  background-color: white;
+  margin: auto; /* Centrada */
+  padding: 20px;
+  width: 60%;
+  -webkit-animation-name: animarsuperior;
+  -webkit-animation-duration: 0.5s;
+  animation-name: animarsuperior;
+  animation-duration: 0.5s;
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+@keyframes animarsuperior {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
 
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-          }
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            }
-        
-        .bulto {
-          margin-left: 30px;
-        }
-        .bulto span {
-          text-decoration: underline;
-        }
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  }
 
-        table {
-          border-collapse: collapse;
-        }
+.bulto {
+margin-left: 30px;
+}
+.bulto span {
+text-decoration: underline;
+}
 
-        th  {
-          border-right: 1px solid #fff;
-          border-bottom: 1px solid #fff;
-          padding: 0.5em;
-          background-color:#ff9800;;
-        }
-        td {
-          border: 1px solid #000;
-          padding: .5em;
-          width:100px;
-          text-align:center;
-        }
-        tr:nth-child(odd) {
-          background-color:#c9c9c9;;
-        }
+table {
+border-collapse: collapse;
+}
 
-        tr:nth-child(even) {
-          background-color:#dcdcdc;
-        }
+th  {
+border-right: 1px solid #fff;
+border-bottom: 1px solid #fff;
+padding: 0.5em;
+background-color:#ff9800;;
+}
+td {
+border: 1px solid #000;
+padding: .5em;
+width:100px;
+text-align:center;
+}
+tr:nth-child(odd) {
+background-color:#c9c9c9;;
+}
+
+tr:nth-child(even) {
+background-color:#dcdcdc;
+}
       </style>
     </head>
     <body>

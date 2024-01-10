@@ -1,7 +1,7 @@
 <?php
     $conexion = mysqli_connect("localhost", 
         "root", 
-        "1M83vZyJdl", 
+        "root", 
         "compostela") or 
     die("Problemas con la conexión");
 ?>

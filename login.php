@@ -8,7 +8,7 @@
         $registros = mysqli_query($conexion, "select * from usuarios where email = '" . $_POST["email"] . 
                 "' and password = '" . $_POST["password"] . "'") or
                 die("Problemas en el select de login:" . mysqli_error($conexion));
-             
+        
         if($registros->num_rows==0){
             $error = true;
         } else {
@@ -22,7 +22,7 @@
             }      
         }
     }
-     
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,11 +32,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
         <link rel="stylesheet" href="css/login.css">
-        <style>
-            
-        </style>
+        
     </head>
-     <body>
+    <body>
         <div class="container">
             <div>
                 <form class="custom-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
@@ -50,7 +48,7 @@
                     if($error){
                 ?>
                     <div class="error">
-                        Verifique usuario y contraseña.!!!
+                        Usuario o Contraseña incorrecto
                     </div>
                 <?php        
                     }

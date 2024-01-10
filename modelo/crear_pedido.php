@@ -13,7 +13,7 @@
   //Pendientee: si existe actualizar con los datos cargados
   if($numrows==0){
     $insertresult = mysqli_query($conexion, "insert into destinatarios values (default,'" . $_POST['nombre'] . "','" . $_POST['dni'] . "','" . $_POST['telefono'] . 
-                                 "','" . $_POST['direccion'] . "','". $_POST['cp'] . "','" . $_POST['provincias'] . "')") 
+                                "','" . $_POST['direccion'] . "','". $_POST['cp'] . "','" . $_POST['provincias'] . "')") 
           or die("Problemas en el select:" . mysqli_error($conexion));
     $resultId = array("id" => mysqli_insert_id($conexion));
   }else{

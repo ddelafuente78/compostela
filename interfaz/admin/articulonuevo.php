@@ -8,117 +8,77 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
       <style>
         body {
-          font-family: "Segoe UI", sans-serif;
-          font-size:100%;
-        }
+    font-family: "Segoe UI", sans-serif;
+    font-size:100%;
+}
 
-        .menu {
-          background:#333;
-          width:100%;
-          height: 100%;
-          left: 10px;
-        }
+.menu {
+    background:#333;
+    width:100%;
+    height: 100%;
+    left: 10px;
+}
 
-        .sidebar {
-          position: fixed;
-          top: -10px;
-          bottom: 10px;
-          left: 0px ;
-          z-index: 1;
-        }
+.sidebar {
+    position: fixed;
+    top: -10px;
+    bottom: 10px;
+    left: 0px ;
+    z-index: 1;
+}
+.sidebar ul, .sidebar li {
+    margin:0;
+    padding:0;
+    margin-left: 10px ;
+    list-style:none inside;}
+.sidebar ul {
+    margin: 4rem auto;
+    display: block;
+    width: 80%;
+    min-width:120px;}
+.sidebar a {
+    display: block;
+    font-size: 120%;
+    color: #fff;
+    text-decoration: none}
 
-        .sidebar ul, .sidebar li {
-          margin:0;
-          padding:0;
-          margin-left: 10px ;
-          list-style:none inside;
-        }
+.sidebar a:hover{
+    color:#fff;
+    background-color: #f90;
+    border-radius: 5px;
+    padding-left: 5px;
+}
 
-        .sidebar ul {
-          margin: 4rem auto;
-          display: block;
-          width: 80%;
-          min-width:120px;
-        }
+.sidebar .menusel{
+    color:#fff;
+    background-color: #f90;
+    border-radius: 5px;
+    padding-left: 5px;
+}
 
-        .sidebar a {
-          display: block;
-          font-size: 120%;
-          color: #fff;
-          text-decoration: none;
-        }
+input[type=text], input[type=file], input[type=number]{
+    width:99%;
+    padding: 12px 20px;
+    margin: 8px 8px;
+    display:inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 
-        .sidebar a:hover{
-          color:#fff;
-          background-color: #f90;
-          border-radius: 5px;
-          padding-left: 5px;
-        }
-
-        .sidebar .menusel{
-          color:#fff;
-          background-color: #f90;
-          border-radius: 5px;
-          padding-left: 5px;
-        }
-
-        input[type=text], input[type=file], input[type=number]{
-          width:99%;
-          padding: 12px 20px;
-          margin: 8px 8px;
-          display:inline-block;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          box-sizing: border-box;
-        }
-
-        /* Style the submit button */
-        input[type=submit] {
-          width: 99%;
-          background-color: #f90;
-          color: white;
-          padding: 14px 20px;
-          margin: 8px 8px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-
-        /* Fondo modal: negro con opacidad al 50% */
-        .modal {
-            display: none; /* Por defecto, estará oculto */
-            position: fixed; /* Posición fija */
-            z-index: 1; /* Se situará por encima de otros elementos de la página*/
-            padding-top: 200px; /* El contenido estará situado a 200px de la parte superior */
-            left: 0;
-            top: 0;
-            width: 100%; /* Ancho completo */
-            height: 100%; /* Algura completa */
-            overflow: auto; /* Se activará el scroll si es necesario */
-            background-color: rgba(0,0,0,0.5); /* Color negro con opacidad del 50% */
-          }
-
-          .contenido-modal {
-            position: relative; /* Relativo con respecto al contenedor -modal- */
-            background-color: white;
-            margin: auto; /* Centrada */
-            padding: 20px;
-            width: 60%;
-            -webkit-animation-name: animarsuperior;
-            -webkit-animation-duration: 0.5s;
-            animation-name: animarsuperior;
-            animation-duration: 0.5s;
-          }
-          /* Add Animation */
-          @-webkit-keyframes animatetop {
-            from {top:-300px; opacity:0} 
-            to {top:0; opacity:1}
-          }
-          @keyframes animarsuperior {
-            from {top:-300px; opacity:0}
-            to {top:0; opacity:1}
-          }
+  /* Style the submit button */
+input[type=submit] {
+    width: 99%;
+    background-color: #f90;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
       </style>
+      
     </head>
     <body>
       <!-- Ventana modal, por defecto no visiblel -->

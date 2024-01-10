@@ -71,7 +71,7 @@
           }
 
           #contenido {
-           margin-left: 150px;
+          margin-left: 150px;
           }
 
           #menuhorizontal {

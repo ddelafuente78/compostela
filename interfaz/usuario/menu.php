@@ -6,6 +6,7 @@
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
             integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">  
+      
   </head>
   <body>
     <?php
@@ -34,39 +35,39 @@
       
       <div class="row"> 
         <div class="col-md">        
-          <div class="card bg-danger text-white">
+          <div class="card">
             <div class="card-body">
               <h4 class="card-title">
               <i class="bi bi-card-checklist"></i>
-                Crear pedido
+                Consultar Stock
               </h4>
               <p class="card-text" style="margin-left: 150px"></p>
-              <a href="../../helper/nropedido.php  " class="btn btn-primary">Entrar</a>
+              <a href="../../helper/nropedido.php  " class="btn">Entrar</a>
             </div>
           </div>
         </div>
-
-        <div class="col-md">        
-          <div class="card bg-danger text-white">
+        <!--CARD DE LAS DEMAS FUNCINALIDADES-->
+        <!--<div class="col-md">        
+          <div class="card">
             <div class="card-body">
               <h4 class="card-title">
                 <i class="bi bi-binoculars"></i>
                 Ver pedidos pedientes
               </h4>
               <p class="card-text"></p>
-              <a href="pendientes.php" class="btn btn-primary">Entrar</a>
+              <a href="pendientes.php" class="btn">Entrar</a>
             </div>
           </div>          
         </div>
       
         <div class="col-md">        
-          <div class="card bg-danger text-white">
+          <div class="card">
             <div class="card-body">
               <h4 class="card-title">
                 <i class="bi bi-send"></i>
                 Pedidos en viaje</h4>
               <p class="card-text"></p>
-              <a href="#" class="btn btn-primary">Entrar</a>
+              <a href="#" class="btn">Entrar</a>
             </div>
           </div>          
         </div>
@@ -75,30 +76,30 @@
       <div class="row" style="padding-top: 10px">
         
         <div class="col-md col-4">        
-          <div class="card bg-danger text-white">
+          <div class="card">
             <div class="card-body">
               <h4 class="card-title">
                 <i class="bi bi-shield-check"></i>
                 Pedidos entregado</h4>
               <p class="card-text"></p>
-              <a href="#" class="btn btn-primary">Entrar</a>
+              <a href="#" class="btn">Entrar</a>
             </div>
           </div>          
         </div>
 
         <div class="col-md col-4">        
-          <div class="card bg-danger text-white">
+          <div class="card">
             <div class="card-body">
               <h4 class="card-title">
                 <i class="bi bi-shield-check"></i>
                 Compras</h4>
               <p class="card-text"></p>
-              <a href="#" class="btn btn-primary">Entrar</a>
+              <a href="#" class="btn">Entrar</a>
             </div>
           </div>          
         </div>
 
-        <div class="col-md"></div>        
+        <div class="col-md"></div> -->
       
       </div> 
     </div>
