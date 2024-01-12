@@ -1,0 +1,95 @@
+html, body {
+    background:#c5c1b9;;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #c5c1b9, #ffd740);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #c5c1b9, #ffd740); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+/*cards*/
+
+
+
+
+
+.card-body{
+    background-color: #d89006;
+    transition: all 400ms ease;
+    width: 400px;
+    height: 110px;
+    border-radius: 5px;
+}
+
+.card-body:hover{
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+    
+}
+.fila1,.fila2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    text-align: center;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 25px;
+}
+
+.card-title{
+    color: black;
+    margin-top: 5px;
+    font-size: 17px;
+}
+
+i{
+    color: black;
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.btn{
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+a.btn{
+    text-decoration: none;
+    background-color: rgb(35, 42, 65);
+    color: #d89006;
+    transition:  background-color 0.3s ease-in-out;
+}
+
+a.btn:hover{
+    background-color: rgb(243, 218, 173);
+    color: rgb(35, 42, 65);;
+}
+
+/*header*/
+
+.containerHipervinculos{
+    background-color:rgb(35, 42, 65);
+    height: 80px;
+}
+
+.etiquetaA{
+    text-decoration: none;
+    color: #d89006;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+}
+
+.etiquetaA:hover{
+    background-color: rgb(109, 106, 106);
+}
+
+
+
+
+
+

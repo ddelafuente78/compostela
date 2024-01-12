@@ -29,18 +29,16 @@
     <head>
         <title>Login</title>
         <meta charset="UTF-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/login.css">
-        
+        <link rel="stylesheet" href="css/loginn.css">
+        <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <div class="container">
             <div>
                 <form class="custom-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                    email:
+                    <label class="label">Email <i class="fa-solid fa-envelope"></i></label>
                     <input class="form-control" type="text" name="email" size="30"><br>
-                    password:
+                    <label class="label">Password <i class="fa-solid fa-lock"></i></label>
                     <input class="form-control" type="password" name="password" size="30"><br>
                     <button class="submit" type="submit">Ingresar</button>
                 </form>
