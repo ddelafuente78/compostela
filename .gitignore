@@ -1,0 +1,5 @@
+# Ignorar archivos imagenes
+helper/conexion.php
+
+# Ignorar directorios de entornos virtuales de Python
+imagenes/
