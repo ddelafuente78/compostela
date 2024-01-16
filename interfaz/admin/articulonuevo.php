@@ -91,9 +91,10 @@ input[type=submit] {
         include '../../helper/conexion.php';
         include '../../helper/validar_usuario.php';
         include '../../modelo/clases.php';
+        
 
         function cargarArchivo($nroArchivo,$nombreArchivo){
-          $carpeta="../../imagenes/productos/";
+          $carpeta="../../imagenes/productos";
           $archivoFinal= $carpeta . $nombreArchivo;
           //pathinfo: Devuelve información acerca de la ruta de un fichero
           $tipoArchivoImagen = strtolower(pathinfo($_FILES["file" . $nroArchivo]["name"],PATHINFO_EXTENSION));

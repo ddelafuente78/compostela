@@ -57,17 +57,17 @@ h1 {
 }
 
 .custom-form .submit {
-    background: #d89006;
+    text-align: center;
+    background: #b5daff;
     width: 400px;
-    margin-left: 300px;
     transition: transform 0.5s ease;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .submit:hover{
     transform: scale(1.1);
 }
-
-
 
 
 .error{
@@ -81,7 +81,7 @@ h1 {
 }
 
 i{
-    color: #d89006;
+    color: black;
 }
 
 .label{

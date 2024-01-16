@@ -105,7 +105,7 @@
             </div>
           </div>
       <?php
-       }
+      }
       ?>
       <div class="row bg-info" style="padding:25px 50px;">
         <div class="col-12">

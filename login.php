@@ -16,7 +16,7 @@
             $_SESSION["id"] = $usu["id"];
             $_SESSION["usuario"] = $usu["nombre"];
             if ($usu['rol'] == "cliente"){
-                header("Location: interfaz/usuario/menu.php");
+                header("Location: interfaz/usuario/menus.php");
             } else {
                 header("Location: interfaz/admin/pedidos.php?tipo=prep");
             }      
@@ -29,7 +29,7 @@
     <head>
         <title>Login</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/loginn.css">
+        <link rel="stylesheet" href="css/login.css">
         <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
     </head>
     <body>
