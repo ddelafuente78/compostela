@@ -19,14 +19,6 @@
         public $stock_minimo;
     }
 
-    class usuario {
-        public $id;
-        public $nombre;
-        public $mail;
-        public $password;
-        public $rol;
-    }
-
     class transporte {
         public $id;
         public $nombre;

@@ -10,7 +10,6 @@
   </head>
   <body>
     <?php
-      include '../../helper/conexion.php';
       include '../../helper/validar_usuario.php';
     ?>
     <header class="header">

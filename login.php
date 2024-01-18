@@ -1,29 +1,28 @@
 <?php
     session_start();
-    include 'helper/conexion.php';
+    include("modelo/usuario.php");
+
     $error = false;
 
     if($_POST){
 
-        $registros = mysqli_query($conexion, "select * from usuarios where email = '" . $_POST["email"] . 
-                "' and password = '" . $_POST["password"] . "'") or
-                die("Problemas en el select de login:" . mysqli_error($conexion));
+        $usuario = new Usuario(0,'',$_POST['mail'],$_POST['password'],'');
         
-        if($registros->num_rows==0){
+        if(!$usuario->existeUsuario()){
             $error = true;
         } else {
-            $usu = mysqli_fetch_array($registros);
-            $_SESSION["id"] = $usu["id"];
-            $_SESSION["usuario"] = $usu["nombre"];
-            if ($usu['rol'] == "cliente"){
-                header("Location: interfaz/usuario/menus.php");
+            $_SESSION["id"] = $usuario->getID();
+            $_SESSION["usuario"] = $usuario->getNombre();
+            if ($usuario->getRol() == "cliente"){
+                header("Location: interfaz/usuario/menu.php");
             } else {
                 header("Location: interfaz/admin/pedidos.php?tipo=prep");
             }      
         }
-    }
-    
+    }  
 ?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,6 +38,9 @@
                     <label class="label">Email <i class="fa-solid fa-envelope"></i></label>
                     <input class="form-control" type="text" name="email" size="30"><br>
                     <label class="label">Password <i class="fa-solid fa-lock"></i></label>
+                    email:
+                    <input class="form-control" type="text" name="mail" size="30"><br>
+                    password:
                     <input class="form-control" type="password" name="password" size="30"><br>
                     <button class="submit" type="submit">Ingresar</button>
                 </form>

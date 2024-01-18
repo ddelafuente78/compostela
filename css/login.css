@@ -71,7 +71,7 @@ h1 {
 
 
 .error{
-    text-shadow: 3px 3px 2px rgb(247, 172, 172);
+    text-shadow: 3px 3px 2px rgb(247, 172, 172)=;
     color: red; 
     text-align: center;
     font-weight: bolder;
