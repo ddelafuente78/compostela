@@ -5,26 +5,28 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
   </head>
+  
   <body class="cuerpo">
     
     <?php
-      include '../../helper/conexion.php';
       include '../../helper/validar_usuario.php';
+      include("../../modelo/articulo.php");
       include 'barraNavegacion.php';
       
+      
+      $articulo = new articulo();
 
-      //si lo pide el usuario buscamos por nombre de articulo
+      //si el usuario solicita filtro en el campo buscado filtramos
       //sino mostramos todos.
-
-      $busqueda = "select * from articulos where fecha_baja is null;";
       if($_POST){
         if( $_POST['buscado'] <> ""){
-          $busqueda = "select * from articulos where nombre like '" . $_POST['buscado'] . "%' and fecha_baja is null;;";
+          $listaArticulos = $articulo->obtenerArticulos(0 , $_POST['buscado']);
+        } else {
+          $listaArticulos = $articulo->obtenerArticulos(0);
         }
+      } else {
+        $listaArticulos = $articulo->obtenerArticulos(0);
       }
-    
-      $registros = mysqli_query($conexion, $busqueda) or
-                die("Problemas en el select:" . mysqli_error($conexion));
     ?> 
 
   <!--FORMULARIO DE-->              
@@ -39,26 +41,22 @@
   <!--CARDS PRODUCTOS-->  
   <div class="row">
   <?php
-    while ($reg = mysqli_fetch_array($registros)) {
+    while ($lineaArticulo = mysqli_fetch_array($listaArticulos)) {
   ?>
   <div class="col-4">
     <div class="card">
-      <!--<a href="artdet.php?id=<?php echo $reg['id'] ?>"> COMENTADO PARA NO INGRESAR A CREAR PEDIDO-->
-        <img src='../../imagenes/productos/<?php echo $reg['foto1'] ?>' alt="">
+      <!--<a href="artdet.php?id=<?php echo $lineaArticulo['id'] ?>"> COMENTADO PARA NO INGRESAR A CREAR PEDIDO-->
+        <img src='../../imagenes/productos/<?php echo $lineaArticulo['foto1'] ?>' alt="">
       </a>
       <div class="contenidoCard">
-        <h3 class="tituloCard"><?php echo $reg['nombre'] ?></h3>
-        <p class="descripcionCard"><?php echo $reg['descripcion'] ?></p>
-        <p class="stockCard"><?php echo $reg['stock'] ?> en stock.</p>
+        <h3 class="tituloCard"><?php echo $lineaArticulo['nombre'] ?></h3>
+        <p class="descripcionCard"><?php echo $lineaArticulo['descripcion'] ?></p>
+        <p class="stockCard"><?php echo $lineaArticulo['stock'] ?> en stock.</p>
       </div>
     </div>
   </div>
   <?php
     }
-    mysqli_close($conexion);
   ?>
-</div>
-  
-  
   </body>
 </html>

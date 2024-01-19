@@ -22,7 +22,6 @@
     }  
 ?>
 
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,11 +35,8 @@
             <div>
                 <form class="custom-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                     <label class="label">Email <i class="fa-solid fa-envelope"></i></label>
-                    <input class="form-control" type="text" name="email" size="30"><br>
-                    <label class="label">Password <i class="fa-solid fa-lock"></i></label>
-                    email:
                     <input class="form-control" type="text" name="mail" size="30"><br>
-                    password:
+                    <label class="label">Password <i class="fa-solid fa-lock"></i></label>
                     <input class="form-control" type="password" name="password" size="30"><br>
                     <button class="submit" type="submit">Ingresar</button>
                 </form>

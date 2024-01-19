@@ -1,5 +1,5 @@
 # Ignorar archivos imagenes
-helper/conexion.php
+modelo/conexion.php
 
 # Ignorar directorios de entornos virtuales de Python
 imagenes/
