@@ -25,7 +25,7 @@
         }
 
         public function existeUsuario(){
-            include 'conexion.php';
+            include 'helper/conexion.php';
 
             $rsUsuario = mysqli_query($conexion, "SELECT * FROM usuarios WHERE email = '" . $this->mail . 
                 "' and password = '" . $this->password . "'") or

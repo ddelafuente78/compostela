@@ -2,10 +2,9 @@
     <head>
       <link rel="stylesheet" href="../../css/carrito.css">
       <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
-            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+      <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
       <style>
-         .cssanimation, .cssanimation span {
+        .cssanimation, .cssanimation span {
             animation-duration: 1s;
             animation-fill-mode: both;
           }
@@ -53,7 +52,7 @@
       ?>
 
       <!-- Header -->
-      <header class="d-flex flex-wrap py-3 mb-5 border-bottom">
+      <!--<header class="d-flex flex-wrap py-3 mb-5 border-bottom">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
           <div class="container">
             <a class="navbar-brand" href="#"><?php echo $_SESSION["usuario"]; ?></a>
@@ -72,18 +71,23 @@
               </div>
             </div>
         </nav>
-      </header>
-      <h1 class="cssanimation effect3d">Detalle de pedido</h1>
-      <div style='float: right;'>Nro: <span style='font-weight:bold'><?php echo $_SESSION['id']?></span></div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Articulo</th>
-            <th>Cantidad</th>
-            <th>Fecha/hora</th>
-            <th></th>
-          </tr>
-        </thead>
+      </header>-->
+
+      <?php
+        include "barraNavegacion.php";
+      ?>
+      <div class="contTitulo"><h1 class="titulo">Detalle de pedido</h1></div>
+        <div class="contNroPedido">Nro:<span><?php echo $_SESSION['id']?></span></div>  
+          <div class="contenedorTabla">
+            <table class="tabla">
+              <thead>
+                <tr>
+                  <th>Articulo</th>
+                  <th>Cantidad</th>
+                  <th>Fecha/hora</th>
+                  <th>Borrar</th>
+                </tr>
+              </thead>
         <tbody>
           <?php
             foreach ($filas as $fila) { 
@@ -94,7 +98,7 @@
               <td><?php echo $fila['fecha_hora'] ?></td>
               <td class="text-right">
                   <a class="btn btn-outline-danger btn-sm botonborrar" id="btnBorrar<?php echo $fila['id'] ?>" role="button" href="#" 
-                    onClick="getButtontoOpen(<?php echo $fila['id'] ?>)">Borrar?</a>
+                    onClick="getButtontoOpen(<?php echo $fila['id'] ?>)"><i class="fa-solid fa-trash"></i></a>
               </td>
             </tr> 
             <!-- The Modal -->
@@ -128,7 +132,13 @@
           ?>
         </tbody>
       </table>
-      <a href="datos_destino.php"><button type="button" id="btnconfirmarpedido" class="btn btn-success">Confirmar pedido</button></a>
+    
+        </div>
+        
+    </div>
+    <div class="contBtnConfirmar">
+    <a href="datos_destino.php"><button type="button" id="btnconfirmarpedido" class="btnConfirmar">Confirmar pedido</button></a>
+    </div>
       <?php
         if($masdediez){
       ?>
@@ -140,7 +150,6 @@
       <?php
         }
       ?>
-    </div>
     
     <script src="../../js/modal.js"></script>
 

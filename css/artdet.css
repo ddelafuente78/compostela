@@ -1,59 +1,131 @@
 html, body {
-    background: #c5c1b9;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #c5c1b9, #f6d593);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #c5c1b9, #f6d593); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
-
-.cssanimation, .cssanimation span {
-    animation-duration: 1s;
-    animation-fill-mode: both;
-}
-
-.cssanimation span { display: inline-block }
-.infinite { animation-iteration-count: infinite !important }
-
-.lightning { animation-name: lightning }
-
-@keyframes lightning {
-    from, 50%, to { opacity: 1 }
-    25%, 75% { opacity: 0 }
+    background-color: white;
 }
 
 
-.lineaSuperior{
-    border: 1px solid #000; 
-    padding:1px; 
-    background-color: black;
+*{
+    font-family: 'Asap', sans-serif;
 }
-.caja{
-    margin-top: 20px; 
-    padding: 20px;
-    border-radius : 5px;
+
+.contenedorGrl{
+    width: 100%;
 }
-.cajaimagenes{
-    margin-top: 18px;
+.titulo h1{
+    padding: 25px;
+    text-align: center;
+    font-size: 50px;
 }
+
+.contenedorSec{
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+    width: 50%; /* O el ancho deseado para cada hijo */
+    float: left; /* Hace que los hijos se alineen en línea horizontal */
+    height: 100px; /* Altura de ejemplo */
+    background-color: white; /* Color de fondo para visualización */
+    text-align: center;
+}
+
+
+.contenedorFormulario{
+    text-align: center;
+    margin-top: 50px;
+    height: 400px;
+    width: 75%;
+    background-color: #dde2e7;
+    border-radius: 5%;
+    
+}
+
+.tituloCard{
+    padding: 25px;
+}
+
+.lblForm{
+margin-top: 20px;
+    
+}
+
+#cantidad{
+    padding: 5px;
+    border-radius: 5px;
+    border: transparent;
+    width: 250px;
+    height: 40px;
+}
+
+.detalleCarrito{
+    width: 75%;
+    margin-top: 30px;
+    font-size: 25px;
+    text-align: left;
+    
+}
+
+
 .btn{
-    margin-top: 5px;
+    margin-top: 20px;
+    padding: 8px 12px;
+    width: 150px;
+    border-radius: 5%;
+    background-color: #b5daff;
+    color: black;
+    cursor: pointer;
+    transition: 0.5s;
 }        
-.filaDescripcion {
-    padding: 15px;
-}
-.lineaInferior{
-    border: 1px solid rgb(125, 117, 117); 
-    padding:1px; 
-    background-color: rgb(125, 117, 117);
-}
-.tabulador:first-letter {
-    margin-left: 15px;
+
+.btn:hover{
+    color: white;
 }
 
-.imagen-centrada{
-    margin: 0 auto;
+
+
+
+
+
+.imagenArt{
+    margin: 50px auto 0;
+    border-radius: 5px;
+    width: 600px;
+    height: auto;
+    overflow: hidden;
+    text-align: center;
 }
-.fondopedido {
-    background: #eacda3;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #f6d593, #c5c1b9);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #f6d593, #c5c1b9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

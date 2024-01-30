@@ -21,7 +21,7 @@
             }
 
             public function obtenerArticulos($pagina, $filtro = null){
-                include 'conexion.php';
+                include '../../helper/conexion.php';
 
                 if($filtro == null){
                     $selArticulos = "SELECT * FROM articulos WHERE fecha_baja IS NULL LIMIT 20 OFFSET " . $pagina . ";";

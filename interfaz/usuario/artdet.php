@@ -2,47 +2,10 @@
     <head>
         <link rel="stylesheet" href="../../css/artdet.css">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
-            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <style>
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-        }
-
-        /* The Close Button */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        </style>
+        <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito:wght@200;500&family=Open+Sans:wght@300;400&family=Pacifico&display=swap" rel="stylesheet">
     </head>
     <body>
         <!-- The Modal -->
@@ -50,12 +13,13 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>La cantidad pedida es mayor al stock disponible!!</p>
+                <p>Stock insuficnete</p>
             </div>
         </div>
         <?php
             include '../../helper/conexion.php';
             include '../../helper/validar_usuario.php';
+            include 'barraNavegacion.php';
             
             $registros = mysqli_query($conexion, "select * from articulos where id=". $_GET["id"] ) or
                 die("Problemas en el select:" . mysqli_error($conexion));
@@ -71,9 +35,8 @@
             $carrito =  mysqli_fetch_all($registros, MYSQLI_ASSOC);
 
         ?>
-        <div class= "container-fluid">
             <!-- Header -->
-            <header class="d-flex flex-wrap py-3 mb-5 border-bottom">
+            <!--<header class="d-flex flex-wrap py-3 mb-5 border-bottom">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                     <div class="container">
                         <a class="navbar-brand" href="#"><?php echo $_SESSION["usuario"]; ?></a>
@@ -88,7 +51,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="articulos.php">Articulos</a>                    
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item">   
                                     <a class="nav-link active" aria-current="page" href="carrito.php">Carrito</a>                    
                                 </li>
                                 <li class="nav-item">
@@ -98,44 +61,51 @@
                         </div>
                     </div>
                 </nav>
-            </header>
-            <div class="row">
-                <div class="col-8">
-                    <div class="lineaSuperior"></div>
-                    <div id="slideshow" class='cajaimagenes'>
-                        <img src="../../imagenes/productos/<?php echo $articulo["foto1"] ?>" alt="<?php echo $articulo["foto1"] ?>" class="img-thumbnail imagen-centrada" />
-                        <img src="../../imagenes/productos/<?php echo $articulo["foto2"] ?>" alt="<?php echo $articulo["foto2"] ?>" class="img-thumbnail imagen-centrada"/>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="lineaSuperior"></div>
-                    <div class="card caja fondopedido" style='border: 1px solid white;'>
-                        <div class="card-body">
-                            <h4 class="card-title"><div class="cssanimation lightning">producto: <?php echo $articulo["nombre"] ?> </div></h4>
-                            <p class="card-text">
-                                <form class="custom-form" action="carrito.php" method="post">
-                                    <label  class="form-label">Stock: <?php echo $articulo["stock"] ?></label><br>
-                                    <label for="cantidad" class="form-label">cantidad:</label>
-                                    <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="0">
-                                    <button type="submit" class="btn btn-primary" id='btnPedir' disabled>Pedir</button>
-                                    <input type="hidden" name='id_articulo' value=<?php echo $articulo["id"] ?>>
-                                    <input type="hidden" id='stock' value=<?php echo $articulo["stock"] ?>>
-                                </form> 
-                            </p>
-                        </div>        
-                    </div>
-                    <div style="margin:10px 20px">
-                        <h6>Productos en carrito:</h6> 
+            </header>-->
+            <div class="contenedorGrl">
+                    <div class="contenedorSec" id="contImg">
+                        <div class="slide">
+                            <ul>
+                                <li><img src="../../imagenes/productos/<?php echo $articulo["foto1"] ?>" alt="<?php echo $articulo["foto1"] ?>" class="imagenArt" /></li>
+                                <li><img src="../../imagenes/productos/<?php echo $articulo["foto2"] ?>" alt="<?php echo $articulo["foto2"] ?>" class="imagenArt"/></li>
+                            </ul>
+
+                        </div>
+                    </div>    
+                    <div class="contenedorSec"> <!--CONTENEDOR FORM-->
+                            
+                        <div class="contenedorFormulario">
+                            <h4 class="tituloCard"><div>Artículo: <?php echo $articulo["nombre"] ?> </div></h4>
+                                <p class="textoCard">
+                                    <form class="formulario" action="carrito.php" method="post">
+                                        <label  class="lblForm"><b>Stock actual:</b> <?php echo $articulo["stock"] ?></label><br>
+                                        <label for="cantidad" class="lblForm"><b>Cantidad:</b></label>
+                                        <input type="number" class="lblForm" id="cantidad" name="cantidad" placeholder="0">
+                                        <br>
+                                        <button type="submit" class="btn" id='btnPedir' disabled>
+                                            <b>Pedir</b>
+                                        </button>
+                                        <input type="hidden" name='id_articulo' value=<?php echo $articulo["id"] ?>>
+                                        <input type="hidden" id='stock' value=<?php echo $articulo["stock"] ?>>
+                                    </form> 
+                                </p>
+                            </div>
+                            <div class="detalleCarrito">
+                                <h6>Articulos cargados <i class="fa-solid fa-cart-shopping"></i> :</h6> 
+                            </div>
+                            
+                    
+                        
                         <?php
                             $i=1;
                             foreach ($carrito as $car) {
                                 echo $i++ . "- " . $car['nombre'] . " x " . $car['cantidad'] . " unidades. <br>";
                             } 
                         ?>
-                    </div>
-                </div>
+                    
+                
             </div>
-            <div class="row filaDescripcion">
+            <!--<div class="row filaDescripcion">
                 <div class="col-8">
                 <div class="lineaInferior"></div>
                     <p>
@@ -146,8 +116,10 @@
                         </div>
                     </p>
                 </div>
-            </div>   
-        </div>
+            </div>   -->
+            </div>
+                    
+        
         <script src="../../js/slider.js"></script>
         <script lang='JavaScript'>
             // Get the modal

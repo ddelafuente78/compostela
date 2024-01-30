@@ -9,7 +9,7 @@
 </head>
 <body id="body">
     <?php
-    include '../../modelo/conexion.php';
+    include '../../helper/conexion.php';
     include '../../helper/validar_usuario.php';
     ?>
     <header>

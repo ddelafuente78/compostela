@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="../../css/articuloss.css">
+    <link rel="stylesheet" href="../../css/articulos.css">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
   </head>
@@ -45,7 +45,7 @@
   ?>
   <div class="col-4">
     <div class="card">
-      <!--<a href="artdet.php?id=<?php echo $lineaArticulo['id'] ?>"> COMENTADO PARA NO INGRESAR A CREAR PEDIDO-->
+     <!-- <a href="artdet.php?id=<?php echo $lineaArticulo['id'] ?>"> COMENTADO PARA NO INGRESAR A CREAR PEDIDO-->
         <img src='../../imagenes/productos/<?php echo $lineaArticulo['foto1'] ?>' alt="">
       </a>
       <div class="contenidoCard">
@@ -58,5 +58,16 @@
   <?php
     }
   ?>
-  </body>
+</div>
+<!--PAGINADOR-->
+      <div class="paginador">
+        <a href="#" class="etiquetaPaginador" ><i class="fa-solid fa-backward"></i></a>
+        <a href="#" class="etiquetaPaginador" id="numPag"> 1 </a>
+        <a href="#" class="etiquetaPaginador" ><i class="fa-solid fa-forward"></i></a>
+        <br>
+        <br>
+        <br>
+        <br>
+      <div>
+  </body> 
 </html>
