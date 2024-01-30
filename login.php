@@ -16,7 +16,7 @@
             if ($usuario->getRol() == "cliente"){
                 header("Location: interfaz/usuario/menus.php");
             } else {
-                header("Location: interfaz/admin/pedidos.php?tipo=prep");
+                header("Location: interfaz/admin/articulos.php");
             }      
         }
     }  

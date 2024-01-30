@@ -3,29 +3,33 @@
   <?php
         include '../../helper/conexion.php';
         include '../../helper/validar_usuario.php';
+        
   ?>
     <head>
       <title>Administrador - compostela</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+      <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="../../css/admin/articulos.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+      <link rel="stylesheet" href="../../css/admin/articulo.css">
+      <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
 
 
     </head>
 
     <body>
       <?php
-        
+        include 'barraNavegacionAdmin.php';
+
+
         $query="";
 
-
+        
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
           if (isset($_POST['busqueda'])) {
-            echo "Procesar el formulario de busqueda";
+            echo "Procesar el formulario de busqueda"; //REVISAR ESTE ECHO
             $query = "SELECT * FROM articulos where nombre like '%" . $_POST['search'] . "%'";
           } else {
             $qryDelete = "UPDATE articulos SET fecha_baja=current_timestamp WHERE id=". $_POST["idborrar"]; 
@@ -44,64 +48,37 @@
       <div class='container-fluid'>
         <div class='row'>
           <div class="col-12">
-            
-          <header class="d-flex flex-wrap py-3 mb-5 border-bottom">
-              <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-                <div class="container">
-                  <a class="navbar-brand" href="#">usuario:</a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../../login.php">Cerrar</a>                    
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </nav>
-            </header>
-          
           </div>
         </div>
         
         <div class="row">
           <div class="col-1">
-            <div id="sidebar" class="sidebar">
-              <ul class="menu">
-                <li><a href="pedidos.php?tipo=prep">Pedidos</a></li>
-                <li><a class="menusel" href="articulos.php">Articulos</a></li>
-                <li><a href="usuarios.php">Usuarios</a></li>
-                <li><a href="transporte.php">Transporte</a></li>
-                <li><a href="#">Reportes</a></li>
-              </ul>
-            </div>
+            
           </div>
           <div class="col-11">
             <div class="container-fluid">
               <div class="topnav">
                 <a href="articulonuevo.php">
-                  <button id="nuevoArticulo" class="btn-primary">Nuevo articulo</button>
+                  <button id="nuevoArticulo" class="btnNuevoArt">Nuevo articulo</button>
                 </a>
-                <div class="search-container">
+                <div class="contBusqueda">
                   <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                     <input type="text" placeholder="Search..." name="search">
-                    <button name="busqueda" type="submit"><i class="fa fa-search"></i></button>
+                    <button name="busqueda" type="submit" class="btnBusc"><i class="fa-solid fa-magnifying-glass"></i></button>
                   </form>
                 </div>
               </div>
               <div class="lineaSuperior"></div>
               <div class="row">
-              <table class="table table-striped">
+              <table class="table">
                   <thead>
                     <tr>
                       <th>Nombre</th>
-                      <th>Descripcion</th>
+                      <th>Descripción</th>
                       <th>Foto 1</th>  
                       <th>Foto 2</th>
-                      <th>Stock minimo</th>
-                      <th>Stock</th>
+                      <th>Stock </th>
+                      <th>Stock mínimo</th>
                       <th></th>
                       <th></th>
                     </tr>
@@ -170,15 +147,15 @@
 
                         <td class="text-right">
                           <span title="Actualizar articulo">
-                            <a class="btn btn-outline-danger btn-sm" id="btnactualizar<?php echo $fila['id'] ?>" role="button" 
+                            <a class="btnAct" id="btnactualizar<?php echo $fila['id'] ?>" role="button" 
                               href="articulomodificar.php?id=<?php echo $fila['id'] ?>">
-                              <i class="bi bi-pencil-square"></i>
+                              <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                           </span>
                           <span title="Borrar articulo">
-                            <a class="btn btn-outline-danger btn-sm" id="btnBorrar<?php echo $fila['id'] ?>" role="button" 
+                            <a class="btnBorr" id="btnBorrar<?php echo $fila['id'] ?>" role="button" 
                               href="#" onClick="modalEliminacion(<?php echo $fila['id'] ?>);">
-                              <i class="bi bi-trash3"></i>
+                              <i class="fa-solid fa-trash"></i>
                             </a>
                           </span>
                         </td>
@@ -210,23 +187,6 @@
             </div>
         </div>
       </div>  
-      <script>
-          function mostrar(nro,texto){
-            
-            //asgino el texto al caption
-            document.getElementById("caption" + nro).innerHTML = texto;
-            // hago visible el modal
-            document.getElementById("imgModal" + nro).style.display="block";
-
-          };
-
-          function ocultar(elemento){
-            document.getElementById(elemento).style.display="none";
-          }
-
-          function modalEliminacion(idborrar){
-            document.getElementById("id"+idborrar).style.display="block";
-          }
-      </script>
+      <script src="../../js/articulosAdmin.js"></script>
     </body>
 </html> 
