@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú</title>
-    <link rel="stylesheet" href="../../css/menus.css">
+    <link rel="stylesheet" href="../../css/menu.css">
     <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
 </head>
 <body id="body">
     <header>
         <div class="icon_menu">
             <i class="fas fa-bars" id="btn_open"></i>
-        </div>
+        </div>  
+        
     </header>
     <div class="menu__side" id="menu_side">
         <div class="options__menu">
-            <a href="menus.php" class="selected">
+            <a href="inicio.php" class="selected">
                 <div class="option">
                 <i class="fa-regular fa-star" title="Principal"></i>
                     <h4>Principal</h4>
@@ -51,6 +52,12 @@
                     <h4>Compras</h4>
                 </div>
             </a>-->
+            <a href="cambiarPass.php" class="selected">
+                <div class="option">
+                <i class="fa-solid fa-lock" title="Cambiar Contraseña"></i>
+                    <h4>Cambiar Contraseña</h4>
+                </div>
+            </a>
             <a href="../../login.php" class="selected">
                 <div class="option">
                 <i class="fa-solid fa-rectangle-xmark" title="Cerrar"></i>

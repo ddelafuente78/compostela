@@ -6,7 +6,7 @@
       <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">-->
-      <link rel="stylesheet" href="../../css/admin/articuloNuevo.css">
+      <link rel="stylesheet" href="../../css/admin/articuloNuev.css">
       
     </head>
     <body>
@@ -87,7 +87,7 @@
         }
       ?>
         <h1>Nuevo artículo</h1>
-        <div class='conteiner'>
+        <div class='container'>
           
           <div class="contForm">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
