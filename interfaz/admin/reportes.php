@@ -21,30 +21,21 @@
         $query = "Select * from articulos"; 
         $productos = mysqli_query($conexion, $query);
       ?>
-
+    <h1 class="classH1">Mis Reportes</h1>
     <div class="contenedor2">
         <div class="tarjetas">
-            <figure>
-                <img src="images/java.jpg" alt="">
-            </figure>
             <div class="contenido">
                 <h3>Reporte 1</h3>
                     <a href="#">Ingresar</a>   
             </div>
         </div>
         <div class="tarjetas">
-            <figure>
-                <img src="images/java.jpg" alt="">
-            </figure>
             <div class="contenido">
                 <h3>Reporte 2</h3>
                     <a href="#">Ingresar</a>                
             </div>
         </div>
         <div class="tarjetas">
-            <figure>
-                <img src="images/java.jpg" alt="">
-            </figure>
             <div class="contenido">
                 <h3>Reporte 3</h3>
                     <a href="#">Ingresar</a>
