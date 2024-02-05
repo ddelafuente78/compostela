@@ -1,0 +1,81 @@
+body{
+  background-color:white;
+  }
+
+  .titulo2{
+      font-family: Cambria;
+          margin: 0px;
+          color: black;
+          text-align: right;
+          animation: mover-derecha-izquierda 3s ease-in 1s 1 reverse both;    
+      }
+      @keyframes mover-derecha-izquierda {
+          from{
+              transform: translateX(-1500px);
+          }
+          to{
+              transform: translateX(-10px);
+          }
+      }
+      ;
+  
+      .contenedor2{
+          width: 100%;
+          display: flex;
+          max-width: 1100px;
+      }
+  
+      .tarjetas{
+          width: 20%;
+          margin: 50px;
+          margin-left: 150px;
+          border-radius: 6px;
+          overflow: hidden;
+          background: #b5daff;
+          box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+          cursor: default;
+          transition: all 400ms ease;
+          display: inline-block;
+          
+          
+      }
+      .tarjetas:hover{
+          box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+          transform: translateY(-3px);
+      }
+  
+  
+      .tarjetas .contenido{
+          padding: 15px;
+          text-align: center;
+  
+      }
+  
+   
+      .tarjetas .contenido h3{
+          font-weight: 400;
+          margin-bottom: 15px;
+  
+      }
+  
+      .tarjetas .contenido a{
+          text-decoration: none;
+          display:  inline-block;
+          padding: 5px;
+          background-color: rgb(245, 241, 241);
+          margin-top: 10px;
+          color : black;
+          border: solid 0.5px ;
+          border-radius: 4px;
+          transition: all 400ms ease;
+      }
+
+      .tarjetas .contenido a:hover{
+          background: #bed3e7;
+          color: black;
+      }
+  
+  
+  
+  
+
