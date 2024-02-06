@@ -16,7 +16,7 @@
         </div>
       </div>
       <?php
-        include '../../helper/conexion.php';
+        include '../../helper/modelo.php';
         include '../../helper/validar_usuario.php';
         include '../../modelo/clases.php';
         include 'barraNavegacionAdmin.php';

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
   <?php 
-    include '../../helper/conexion.php';
+    include '../../modelo/conexion.php';
     include '../../helper/validar_usuario.php';
   ?>  
   <html>

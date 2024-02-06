@@ -1,5 +1,5 @@
 <?php
-  include '../helper/conexion.php';
+  include 'conexion.php';
   include '../helper/validar_usuario.php';
   
   $productos_sin_stock = [];
