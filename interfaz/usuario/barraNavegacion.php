@@ -22,7 +22,7 @@
                     <h4>Principal</h4>
                 </div>
             </a>
-            <a href="../../helper/nropedido.php" class="selected">
+            <a href="../../helper/nropedido.php?pag=0" class="selected">
                 <div class="option">
                 <i class="fa-solid fa-box-open" title="Consultar Stock"></i>
                     <h4>Consultar stock</h4>

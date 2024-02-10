@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/cambiarContrasenia.css">
-    <title>Document</title>
-</head>
-<body>
-    <?php 
-    include 'barraNavegacion.php';
-    ?>
-    <h1>Cambiar Contraseña</h1>
-        <div class='conteiner'>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="../../css/cambiarContrasenia.css">
+      <title>Cambio contrasenia - Puerto compostela</title>
+  </head>
+  <body>
+      <?php 
+        include 'barraNavegacion.php';
+        include '../../helper/validar_usuario.php';
+      ?>
+      <h1>Cambiar contraseña</h1>
+      <div class='conteiner'>
+        
+        <div class="contForm">
+          <form action="../../helper/cambiar_contrasenia.php" method="post">
+
+            <input type="hidden" name="hdnID" value="<?php echo $_SESSION['id']?>">
           
-          <div class="contForm">
-            <form action="" method="post" enctype="">
-              <label class="classLbl" for="contrasenia">Contraseña Actual:</label>
-              <input type="text" id="contrasenia" name="contrasenia" placeholder="Contraseña">
-            
-              <label class="classLbl" for="nueva">Nueva Contraseña:</label>
-              <input type="text" id="nueva" name="nueva" placeholder="nueva contraseña">
+            <label class="classLbl" for="nueva">Nueva contraseña:</label>
+            <input type="password" id="nueva" name="nueva" placeholder="nueva contraseña">
 
-              <label class="classLbl" for="confirmar">Confirmar Contraseña</label>
-              <input type="text" id="confirmar" name="confirmar" placeholder="confirmar contraseña">
+            <label class="classLbl" for="confirmar">Confirmar Contraseña</label>
+            <input type="password" id="confirmar" name="confirmar" placeholder="confirmar contraseña">
 
-              <input type="submit" id="cargar" name="cargar" value="Guardar">
-            </form>
-          </div>
-        </div 
+            <div id='passdiferentes'>
+              <p>La nueva contraseña y su confirmacion son diferentes.</p>
+            </div>
 
-
-</body>
+            <input type="submit" id="cargar" name="cargar" value="Guardar">
+          </form>
+        </div>
+        
+      </div>
+      <script src='../../js/cambiarPass.js'></script>
+  </body>
 </html>
 

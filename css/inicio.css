@@ -4,9 +4,8 @@ html, body {
     
   }
   
-
   .contImg {
-    background: url('../interfaz/usuario/asset/fondo.jpg') no-repeat center center fixed;
+    background: url('../assets/fondo.jpg') no-repeat center center fixed;
     background-size: cover;
     width: 100%;
     height: 100%;

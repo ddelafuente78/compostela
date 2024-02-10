@@ -13,27 +13,32 @@
       include("../../modelo/articulo.php");
       include 'barraNavegacion.php';
       
-      
       $articulo = new articulo();
+      $pagina = 1;
 
-      //si el usuario solicita filtro en el campo buscado filtramos
-      //sino mostramos todos.
-      if($_POST){
-        if( $_POST['buscado'] <> ""){
-          $listaArticulos = $articulo->obtenerArticulos(0 , $_POST['buscado']);
-        } else {
-          $listaArticulos = $articulo->obtenerArticulos(0);
-        }
-      } else {
-        $listaArticulos = $articulo->obtenerArticulos(0);
+      if(!isset($_SESSION['buscado'])) {
+        $_SESSION['buscado'] = "";
       }
-    ?> 
 
-  <!--FORMULARIO DE-->              
+      if ($_GET){
+        $pagina = $_GET["pag"]; 
+      }
+
+      if($_POST) {
+        $_SESSION['buscado'] = $_POST['buscado'];
+      }
+      
+
+      $listaArticulos = $articulo->obtenerArticulos($pagina, $_SESSION['buscado']);
+      $cantidadPaginas = $articulo->cantidadPaginas($pagina, $_SESSION['buscado']);
+
+    ?>  
+
+  <!--FORMULARIO DE-->             
   <div>
     <form class="formulario" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
         <div class="containerBuscador">
-          <input type="text" class="inputBuscar" name="buscado" placeholder="Search...">
+          <input type="text" class="inputBuscar" name="buscado" placeholder="Search..." value="<?php echo $_SESSION['buscado']; ?>">
           <button class="btnBuscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
       </form>
@@ -61,9 +66,9 @@
 </div>
 <!--PAGINADOR-->
       <div class="paginador">
-        <a href="#" class="etiquetaPaginador" ><i class="fa-solid fa-backward"></i></a>
-        <a href="#" class="etiquetaPaginador" id="numPag"> 1 </a>
-        <a href="#" class="etiquetaPaginador" ><i class="fa-solid fa-forward"></i></a>
+        <a href="articulos.php?pag=<?php echo $pagina==1 ? 1 : ($pagina - 1) ?>" class="etiquetaPaginador" ><i class="fa-solid fa-backward"></i></a>
+        <a href="#" class="etiquetaPaginador" id="numPag"> <?php echo $pagina ?> </a>
+        <a href="articulos.php?pag=<?php echo $cantidadPaginas==$pagina ? $pagina :  $pagina + 1 ?>" class="etiquetaPaginador" ><i class="fa-solid fa-forward"></i></a>
         <br>
         <br>
         <br>
