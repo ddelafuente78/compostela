@@ -2,7 +2,7 @@
   <html>
     <head>
       <?php
-        require ('../../modelo/conexion.php');
+        require ('../../helper/conexion.php');
         require ('../../helper/validar_usuario.php');
       ?>
       <title>Administrador - compostela</title>

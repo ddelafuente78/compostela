@@ -1,5 +1,5 @@
 <?php
-  include '../../modelo/conexion.php';
+  include '../../helper/conexion.php';
   include '../../helper/validar_usuario.php';
   
   if($_GET){

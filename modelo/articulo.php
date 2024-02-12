@@ -19,6 +19,11 @@
                 $this->stock = $stock;
                 $this->stock_minimo = $stock_minimo;
             }
+            
+            public function getID(){
+                return $this->id;
+            }
+            
 
             public function obtenerArticulos($pagina, $filtro = null){
                 include 'conexion.php';
@@ -56,6 +61,17 @@
                 mysqli_close($conexion);
                 return $totalpaginas;
 
+            }
+            
+            public function actualizarArticulo(){
+                include 'conexion.php';
+                
+                $qryUpdate = "UPDATE articulos SET nombre='" . $this->nombre . "', foto1='" . $this->foto1 . "', foto2='" . $this->foto2
+                        . "', descripcion='" . $this->desscripcion . "', stock=" . $this->stock . ", stock_minimo=" . $this->stock_minimo 
+                        . " where id=" . $this->id ;
+                
+                mysqli_query($conexion, $qryUpdate);
+                
             }
 
         }

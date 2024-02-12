@@ -4,11 +4,11 @@ let avisopassdiferentes = document.getElementById("passdiferentes")
 let boton = document.getElementById("cargar")
 
 
-nuevaspass.addEventListener('blur', function(event) {
+nuevaspass.addEventListener('keyup', function(event) {
     mostrarAviso()
 })
 
-confirmapass.addEventListener('blur', function(event) {
+confirmapass.addEventListener('keyup', function(event) {
     mostrarAviso()
 })
 

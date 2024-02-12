@@ -129,7 +129,7 @@
       </div>
       
       <?php
-        include '../../modelo/conexion.php';
+        include '../../helper/conexion.php';
         include '../../helper/validar_usuario.php';
         include '../../modelo/clases.php';
 

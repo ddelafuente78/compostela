@@ -23,7 +23,8 @@
         public function getRol(){
             return $this->rol;
         }
-
+        
+    
         public function existeUsuario(){
             include 'conexion.php';
 
@@ -41,14 +42,17 @@
             mysqli_close($conexion);
             return true;
         }
-
+        
         public function cambiarPassword(){
             include 'conexion.php';
 
             $updPassword = "UPDATE usuarios SET password = '" . $this->password . "' WHERE id = " . $this->id;
 
             mysqli_query($conexion, $updPassword) or
-              die("Problemas en el update de actualizacion de password:" . mysqli_error($conexion));
+             die("Problemas en el update de actualizacion de password:" . mysqli_error($conexion));
+            mysqli_close($conexion);
+            return true;
         }
+
     }
 ?>

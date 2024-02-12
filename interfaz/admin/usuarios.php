@@ -2,6 +2,7 @@
   <?php 
     include '../../modelo/conexion.php';
     include '../../helper/validar_usuario.php';
+    include 'barraNavegacionAdmin.php';
   ?>  
   <html>
     <head>
@@ -17,7 +18,6 @@
       
       
       <?php
-      include 'barraNavegacionAdmin.php';
         if($_POST){
           $qryDelete = "DELETE FROM usuarios WHERE id=". $_POST["idborrar"]; 
           mysqli_query($conexion, $qryDelete);

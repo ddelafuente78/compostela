@@ -3,7 +3,7 @@
   <?php
         include '../../modelo/conexion.php';
         include '../../helper/validar_usuario.php';
-        
+        include 'barraNavegacionAdmin.php';
   ?>
     <head>
       <title>Administrador - compostela</title>
@@ -21,10 +21,8 @@
 
     <body>
       <?php
-        include 'barraNavegacionAdmin.php';
-
-
-        $query="";
+        
+       $query="";
 
         
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -43,6 +41,7 @@
         //echo $query;
 
         $productos = mysqli_query($conexion, $query) or die("Eliminar");
+        
       ?>
 
       <div class='container-fluid'>

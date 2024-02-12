@@ -4,8 +4,8 @@
 
     $usuario = new Usuario($_POST['hdnID'],'','',$_POST['nueva'],'');
 
-    $usuario->cambiarPassword();
-
+   $usuario->cambiarPassword();
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">

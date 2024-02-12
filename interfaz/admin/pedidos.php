@@ -8,7 +8,7 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">-->
       <link rel="stylesheet" href="../../css/pedidos.css">
       <?php
-        include '../../modelo/conexion.php';
+        include '../../helper/conexion.php';
         include '../../helper/validar_usuario.php';
         include "barraNavegacionAdmin.php";
         if($_GET) {

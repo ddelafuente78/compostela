@@ -41,7 +41,7 @@
             </a>
             <a href="reportes.php" class="selected">
                 <div class="option">
-                <i class="fa-solid fa-book-open" title="Reportes"></i>
+                <i class="fa-solid fa-book-open" title="Transporte"></i>
                     <h4>Reportes</h4>
                 </div>
             </a>

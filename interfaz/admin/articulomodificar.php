@@ -19,7 +19,7 @@
       <?php
         include '../../modelo/conexion.php';
         include '../../helper/validar_usuario.php';
-        include '../../modelo/clases.php';
+        include '../../modelo/articulo.php';
 
         function borrarViejaImagen($nombreArchivo){
           unlink('../../imagenes/productos/' . $nombreArchivo);
@@ -68,18 +68,11 @@
           }
         }
 
-        $articulo = new articulo();
+        
         $actualizacion=false;
 
         if($_POST){
-
-          $articulo->id=$_POST['idactualizar'];
-          $articulo->nombre=$_POST['nombre'];
-          $articulo->desscripcion=$_POST['descripcion'];
-          $articulo->foto1=$_POST['file1'];
-          $articulo->foto2=$_POST['file2'];
-          $articulo->stock=$_POST["stock"];
-          $articulo->stock_minimo=$_POST["stockminimo"];
+          $articulo = new articulo($_POST['idactualizar'],$_POST['nombre'],$_POST['descripcion'],$_POST['file1'], $_POST['file2'], $_POST["stock"], $_POST["stockminimo"]);
 
           if($_FILES['img1']['name'] != null){
             borrarViejaImagen($_POST['file1']);
@@ -93,18 +86,16 @@
             $articulo->foto2 = $_FILES['img2']['name'];
           }
 
-          $qryUpdate = "UPDATE articulos SET nombre='" . $articulo->nombre . "', foto1='" . $articulo->foto1 . "', foto2='" . $articulo->foto2
-                        . "', descripcion='" . $articulo->desscripcion . "', stock=" . $articulo->stock . ", stock_minimo=" . $articulo->stock_minimo 
-                        . " where id=" . $articulo->id ;
-          mysqli_query($conexion, $qryUpdate);
+          $articulo->actualizarArticulo();
+          
           $actualizacion=true;
         }
 
         if($_GET){
-          $articulo->id=$_GET['id'];
+            $articulo = new articulo($_GET['id']);
         }
 
-        $qrySelect = "SELECT * FROM articulos WHERE id=" . $articulo->id;
+        $qrySelect = "SELECT * FROM articulos WHERE id=" . $articulo->getID();
         $rsArticulo = mysqli_query($conexion, $qrySelect);
         $articulo = mysqli_fetch_array($rsArticulo);
       ?>

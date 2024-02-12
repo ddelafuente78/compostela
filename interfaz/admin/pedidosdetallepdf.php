@@ -1,6 +1,6 @@
 <?php
 require('../../helper/mysql_table.php');
-require ('../../modelo/conexion.php');
+require ('../../helper/conexion.php');
 require ('../../helper/validar_usuario.php');
 
 class PDF extends PDF_MySQL_Table
