@@ -74,5 +74,59 @@
                 
             }
 
+            public function insertarArchivo(){
+                include 'conexion.php';
+                
+                $qryInsert = "INSERT INTO articulos VALUES(default,'" . $this->nombre . "','" . $this->foto1 . "','" . $this->foto2 .
+                                "','". $this->descripcion . "'," . $this->stock . "," . $this->stock_minimo  . ", CURRENT_TIMESTAMP(), 
+                                null, CURRENT_TIMESTAMP());";
+                
+                mysqli_query($conexion, $qryInsert);
+                mysqli_close($conexion);
+            }
+
+            private function cargarArchivo($nroArchivo,$nombreArchivo){
+                $carpeta="../imagenes/productos/";
+                $archivoFinal= $carpeta . $nombreArchivo;
+                //pathinfo: Devuelve información acerca de la ruta de un fichero
+                $tipoArchivoImagen = strtolower(pathinfo($_FILES["file" . $nroArchivo]["name"],PATHINFO_EXTENSION));
+                $ArchivoOK = true;
+                $check = getimagesize($_FILES["file" . $nroArchivo]["tmp_name"]);
+                
+                if($check !== false) {
+                  $ArchivoOK = true;;
+                } else {
+                  $ArchivoOK = false;
+                }
+      
+                // verfica si existe el archivo
+                if (file_exists($archivoFinal)) {
+                  $ArchivoOK = false;
+                }
+      
+                // verifica el tamanio del archivo
+                if ($_FILES["file" . $nroArchivo]["size"] > 500000) {
+                  
+                  $ArchivoOK = false;
+                }
+      
+                // permite ciertos formatos
+                if($tipoArchivoImagen != "jpg" && $tipoArchivoImagen != "png" && $tipoArchivoImagen != "jpeg" && $tipoArchivoImagen != "gif" ) {
+                  $ArchivoOK = false;
+                }
+      
+                
+                // verifica si el archivo es correcto para subir
+                if ($ArchivoOK == false) {
+                  return false;
+                // Si todo esta ok, subimos el archivo
+                } else {
+                  if (move_uploaded_file($_FILES["file" . $nroArchivo]["tmp_name"], $archivoFinal)) {
+                    return true;
+                  }else{
+                    return false;
+                  }         
+                }
+              }
         }
 ?>

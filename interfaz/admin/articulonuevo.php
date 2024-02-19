@@ -3,9 +3,6 @@
     <head>
       <title>Administrador - compostela</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-      <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">-->
       <link rel="stylesheet" href="../../css/admin/articuloNuev.css">
       
     </head>
@@ -17,14 +14,12 @@
         </div>
       </div>
       <?php
-        include '../../helper/conexion.php';
         include '../../helper/validar_usuario.php';
-        include '../../modelo/clases.php';
+        include '../../modelo/articulo.php';
         include 'barraNavegacionAdmin.php';
-        
 
         function cargarArchivo($nroArchivo,$nombreArchivo){
-          $carpeta="../../imagenes/productos";
+          $carpeta="../../imagenes/productos/";
           $archivoFinal= $carpeta . $nombreArchivo;
           //pathinfo: Devuelve información acerca de la ruta de un fichero
           $tipoArchivoImagen = strtolower(pathinfo($_FILES["file" . $nroArchivo]["name"],PATHINFO_EXTENSION));
@@ -66,25 +61,19 @@
             }         
           }
         }
+
         $insercion=false;
         if($_POST){
       
-          $articulo = new articulo();
-          
-          $articulo->nombre=$_POST['nombre'];
-          $articulo->desscripcion=$_POST['descripcion'];
-          $articulo->foto1=$_FILES["file1"]["name"];
-          $articulo->foto2=$_FILES["file2"]["name"];
-          $articulo->stock=$_POST["stock"];
-          $articulo->stock_minimo=$_POST["stockminimo"];
-          
-          if(cargarArchivo("2",$articulo->foto2) && cargarArchivo("1",$articulo->foto1)){
-            $insQuery = "INSERT INTO articulos VALUES(default,'" . $articulo->nombre . "','" . $articulo->foto1 . "','" . $articulo->foto2 .
-                        "','". $articulo->desscripcion . "'," . $articulo->stock . "," . $articulo->stock_minimo  . ", CURRENT_TIMESTAMP(), null);";
-            mysqli_query($conexion, $insQuery);
-            $insercion=true;
+          $articulo = new articulo(0,$_POST['nombre'],$_POST['descripcion'],$_FILES["file1"]["name"],
+          $_FILES["file2"]["name"],$_POST["stock"], $_POST["stockminimo"]);
+
+          if(cargarArchivo("2",$_FILES["file2"]["name"]) && cargarArchivo("1",$_FILES["file1"]["name"])){
+            $articulo->insertarArchivo();
+            $insercion = true;
           }
         }
+
       ?>
         <h1>Nuevo artículo</h1>
         <div class='container'>
@@ -106,7 +95,7 @@
               <input type="submit" id="cargar" name="cargar" value="cargar">
             </form>
           </div>
-        </div 
+      </div>
      
       <script language="javascript">
         <?php
