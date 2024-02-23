@@ -25,3 +25,4 @@
 
 ### Added
 - Se realizaron cambios en los siguientes archivos. articulomodificar.php y articulomodificar.css
+- Se agrego combo box para tipo de modificacion de stock

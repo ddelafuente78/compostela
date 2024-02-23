@@ -125,6 +125,16 @@
                       <img src='../../imagenes/productos/<?php echo $articulo['foto2'] ?>'/>
                     </span>
                     <input type="file" id="img2" name="img2">
+
+                    <label class="classLbl"for="">Asignar tipo de modificacion</label>
+                    <select id="tipoDeModficacionStock">
+                      <option value="" disabled selected>Seleccionar tipo de modificación</option>
+                      <option value="ajustar">Ajustar</option>
+                      <option value="nuevoIngreso">Nuevo Ingreso</option>
+                      <option value="devolucion">Devolucion</option>
+                    </select>
+                    <br>
+                    <br>
                   
                     <label class="classLbl"for="stock">Stock</label>
                     <input type="number" id="stock" name="stock" placeholder="0"
