@@ -7,7 +7,7 @@
 - Se ha implementado un nuevo sistema de notificaciones por correo electrónico.
 
 ### Changed
-- Se ha actualizado la interfaz de usuario para mejorar la usabilidad.
+- Se ha actualizado la interfaz de usuario para mejorar la usabilidad.  
 
 ### Fixed
 - Se han corregido varios errores de seguridad.
@@ -19,3 +19,9 @@
 - Se ha lanzado la versión 1.0.0 del proyecto.
 - Se han añadido funcionalidades básicas para visualizacion de productos y stock en el FrontOffice.
 - Se han agregado las funcionalidades basicas para la carga y mantenimiento de stock en el BackOffice. 
+
+
+## Cambios en la interfas de admin al actualizar articulos - 23/02/2024
+
+### Added
+- Se realizaron cambios en los siguientes archivos. articulomodificar.php y articulomodificar.css
