@@ -29,8 +29,14 @@
 
 - Se agrego combo box para tipo de modificacion de stock
 
-## Cambios en la actualizacion de articulos - 23/02/2024 (diego)
+## Actualizacion de articulos - 23/02/2024 (diego)
 
 ## Changed
-- Cambios en el siguiente archivo:
+- Modificacion de la descripcion del articulo en la bbdd:
     /interfaz/admin/articulomodificar.php
+
+## Actualizacion de articulos - 24/02/2024 (diego)
+- Modificacion de la imagen del articulo en el file system y la bbdd:
+    /interfaz/admin/articulomodificar.php
+    /interfaz/admin/articulonuevo.php
+    /modelo/articulo.php

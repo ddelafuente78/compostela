@@ -44,7 +44,7 @@
           }
 
           // permite ciertos formatos
-          if($tipoArchivoImagen != "jpg" && $tipoArchivoImagen != "png" && $tipoArchivoImagen != "jpeg" && $tipoArchivoImagen != "gif" ) {
+          if($tipoArchivoImagen != "webp" && $tipoArchivoImagen != "jpg" && $tipoArchivoImagen != "png" && $tipoArchivoImagen != "jpeg" && $tipoArchivoImagen != "gif" ) {
             $ArchivoOK = false;
           }
 
@@ -61,6 +61,7 @@
             }         
           }
         }
+        
 
         $insercion=false;
         if($_POST){
@@ -68,12 +69,13 @@
           $articulo = new articulo(0,$_POST['nombre'],$_POST['descripcion'],$_FILES["file1"]["name"],
           $_FILES["file2"]["name"],$_POST["stock"], $_POST["stockminimo"]);
 
-          if(cargarArchivo("2",$_FILES["file2"]["name"]) && cargarArchivo("1",$_FILES["file1"]["name"])){
-            $articulo->insertarArchivo();
-            $insercion = true;
+          if ($articulo->insertarArchivo()) {
+            if(cargarArchivo("2",$_FILES["file2"]["name"]) && cargarArchivo("1",$_FILES["file1"]["name"])) {
+            //if($articulo->cargarArchivo("1",$_FILES["file1"]["name"]) && $articulo->cargarArchivo("2",$_FILES["file2"]["name"])){  
+              $insercion = true;
+            }
           }
         }
-
       ?>
         <h1>Nuevo artículo</h1>
         <div class='container'>

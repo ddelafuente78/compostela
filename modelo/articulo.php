@@ -24,6 +24,13 @@
                 return $this->id;
             }
             
+            public function setFoto1($foto1){
+              $this->foto1 = $foto1;
+            }
+
+            public function setFoto2($foto2){
+              $this->foto2 = $foto2;
+            }
 
             public function obtenerArticulos($pagina, $filtro = null){
                 include 'conexion.php';
@@ -76,20 +83,31 @@
 
             public function insertarArchivo(){
                 include 'conexion.php';
-                
-                $qryInsert = "INSERT INTO articulos VALUES(default,'" . $this->nombre . "','" . $this->foto1 . "','" . $this->foto2 .
+              
+                try {
+                  $qryInsert = "INSERT INTO articulos VALUES(default,'" . $this->nombre . "','" . $this->foto1 . "','" . $this->foto2 .
                                 "','". $this->descripcion . "'," . $this->stock . "," . $this->stock_minimo  . ", CURRENT_TIMESTAMP(), 
                                 null, CURRENT_TIMESTAMP());";
                 
-                mysqli_query($conexion, $qryInsert);
-                mysqli_close($conexion);
+                  mysqli_query($conexion, $qryInsert);
+                  return true;
+
+                } catch (Exception $e) {
+                  return false;
+
+                } finally {
+                  mysqli_close($conexion);
+                }
+                
             }
 
-            private function cargarArchivo($nroArchivo,$nombreArchivo){
+            public function cargarArchivo($nroArchivo,$nombreArchivo){
                 $carpeta="../imagenes/productos/";
                 $archivoFinal= $carpeta . $nombreArchivo;
                 //pathinfo: Devuelve información acerca de la ruta de un fichero
-                $tipoArchivoImagen = strtolower(pathinfo($_FILES["file" . $nroArchivo]["name"],PATHINFO_EXTENSION));
+                $tipoArchivoImagen = strtolower(pathinfo($_FILES["file" . $nroArchivo]["name"],
+                PATHINFO_EXTENSION));
+
                 $ArchivoOK = true;
                 $check = getimagesize($_FILES["file" . $nroArchivo]["tmp_name"]);
                 

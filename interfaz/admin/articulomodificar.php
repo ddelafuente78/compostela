@@ -20,7 +20,9 @@
         include 'barraNavegacionAdmin.php';
 
         function borrarViejaImagen($nombreArchivo){
-          unlink('../../imagenes/productos/' . $nombreArchivo);
+          if (file_exists('../../imagenes/productos/'. $nombreArchivo)) {
+            unlink('../../imagenes/productos/'. $nombreArchivo);
+          }
         }
 
         function cargarNuevaImagen($nombreArchivo, $nrofile){
@@ -49,7 +51,7 @@
           }
 
           // permite ciertos formatos
-          if($tipoArchivoImagen != "jpg" && $tipoArchivoImagen != "png" && $tipoArchivoImagen != "jpeg" && $tipoArchivoImagen != "gif" ) {
+          if($tipoArchivoImagen != "webp" && $tipoArchivoImagen != "jpg" && $tipoArchivoImagen != "png" && $tipoArchivoImagen != "jpeg" && $tipoArchivoImagen != "gif" ) {
             $ArchivoOK = false;
           }
 
@@ -70,18 +72,19 @@
         $actualizacion=false;
 
         if($_POST){
-          $articulo = new articulo($_POST['idactualizar'],$_POST['nombre'],$_POST['descripcion'],$_POST['file1'], $_POST['file2'], $_POST["stock"], $_POST["stockminimo"]);
+          $articulo = new articulo($_POST['idactualizar'],$_POST['nombre'],$_POST['descripcion'],
+            $_POST['file1'], $_POST['file2'], $_POST["stock"], $_POST["stockminimo"]);
 
           if($_FILES['img1']['name'] != null){
             borrarViejaImagen($_POST['file1']);
             cargarNuevaImagen($_FILES['img1']['name'], 'img1');
-            $articulo->foto1 = $_FILES['img1']['name'];
+            $articulo->setFoto1($_FILES['img1']['name']);
           }
 
           if($_FILES['img2']['name'] != null){
             borrarViejaImagen($_POST['file2']);
             cargarNuevaImagen($_FILES['img2']['name'], 'img2');
-            $articulo->foto2 = $_FILES['img2']['name'];
+            $articulo->setFoto2($_FILES['img2']['name']);
           }
 
           $articulo->actualizarArticulo();
