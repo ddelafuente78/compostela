@@ -67,7 +67,7 @@
                 include 'conexion.php';
                 
                 $qryUpdate = "UPDATE articulos SET nombre='" . $this->nombre . "', foto1='" . $this->foto1 . "', foto2='" . $this->foto2
-                        . "', descripcion='" . $this->desscripcion . "', stock=" . $this->stock . ", stock_minimo=" . $this->stock_minimo 
+                        . "', descripcion='" . $this->descripcion . "', stock=" . $this->stock . ", stock_minimo=" . $this->stock_minimo 
                         . " where id=" . $this->id ;
                 
                 mysqli_query($conexion, $qryUpdate);

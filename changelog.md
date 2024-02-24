@@ -9,9 +9,8 @@
 ### Changed
 - Se ha actualizado la interfaz de usuario para mejorar la usabilidad.  
 
-### Fixed
-- Se han corregido varios errores de seguridad.
-- Se han solucionado problemas de renderizado en dispositivos móviles.
+### Deleted
+- Se borraron archivos del proyecto.
 
 ## [1.0.0] - 2024-02-15
 
@@ -21,8 +20,17 @@
 - Se han agregado las funcionalidades basicas para la carga y mantenimiento de stock en el BackOffice. 
 
 
-## Cambios en la interfas de admin al actualizar articulos - 23/02/2024
+## Cambios en la interfas de admin al actualizar articulos - 23/02/2024 (maxi)
 
-### Added
-- Se realizaron cambios en los siguientes archivos. articulomodificar.php y articulomodificar.css
+### Changed
+- Se realizaron cambios en los siguientes archivos. 
+    /interfaz/admin/articulomodificar.php
+    /interfaz/admin/articulomodificar.css
+
 - Se agrego combo box para tipo de modificacion de stock
+
+## Cambios en la actualizacion de articulos - 23/02/2024 (diego)
+
+## Changed
+- Cambios en el siguiente archivo:
+    /interfaz/admin/articulomodificar.php
