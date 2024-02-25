@@ -54,11 +54,12 @@ h1{
       animation-name: animarsuperior;
       animation-duration: 0.5s;
     }
-    /* Add Animation */
+
+    /*
     @-webkit-keyframes animatetop {
       from {top:-300px; opacity:0} 
       to {top:0; opacity:1}
-    }
+    }*/
     @keyframes animarsuperior {
       from {top:-300px; opacity:0}
       to {top:0; opacity:1}

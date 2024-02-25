@@ -40,3 +40,7 @@
     /interfaz/admin/articulomodificar.php
     /interfaz/admin/articulonuevo.php
     /modelo/articulo.php
+
+## Modificacion de articulos - 25/02/2024 (diego)
+- Actualizacion del nombre del css porque no se reconocia el css en el hosting
+    /css/admin/articulomodificar.css
