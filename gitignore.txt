@@ -1,0 +1,5 @@
+# Ignorar la conexion
+modelo/conexion.php
+
+# Ignorar archivos de imagens
+imagenes/
