@@ -44,3 +44,7 @@
 ## Modificacion de articulos - 25/02/2024 (diego)
 - Actualizacion del nombre del css porque no se reconocia el css en el hosting
     /css/admin/articulomodificar.css
+
+## Scaffolding inicial - 08/03/2024 (diego)
+- Limpieza del proyecto anterior y creacion de un scaffoling inicial para 
+para continuar con el desarrollo del sistema.

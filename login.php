@@ -28,6 +28,7 @@
         <title>Login</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/login.css">
+        <link rel="icon" type="image/x-icon" href="assets/logo.jpg">
         <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
     </head>
     <body>

@@ -6,7 +6,7 @@
         private $password;
         private $rol;
 
-        public function __construct($id, $nombre, $mail, $password, $rol) {
+        public function __construct($id=null, $nombre=null, $mail=null, $password=null, $rol=null) {
             $this->id = $id;
             $this->nombre = $nombre;
             $this->mail = $mail;
@@ -23,7 +23,25 @@
         public function getRol(){
             return $this->rol;
         }
+        public function setID($id)  {
+            $this->id = $id;
+        }
+
+        public function setNombre($nombre){
+            $this->nombre=$nombre;
+        }
+
+        public function setMail($mail){
+            $this->mail = $mail;
+        }
         
+        public function setPassword($password){
+            $this->password = $password;
+        }
+
+        public function setRol($rol){
+            $this->rol = $rol;
+        }
     
         public function existeUsuario(){
             include 'conexion.php';
@@ -52,6 +70,44 @@
              die("Problemas en el update de actualizacion de password:" . mysqli_error($conexion));
             mysqli_close($conexion);
             return true;
+        }
+
+        public function insertarUsurio() {
+
+            include 'conexion.php';
+            
+            $insQuery = "INSERT INTO usuarios VALUES(default,'" . $this->mail . "','" . $this->nombre . "','" . 
+                $this->password . "','" . $this->rol . "');";
+            
+            //echo $insQuery;
+            
+            mysqli_query($conexion, $insQuery);
+            
+            
+        }
+
+        public function modificarUsuario(){
+
+            include 'conexion.php';
+
+            $qryUpdate = "UPDATE usuarios SET nombre='" . $this->nombre . "', email='" . $this->mail . 
+                        "', password='" . $this->password . "', rol='" . $this->rol . "' where id=" . $this->id ;
+            
+            //echo $qryUpdate; 
+
+            mysqli_query($conexion, $qryUpdate);
+        }
+
+        public function seleccionarUsuario(){
+
+            include 'conexion.php';
+
+            $qrySelect = "SELECT * FROM usuarios WHERE id=" . $this->id;
+
+            $rsUsuario = mysqli_query($conexion, $qrySelect);
+
+            return $rsUsuario;
+
         }
 
     }

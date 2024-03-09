@@ -128,43 +128,42 @@
         </div>
       </div>
       <?php
-        include '../../helper/conexion.php';
+        include '../../modelo/usuario.php';
         include '../../helper/validar_usuario.php';
-        include '../../modelo/clases.php';
 
         $usuario = new usuario();
         $actualizacion=false;
+        
         if($_POST){
 
-          $usuario->id=$_POST['idactualizar'];
-          $usuario->nombre=$_POST['nombre'];
-          $usuario->mail=$_POST['mail'];
-          $usuario->password=$_POST["password"];
-          $usuario->rol=$_POST["rol"];
+          $usuario->setID($_POST['idactualizar']);
+          $usuario->setNombre($_POST['nombre']);
+          $usuario->setMail($_POST['mail']);
+          $usuario->setPassword($_POST["password"]);
+          $usuario->setRol($_POST['opcion_seleccionada']);
 
-          $qryUpdate = "UPDATE usuarios SET nombre='" . $usuario->nombre . "', email='" . $usuario->mail . 
-                        "', password='" . $usuario->password . "', rol='" . $usuario->rol . "' where id=" . $usuario->id ;
-          mysqli_query($conexion, $qryUpdate);
+          $usuario->modificarUsuario();
+
           $actualizacion=true;
         }
+
         if($_GET){
-          $usuario->id=$_GET['id'];
+          $usuario->setID($_GET['id']);
         }
 
-        $qrySelect = "SELECT * FROM usuarios WHERE id=" . $usuario->id;
-        $rsUsuario = mysqli_query($conexion, $qrySelect);
-        $usuario = mysqli_fetch_array($rsUsuario);
+        $dataUsuario = mysqli_fetch_array($usuario->seleccionarUsuario());
 
       ?>
       <div class='Container'>
         <div class='row'>
           <div class="col-12">
-            <!-- Header -->
             <header class="d-flex flex-wrap py-3 mb-5 border-bottom">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <div class="container">
                   <a class="navbar-brand" href="#"><?php echo $_SESSION["usuario"] ?></a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                      aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -179,6 +178,7 @@
             </header>
           </div>
         </div>
+      
         <div class="row">
           <div class="col-1">
             <div id="sidebar" class="sidebar">
@@ -195,26 +195,47 @@
             <div class='Container'>
               <h1>Modificar usuario</h1>
               <div class="row">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
-                  <input type="hidden" name='idactualizar' value='<?php echo $usuario['id']; ?>'>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" 
+                      enctype="multipart/form-data">
+                  <input type="hidden" name='idactualizar' value='<?php echo $dataUsuario['id']; ?>'>
                   <label for="nombre">Nombre:</label>
-                  <input type="text" id="nombre" name="nombre" placeholder="Sin nombre" value='<?php echo $usuario['nombre'];?>'>
+                  <input type="text" id="nombre" name="nombre" placeholder="Sin nombre" 
+                      value='<?php echo $dataUsuario['nombre'];?>'>
                   <label for="mail">Mail:</label>
-                  <input type="text" id="mail" name="mail" placeholder="Sin mail" value='<?php echo $usuario['email'];?>'>
+                  <input type="text" id="mail" name="mail" placeholder="Sin mail" 
+                      value='<?php echo $dataUsuario['email'];?>'>
                   <label for="password">Password:</label>
-                  <input type="text" id="password" name="password" placeholder="Sin password" value='<?php echo $usuario['password'];?>'>
+                  <input type="text" id="password" name="password" placeholder="Sin password" 
+                      value='<?php echo $dataUsuario['password'];?>'>
                   <label for="rol">Rol:</label>
+                  <input type="hidden" id="opcion_seleccionada" name="opcion_seleccionada"  
+                      value='<?php echo $dataUsuario['rol'];?>'>
                   <select class="form-select" id='rol' name='rol'>
-                    <option value="cliente" <?php if($usuario['rol']=='cliente'){echo 'selected';} ?>>Cliente</option>
-                    <option value="admin" <?php if($usuario['rol']=='admin'){echo 'selected';} ?>>Administrador</option>
+                    <option value="cliente" <?php if($dataUsuario['rol']=='cliente'){echo 'selected';} ?>>Cliente</option>
+                    <option value="admin" <?php if($dataUsuario['rol']=='admin'){echo 'selected';} ?>>Administrador</option>
                   </select>
-                  <input type="submit" id="cargar" name="cargar" value="cargar">
+                  <input type="submit" id="cargar" name="modificar" value="modificar">
                 </form>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <script>
+        // Obtener referencia al select y al input hidden
+        const select = document.getElementById('rol');
+        const inputHidden = document.getElementById('opcion_seleccionada');
+
+        // Agregar un event listener para el evento 'change' del select
+        select.addEventListener('change', function() {
+            // Obtener el valor seleccionado del select
+            const selectedValue = select.value;
+
+            // Asignar el valor seleccionado del select al input hidden
+            inputHidden.value = selectedValue;
+
+        });
+    </script>
       <script language="javascript">
         <?php
           if($actualizacion){
