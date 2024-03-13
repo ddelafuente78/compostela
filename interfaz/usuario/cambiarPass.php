@@ -3,19 +3,19 @@
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="../../css/cambiarContrasenia.css">
+      <link rel="stylesheet" href="../../css/usuario/cambiarPass.css">
       <title>Cambio contrasenia - Puerto compostela</title>
   </head>
   <body>
       <?php 
         include 'barraNavegacion.php';
-        include '../../helper/validar_usuario.php';
+        include '../../helper/validarUsuario.php';
       ?>
       <h1>Cambiar contraseña</h1>
       <div class='conteiner'>
         
         <div class="contForm">
-          <form action="../../helper/cambiar_contrasenia.php" method="post">
+          <form action="../../helper/cambiarContrasenia.php" method="post">
 
             <input type="hidden" name="hdnID" value="<?php echo $_SESSION['id']?>">
           

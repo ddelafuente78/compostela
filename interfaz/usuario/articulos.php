@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="../../css/articulos.css">
+    <link rel="stylesheet" href="../../css/usuario/articulos.css">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
   </head>
@@ -9,7 +9,7 @@
   <body class="cuerpo">
     
     <?php
-      include '../../helper/validar_usuario.php';
+      include '../../helper/validarUsuario.php';
       include("../../modelo/articulo.php");
       include 'barraNavegacion.php';
       

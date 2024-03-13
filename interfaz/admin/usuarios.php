@@ -1,16 +1,13 @@
 <!DOCTYPE html>
   <?php 
     include '../../modelo/conexion.php';
-    include '../../helper/validar_usuario.php';
+    include '../../helper/validarUsuario.php';
     include 'barraNavegacionAdmin.php';
   ?>  
   <html>
     <head>
       <title>Administrador - compostela</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-      <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">-->
       <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="../../css/admin/usuarios.css">
     </head>

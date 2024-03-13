@@ -129,7 +129,7 @@
       </div>
       <?php
         include '../../modelo/usuario.php';
-        include '../../helper/validar_usuario.php';
+        include '../../helper/validarUsuario.php';
         include '../../modelo/clases.php';
 
         $usuario = new usuario();

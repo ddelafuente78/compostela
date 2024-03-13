@@ -10,7 +10,7 @@
 <body id="body">
     <?php
     include '../../modelo/conexion.php';
-    include '../../helper/validar_usuario.php';
+    include '../../helper/validarUsuario.php';
     include 'barraNavegacion.php';
     ?>
     <div class="contImg">

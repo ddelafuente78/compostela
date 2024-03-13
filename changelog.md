@@ -20,7 +20,7 @@
 - Se han agregado las funcionalidades basicas para la carga y mantenimiento de stock en el BackOffice. 
 
 
-## Cambios en la interfas de admin al actualizar articulos - 23/02/2024 (maxi)
+## Cambios en la interfaz de admin al actualizar articulos - 23/02/2024 (maxi)
 
 ### Changed
 - Se realizaron cambios en los siguientes archivos. 
@@ -48,3 +48,7 @@
 ## Scaffolding inicial - 08/03/2024 (diego)
 - Limpieza del proyecto anterior y creacion de un scaffoling inicial para 
 para continuar con el desarrollo del sistema.
+
+## Changed cambios en los nombres de los archivos y organizacion de carpetas- 12/03/2024 (maxi)
+- Se aplico camelcase y se puso mismo nombre a archivos php relacionados con css y js.
+- Se creo dentro de las carpetas de php,js,css una carpeta interna para separar admin y usuario

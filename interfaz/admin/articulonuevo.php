@@ -3,7 +3,7 @@
     <head>
       <title>Administrador - compostela</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-      <link rel="stylesheet" href="../../css/admin/articuloNuev.css">
+      <link rel="stylesheet" href="../../css/admin/articuloNuevo.css">
       
     </head>
     <body>
@@ -14,7 +14,7 @@
         </div>
       </div>
       <?php
-        include '../../helper/validar_usuario.php';
+        include '../../helper/validarUsuario.php';
         include '../../modelo/articulo.php';
         include 'barraNavegacionAdmin.php';
 

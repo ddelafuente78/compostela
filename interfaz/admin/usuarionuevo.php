@@ -2,10 +2,6 @@
   <html>
     <head>
       <title>Administrador - compostela</title>
-      <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">-->
       <link rel="stylesheet" href="../../css/admin/usuarioNuevo.css">
       
     </head>
@@ -17,7 +13,7 @@
         </div>
       </div>
       <?php
-        include '../../helper/validar_usuario.php';
+        include '../../helper/validarUsuario.php';
         include '../../modelo/usuario.php';
         include 'barraNavegacionAdmin.php';
 

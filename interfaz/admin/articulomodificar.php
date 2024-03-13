@@ -15,7 +15,7 @@
       
       <?php
         include '../../modelo/conexion.php';
-        include '../../helper/validar_usuario.php';
+        include '../../helper/validarUsuario.php';
         include '../../modelo/articulo.php';
         include 'barraNavegacionAdmin.php';
 
