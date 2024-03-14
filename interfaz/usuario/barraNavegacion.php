@@ -52,7 +52,7 @@
                     <h4>Compras</h4>
                 </div>
             </a>-->
-            <a href="cambiarPass.php" class="selected">
+            <a href="passwordCambiar.php" class="selected">
                 <div class="option">
                 <i class="fa-solid fa-lock" title="Cambiar Contraseña"></i>
                     <h4>Cambiar Contraseña</h4>

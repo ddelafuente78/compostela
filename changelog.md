@@ -61,6 +61,7 @@ para continuar con el desarrollo del sistema.
     modified:   interfaz/admin/articulos.php
     deleted:    interfaz/usuario/cambiarPass.php
     deleted:    js/articulosAdmin.js
+    modified:   interfaz/usuario/barraNavegacion.php
     css/passwordCambiar.css
     css/usuario/passwordCambiar.css
     interfaz/usuario/passwordCambiar.php
