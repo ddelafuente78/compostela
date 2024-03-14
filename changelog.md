@@ -52,3 +52,17 @@ para continuar con el desarrollo del sistema.
 ## Changed cambios en los nombres de los archivos y organizacion de carpetas- 12/03/2024 (maxi)
 - Se aplico camelcase y se puso mismo nombre a archivos php relacionados con css y js.
 - Se creo dentro de las carpetas de php,js,css una carpeta interna para separar admin y usuario
+
+## Changed cmabios en nombre de archivos y orgainzacion de carpetas - 13/03/2004 (diego)
+- se actualizaron los siguiente archivos/carpetas:
+    deleted:    css/cambiar_contrasenia.css
+    deleted:    css/usuario/cambiarPass.css
+    modified:   helper/cambiarContrasenia.php
+    modified:   interfaz/admin/articulos.php
+    deleted:    interfaz/usuario/cambiarPass.php
+    deleted:    js/articulosAdmin.js
+    css/passwordCambiar.css
+    css/usuario/passwordCambiar.css
+    interfaz/usuario/passwordCambiar.php
+    js/admin/
+    

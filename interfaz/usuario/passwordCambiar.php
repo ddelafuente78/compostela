@@ -3,7 +3,7 @@
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="../../css/usuario/cambiarPass.css">
+      <link rel="stylesheet" href="../../css/usuario/passwordCambiar.css">
       <title>Cambio contrasenia - Puerto compostela</title>
   </head>
   <body>

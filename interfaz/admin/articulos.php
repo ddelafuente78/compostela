@@ -181,6 +181,6 @@
             </div>
         </div>
       </div>  
-      <script src="../../js/articulosAdmin.js"></script>
+      <script src="../../js/admin/articulos.js"></script>
     </body>
 </html> 
