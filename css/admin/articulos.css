@@ -18,6 +18,10 @@ left: 10px;
   color: grey;
 }
 
+.btnHist i:hover{
+  color: gray;
+}
+
 #contenido {
 margin-left:0;
 }

@@ -66,4 +66,20 @@ para continuar con el desarrollo del sistema.
     css/usuario/passwordCambiar.css
     interfaz/usuario/passwordCambiar.php
     js/admin/
+
+## Changed se realizaron cambios en la barra de navegacion - 21/03/2024 (Maxi).
+- Se realizo cambio en la barra de navegacion. Archivo: css/usuario/barraNavegacion.css
+- Se agrego btn de historial y se modificaron los siguentes archivos:
+    interfaz/admin/articulos.php
+    css/admin/articulos.css
     
+### Added
+- Se agregaron los siguientes archivos del lado del usuario:
+    interfaz/usaurio/articulosDetalles.php
+    css/usuario/articulosDetalles.css
+    js/usuario/articulosDetalles.js
+    ------------------------------
+- Se agregaron los siguentes archivos del lado del admin:
+    interfaz/admin/articuloHistorial.php
+    css/admin/articuloHistorial.css
+

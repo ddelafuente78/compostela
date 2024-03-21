@@ -27,7 +27,6 @@
       if($_POST) {
         $_SESSION['buscado'] = $_POST['buscado'];
       }
-      
 
       $listaArticulos = $articulo->obtenerArticulos($pagina, $_SESSION['buscado']);
       $cantidadPaginas = $articulo->cantidadPaginas($pagina, $_SESSION['buscado']);
@@ -50,7 +49,7 @@
   ?>
   <div class="col-4">
     <div class="card">
-     <!-- <a href="artdet.php?id=<?php echo $lineaArticulo['id'] ?>"> COMENTADO PARA NO INGRESAR A CREAR PEDIDO-->
+     <a href="articulosDetalles.php?id=<?php echo $lineaArticulo['id'] ?>">
         <img src='../../imagenes/productos/<?php echo $lineaArticulo['foto1'] ?>' alt="">
       </a>
       <div class="contenidoCard">

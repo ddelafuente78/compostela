@@ -152,6 +152,12 @@
                               <i class="fa-solid fa-trash"></i>
                             </a>
                           </span>
+                          <span title="Historial articulo">
+                            <a class="btnHist" id="btnHistorial<?php echo $fila['id'] ?>" role="button" 
+                              href="articuloHistorial.php">
+                              <i class="fa-solid fa-book"></i>
+                            </a>
+                          </span>
                         </td>
 
                         <!--Modal para eliminacion -->

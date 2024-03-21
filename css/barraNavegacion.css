@@ -114,6 +114,7 @@ header{
 .options__menu .option h4{
     font-weight: 300;
     cursor: pointer;
+    margin-left : 15%;
 }
 
 a.selected{
