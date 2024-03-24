@@ -9,7 +9,7 @@
   <body class="cuerpo">
     
     <?php
-      include '../../helper/validarUsuario.php';
+      include '../../helper/usuarioValidar.php';
       include("../../modelo/articulo.php");
       include 'barraNavegacion.php';
       

@@ -16,7 +16,7 @@
     </header>
     <div class="menu__side" id="menu_side">
         <div class="options__menu">
-            <a href="inicio.php" class="selected">
+            <a href="usuarioInicio.php" class="selected">
                 <div class="option">
                 <i class="fa-regular fa-star" title="Principal"></i>
                     <h4>Principal</h4>

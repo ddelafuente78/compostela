@@ -15,8 +15,10 @@
       
       <?php
         include '../../modelo/conexion.php';
-        include '../../helper/validarUsuario.php';
+        include '../../helper/usuarioValidar.php';
         include '../../modelo/articulo.php';
+        include '../../modelo/movimientosDescripcion.php';
+        include '../../modelo/movimientosStock.php';
         include 'barraNavegacionAdmin.php';
 
         function borrarViejaImagen($nombreArchivo){
@@ -67,7 +69,6 @@
             }         
           }
         }
-
         
         $actualizacion=false;
 
@@ -88,6 +89,13 @@
           }
 
           $articulo->actualizarArticulo();
+
+          if($_POST['tipoDeModficacionStock'] != "0"){
+            $movimientoStock = new movimientoStock(null, $_POST['tipoDeModficacionStock'], $_POST['idactualizar'],
+            $_POST['movimientoStock']);
+            $movimientoStock->guardarMovimientoStock();
+          }
+
           
           $actualizacion=true;
         }
@@ -95,64 +103,68 @@
         if($_GET){
             $articulo = new articulo($_GET['id']);
         }
+        
+        $movimientosDescripcion = new movimientosDescripcion();
 
         $qrySelect = "SELECT * FROM articulos WHERE id=" . $articulo->getID();
         $rsArticulo = mysqli_query($conexion, $qrySelect);
         $articulo = mysqli_fetch_array($rsArticulo);
+        $rsMovimientosDescripcion = $movimientosDescripcion->obtenerMovimientosDescripcion(); 
       ?>
-     
-            
-              <h1>Modificar articulo</h1>
-              <div class="container">
-                <div class="contForm">
-                  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
-                   <input type="hidden" name='idactualizar' value='<?php echo $articulo['id'] ?>'>
-                    <label class="classLbl"for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Sin nombre"
-                      value='<?php echo $articulo['nombre'] ?>'>
-                    <label class="classLbl"for="descripcion">Descripcion:</label>
-                    <input type="text" id="descripcion" name="descripcion" placeholder="Sin descripcion"
-                      value='<?php echo $articulo['descripcion'] ?>'>
-                    <label class="classLbl"for="foto1">Foto 1:</label>
-                    <input type="hidden" id="file1" name="file1"
-                      value='<?php echo $articulo['foto1'] ?>'> 
-                    <span title="<?php echo $articulo['foto1']?>">
-                      <img src='../../imagenes/productos/<?php echo $articulo['foto1'] ?>'/>
-                    </span>
-                    <input type="file" id="img1" name="img1">
-                  
-                    <label class="classLbl"for="foto2">Foto 2:</label>
-                    <input type="hidden" id="file2" name="file2"
-                      value='<?php echo $articulo['foto2'] ?>'> 
-                    <span title="<?php echo $articulo['foto2']?>">
-                      <img src='../../imagenes/productos/<?php echo $articulo['foto2'] ?>'/>
-                    </span>
-                    <input type="file" id="img2" name="img2">
-
-                    <label class="classLbl"for="">Asignar tipo de modificacion</label>
-                    <select id="tipoDeModficacionStock">
-                      <option value="" disabled selected>Seleccionar tipo de modificación</option>
-                      <option value="ajustar">Ajustar</option>
-                      <option value="nuevoIngreso">Nuevo Ingreso</option>
-                      <option value="devolucion">Devolucion</option>
-                    </select>
-                    <br>
-                    <br>
-                  
-                    <label class="classLbl"for="stock">Stock</label>
-                    <input type="number" id="stock" name="stock" placeholder="0"
-                      value='<?php echo $articulo['stock'] ?>'>
-                    <label class="classLbl"for="stockminimo">Stock minimo</label>
-                    <input type="number" id="stockminimo" name="stockminimo" placeholder="0"
-                      value='<?php echo $articulo['stock_minimo'] ?>'>
-                    <input type="submit" id="modificar" name="modificar" value="Modificar">
-                  </form>
-                </div>
-              </div>
+      
+      <h1>Modificar articulo</h1>
+      <div class="container">
+        <div class="contForm">
+          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name='idactualizar' value='<?php echo $articulo['id'] ?>'>
+            <label class="classLbl"for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Sin nombre"
+              value='<?php echo $articulo['nombre'] ?>'>
+            <label class="classLbl"for="descripcion">Descripcion:</label>
+            <input type="text" id="descripcion" name="descripcion" placeholder="Sin descripcion"
+              value='<?php echo $articulo['descripcion'] ?>'>
+            <label class="classLbl"for="foto1">Foto 1:</label>
+            <input type="hidden" id="file1" name="file1"
+              value='<?php echo $articulo['foto1'] ?>'> 
+            <span title="<?php echo $articulo['foto1']?>">
+              <img src='../../imagenes/productos/<?php echo $articulo['foto1'] ?>'/>
+            </span>
+            <input type="file" id="img1" name="img1">
                 
-            
-         
-      </div>
+            <label class="classLbl"for="foto2">Foto 2:</label>
+            <input type="hidden" id="file2" name="file2"
+              value='<?php echo $articulo['foto2'] ?>'> 
+            <span title="<?php echo $articulo['foto2']?>">
+              <img src='../../imagenes/productos/<?php echo $articulo['foto2'] ?>'/>
+            </span>
+            <input type="file" id="img2" name="img2">
+
+            <label class="classLbl"for="">Asignar tipo de modificacion</label>
+            <select name='tipoDeModficacionStock' id="tipoDeModficacionStock">
+              <option  value="0" disabled selected>Seleccionar tipo de modificación</option>
+              <?php
+                foreach($rsMovimientosDescripcion as $movimiento){
+              ?>
+                <option value="<?php echo $movimiento['id']?>">
+                  <?php echo $movimiento['descripcion']?>
+                </option>
+              <?php    
+                }
+              ?>
+            </select>
+            <input type="number" id="movimientoStock" name="movimientoStock" placeholder="0">
+            <br>
+            <br>
+                
+            <label class="classLbl" for="stock">Stock</label>
+            <input type="text" id='stock' name="stock" readonly value='<?php echo $articulo['stock'] ?>'>
+            <label class="classLbl"for="stockminimo">Stock minimo</label>
+            <input type="number" id="stockminimo" name="stockminimo" placeholder="0"
+              value='<?php echo $articulo['stock_minimo'] ?>'>
+            <input type="submit" id="modificar" name="modificar" value="Modificar">
+          </form>
+        </div>
+      </div> 
       <script language='JavaScript'>
         <?php
           if($actualizacion){

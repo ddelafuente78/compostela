@@ -15,7 +15,7 @@
         </div>
         <?php
             include '../../modelo/conexion.php';
-            include '../../helper/validarUsuario.php';
+            include '../../helper/usuarioValidar.php';
             include 'barraNavegacion.php';
            
             

@@ -9,7 +9,7 @@
   <body>
       <?php 
         include 'barraNavegacion.php';
-        include '../../helper/validarUsuario.php';
+        include '../../helper/usuarioValidar.php';
       ?>
       <h1>Cambiar contraseña</h1>
       <div class='conteiner'>

@@ -68,7 +68,8 @@ para continuar con el desarrollo del sistema.
     js/admin/
 
 ## Changed se realizaron cambios en la barra de navegacion - 21/03/2024 (Maxi).
-- Se realizo cambio en la barra de navegacion. Archivo: css/usuario/barraNavegacion.css
+- Se realizo cambio en la barra de navegacion. 
+    css/usuario/barraNavegacion.css
 - Se agrego btn de historial y se modificaron los siguentes archivos:
     interfaz/admin/articulos.php
     css/admin/articulos.css
@@ -83,3 +84,4 @@ para continuar con el desarrollo del sistema.
     interfaz/admin/articuloHistorial.php
     css/admin/articuloHistorial.css
 
+## Se actualizaron archivos para mostrar movimientos de stock - 23/03/2023 (diego)

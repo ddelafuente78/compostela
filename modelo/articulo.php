@@ -146,5 +146,20 @@
                   }         
                 }
               }
+
+              public function obtenerNombreArticulo(){
+                include 'conexion.php';
+
+                $selArticulo = "SELECT nombre FROM articulos WHERE id=" . $this->id . ";";
+                
+                $rsArticulo = mysqli_query($conexion, $selArticulo) or
+                    die("Problemas en el select:" . mysqli_error($conexion));
+
+                $row = $rsArticulo->fetch_assoc();
+
+                mysqli_close($conexion);
+                return $row['nombre'];
+              }
+
         }
 ?>

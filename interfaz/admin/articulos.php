@@ -2,7 +2,7 @@
   <html>
   <?php
         include '../../modelo/conexion.php';
-        include '../../helper/validarUsuario.php';
+        include '../../helper/usuarioValidar.php';
         include 'barraNavegacionAdmin.php';
   ?>
     <head>
@@ -52,7 +52,7 @@
           <div class="col-11">
             <div class="container-fluid">
               <div class="topnav">
-                <a href="articulonuevo.php">
+                <a href="articuloNuevo.php">
                   <button id="nuevoArticulo" class="btnNuevoArt">Nuevo articulo</button>
                 </a>
                 <div class="contBusqueda">
@@ -142,7 +142,7 @@
                         <td class="text-right">
                           <span title="Actualizar articulo">
                             <a class="btnAct" id="btnactualizar<?php echo $fila['id'] ?>" role="button" 
-                              href="articulomodificar.php?id=<?php echo $fila['id'] ?>">
+                              href="articuloModificar.php?id=<?php echo $fila['id'] ?>">
                               <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                           </span>
@@ -154,7 +154,7 @@
                           </span>
                           <span title="Historial articulo">
                             <a class="btnHist" id="btnHistorial<?php echo $fila['id'] ?>" role="button" 
-                              href="articuloHistorial.php">
+                              href="articuloHistorial.php?id=<?php echo $fila['id'] ?>">
                               <i class="fa-solid fa-book"></i>
                             </a>
                           </span>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <?php 
     include '../../modelo/conexion.php';
-    include '../../helper/validarUsuario.php';
+    include '../../helper/usuarioValidar.php';
     include 'barraNavegacionAdmin.php';
   ?>  
   <html>
@@ -34,7 +34,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-2">
-                  <a class="Abutton"href="usuarionuevo.php">
+                  <a class="Abutton"href="usuarioNuevo.php">
                     <button class="btnUsr">Nuevo usuario</button>
                   </a>
                 </div>
@@ -62,7 +62,7 @@
                         <td class="text-right">
                           <span title="Actualizar usuario">
                             <a class="btnAct" id="btactualizar<?php echo $fila['id'] ?>" role="button" 
-                              href="usuariomodificar.php?id=<?php echo $fila['id'] ?>" >
+                              href="usuarioModificar.php?id=<?php echo $fila['id'] ?>" >
                               <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                           </span>
