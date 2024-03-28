@@ -14,7 +14,7 @@
             $_SESSION["id"] = $usuario->getID();
             $_SESSION["usuario"] = $usuario->getNombre();
             if ($usuario->getRol() == "cliente"){
-                header("Location: interfaz/usuario/inicio.php");
+                header("Location: interfaz/usuario/usuarioInicio.php");
             } else {
                 header("Location: interfaz/admin/articulos.php");
             }      

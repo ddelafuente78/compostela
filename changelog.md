@@ -84,4 +84,31 @@ para continuar con el desarrollo del sistema.
     interfaz/admin/articuloHistorial.php
     css/admin/articuloHistorial.css
 
-## Se actualizaron archivos para mostrar movimientos de stock - 23/03/2023 (diego)
+## Se actualizaron archivos para mostrar movimientos de stock y algunos ajuste
+## de nombres- 23/03/2023 (diego)
+## Changed 
+-   css/admin/articuloHistorial.css
+-   css/usuario/usuarioInicio.css
+-   helper/usuarioValidar.php
+-   interfaz/admin/articuloHistorial.php
+-   interfaz/admin/articulomodificar.php
+-   interfaz/admin/articulonuevo.php
+-   interfaz/admin/articulos.php
+-   interfaz/admin/usuariomodificar.php
+-   interfaz/admin/usuarionuevo.php
+-   interfaz/admin/usuarios.php
+-   interfaz/usuario/articulos.php
+-   interfaz/usuario/articulosDetalles.php
+-   interfaz/usuario/barraNavegacion.php
+-   interfaz/usuario/passwordCambiar.php
+-   interfaz/usuario/passwordCambiar.php
+-   interfaz/usuario/usuarioInicio.php
+-   interfaz/usuario/usuariomodificar.php
+-   interfaz/usuario/usuarionuevo.php
+-   modelo/articulo.php
+-   modelo/movimientosDescripcion.php
+-   modelo/movimientosStock.php
+
+## Fix de login por bug al ingreso como cliente 28/03/2024 (diego)
+## changed
+- login.php
