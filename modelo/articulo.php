@@ -86,10 +86,20 @@
               
                 try {
                   $qryInsert = "INSERT INTO articulos VALUES(default,'" . $this->nombre . "','" . $this->foto1 . "','" . $this->foto2 .
-                                "','". $this->descripcion . "'," . $this->stock . "," . $this->stock_minimo  . ", CURRENT_TIMESTAMP(), 
+                                "','". $this->descripcion . "', 0 ," . $this->stock_minimo  . ", CURRENT_TIMESTAMP(), 
                                 null, CURRENT_TIMESTAMP());";
                 
                   mysqli_query($conexion, $qryInsert);
+
+                  $ultimo_id = mysqli_insert_id($conexion);
+
+                  $qryInsert = "INSERT INTO movimientos_stock VALUES(default,1," . $ultimo_id . "," 
+                    . $this->stock . ",CURRENT_TIMESTAMP());";
+                  
+                  echo $qryInsert;
+
+                  mysqli_query($conexion, $qryInsert);
+
                   return true;
 
                 } catch (Exception $e) {

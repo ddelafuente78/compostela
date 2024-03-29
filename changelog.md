@@ -113,8 +113,11 @@ para continuar con el desarrollo del sistema.
 ## changed
 - login.php
 
-## Fix de localizacion de fondo y ajuste consulta de descripcion de movimientos 
+## Fix de localizacion de fondo y ajuste consulta de descripcion de movimientos
+## generar el registro de stock inicial cuando se crear el producto nuevo.
 ## 29/03/2024 (diego)
 ## changed
 - css/usuario/usuarioInicio.css
 - modelo/movimientosDescripcion.php
+- interfaz/admin/articulonuevo.php
+- modelo/articulo.php

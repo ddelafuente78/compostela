@@ -14,7 +14,7 @@
         </div>
       </div>
       <?php
-        include '../../helper/usuarioVaalidar.php';
+        include '../../helper/usuarioValidar.php';
         include '../../modelo/articulo.php';
         include 'barraNavegacionAdmin.php';
 
