@@ -112,3 +112,9 @@ para continuar con el desarrollo del sistema.
 ## Fix de login por bug al ingreso como cliente 28/03/2024 (diego)
 ## changed
 - login.php
+
+## Fix de localizacion de fondo y ajuste consulta de descripcion de movimientos 
+## 29/03/2024 (diego)
+## changed
+- css/usuario/usuarioInicio.css
+- modelo/movimientosDescripcion.php

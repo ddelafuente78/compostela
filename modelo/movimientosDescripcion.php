@@ -19,7 +19,7 @@
             public function obtenerMovimientosDescripcion(){
                 include 'conexion.php';
                 
-                $selMovimientosDescripcion = "SELECT * FROM movimientos_descripcion WHERE id in (2,4);";
+                $selMovimientosDescripcion = "SELECT * FROM movimientos_descripcion WHERE id BETWEEN 2 AND 4;";
 
                 $rsMovimientosDescripcion = mysqli_query($conexion, $selMovimientosDescripcion) or
                     die("Problemas en el select:" . mysqli_error($conexion));
