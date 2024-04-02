@@ -55,7 +55,7 @@
       <div class="contenidoCard">
         <h3 class="tituloCard"><?php echo $lineaArticulo['nombre'] ?></h3>
         <p class="descripcionCard"><?php echo $lineaArticulo['descripcion'] ?></p>
-        <p class="stockCard"><?php echo $lineaArticulo['stock'] ?> en stock.</p>
+        <p class="stockCard"><?php echo intval($lineaArticulo['stock']) ?> en stock.</p>
       </div>
     </div>
   </div>

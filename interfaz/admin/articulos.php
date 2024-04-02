@@ -11,7 +11,6 @@
       <link rel="stylesheet" href="../../css/admin/articulos.css">
       <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
 
-
     </head>
 
     <body>
@@ -32,8 +31,6 @@
         } else {
           $query = "Select * from articulos"; 
         }
-
-        //echo $query;
 
         $productos = mysqli_query($conexion, $query) or die("Eliminar");
         
@@ -121,8 +118,8 @@
                             <div class='caption' id="caption<?php echo $IDfoto++?>"></div>
                           </div>
                         </td>
-                        <td><?php echo $fila['stock'] ?></td>
-                        <td><?php echo $fila['stock_minimo'] ?></td>
+                        <td><?php echo intval($fila['stock'])?></td>
+                        <td><?php echo intval($fila['stock_minimo'])?></td>
                         
                         <td style="color:red">
                           <?php if($fila['fecha_baja']!=null)  {

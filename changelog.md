@@ -121,3 +121,8 @@ para continuar con el desarrollo del sistema.
 - modelo/movimientosDescripcion.php
 - interfaz/admin/articulonuevo.php
 - modelo/articulo.php
+
+## Fix mostrar el valor entero en el stock de los articulos 01/04/2024 (diego)
+## changed
+- interfaz/admin/articulos.php
+- interfaz/usuario/articulos.php
