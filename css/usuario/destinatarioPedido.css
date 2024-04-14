@@ -1,0 +1,195 @@
+* {
+    box-sizing: border-box;
+    }
+
+body {
+    font: 16px Arial;  
+    }
+
+form{
+    min-width: 500px;
+}
+
+.container{    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.contForm{
+    padding: 50px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Comienza el autocompletar
+the container must be positioned relative:*/
+.form{
+    position: relative;
+    align-items: center;
+}
+
+.contiene-boton{
+  display: flex;
+  float: none;
+  text-align: center;
+}
+
+.input{
+    display: flex;
+    align-self: center;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+
+}
+
+input[type=text]{
+  width:99%;
+  padding: 12px 20px;
+  margin: 8px 8px;
+  display:inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+ /* Style the submit button */
+input[type=submit] {
+    width: 50%;
+    background-color: #b5daff;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+}
+  
+.btn-add{
+  background-color: #ccc;
+  color: #000000;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 12px 12px;
+  cursor: pointer;
+  margin: 0 auto;
+  text-align: center;
+  font-family: sans-serif;
+  border: 1px;
+  box-shadow: #888;
+  margin: 8px 0 8px 0;
+}
+.btn-add:hover{
+  background-color: #b8b2b2;
+}
+
+.btn-add:active{
+  background-color: #888888;
+}
+
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+  }
+
+.btn-enviar{
+  background-color: #ccc;
+  color: #000000;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 0 auto;
+  text-align: center;
+  font-family: sans-serif;
+  border: 1px;
+  box-shadow: #888;
+  
+}
+.btn-enviar:hover{
+  background-color: #b8b2b2;
+}
+
+.btn-enviar:active{
+  background-color: #888888;
+}
+
+  /*Modal
+  The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.Contenedor-form-modal{
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

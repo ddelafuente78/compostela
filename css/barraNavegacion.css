@@ -24,13 +24,26 @@ header{
     z-index: 200;
 }
 
-.titulo {
+.contiene-titulo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.titulo{
     margin: 0;
     text-align: center;
     line-height: 80px;
-        
+    width: 85%;
+    color: black;    
 }
 
+.usuario{
+    width: 15%;
+    color:black;
+}
 
 .icon_menu{
     width: 50px;
@@ -120,8 +133,6 @@ header{
 a.selected{
     color:black;
 }
-
-
 
 /*clase para usar en js*/
 

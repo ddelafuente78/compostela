@@ -11,7 +11,15 @@
     <header>
         <div class="icon_menu">
             <i class="fas fa-bars" id="btn_open"></i>
-        </div>  
+        </div>
+        <div class="contiene-titulo">
+            <div class="titulo">
+                <p id="seccion">Acá va el título</p>
+            </div>
+            <div class="usuario">
+                <p id="n-usuario">Mauricio</p>
+            </div>  
+        </div>
         
     </header>
     <div class="menu__side" id="menu_side">

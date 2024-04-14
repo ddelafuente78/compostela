@@ -17,7 +17,6 @@
             include '../../modelo/conexion.php';
             include '../../helper/usuarioValidar.php';
             include 'barraNavegacion.php';
-           
             
             $registros = mysqli_query($conexion, "select * from articulos where id=". $_GET["id"] ) or
                 die("Problemas en el select:" . mysqli_error($conexion));
