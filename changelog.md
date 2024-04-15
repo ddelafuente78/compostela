@@ -126,3 +126,14 @@ para continuar con el desarrollo del sistema.
 ## changed
 - interfaz/admin/articulos.php
 - interfaz/usuario/articulos.php
+
+## Se actualizó la página barraNavegación para añadirle un campo con el título de la sección actual en la que se encuentra el usuario y otro para que muestre el usuario. 13/04/2024 (Mauri)
+## changed
+- interfaz/usuario/barraNavegacion.php
+- interfaz/usuario/barraNavegacion.css
+
+## Se agregó la nueva sección de destinatario de envío. 13/04/2024 (Mauri)
+## Added
+- interfaz/usuario/destinatarioPedido.php
+- interfaz/usuario/destinatarioPedido.css
+- interfaz/usuario/destinatarioPedido.js
