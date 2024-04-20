@@ -137,3 +137,9 @@ para continuar con el desarrollo del sistema.
 - interfaz/usuario/destinatarioPedido.php
 - interfaz/usuario/destinatarioPedido.css
 - interfaz/usuario/destinatarioPedido.js
+
+## Modificamos estructura de la página articulos.php 
+## Added
+- css/usuario/articulos.css
+## changed
+- interfaz/usuario/articulos.php

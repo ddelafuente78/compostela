@@ -1,0 +1,240 @@
+
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    max-width: 100%;
+}
+
+.cuerpo{
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+.containerBuscador{
+text-align: center;
+position: relative;
+}
+
+.inputBuscar{
+    position: inherit;
+    padding: 10px;
+    padding-right: 35px;
+    border-radius: 5px 0 0 5px;
+    border: solid 1px black;
+    height: 40px;
+    width: 500px;
+    outline: none;
+    margin-top: 20px;
+}
+
+.btnBuscar{
+    position: absolute; 
+    border-color: transparent;
+    border-radius: 0 5px 5px 0;
+    height: 40px;
+    width: 50px;
+    padding: 10px;
+    margin-top: 20px;
+    border: solid 1px black;
+    cursor: pointer;
+}
+
+.contiene_boton_pedido{
+    display: flex;
+    align-content: center;
+    width: 100%;
+    position: sticky;
+    align-items: flex-end;
+    bottom: 10px;
+}
+.btn-pedido{
+    background-color: #00000052;
+    color: #000000;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 12px 12px;
+    cursor: pointer;
+    margin: 0 auto;
+    text-align: center;
+    font-family: sans-serif;
+    border: 1px;
+    box-shadow: #888;
+}
+
+.btn-pedido:hover{
+background-color: #b8b2b2;
+}
+
+.btn-pedido:active{
+background-color: #888888;
+}
+
+
+.row {
+    position: relative;
+    padding-top: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    flex-wrap: wrap;
+}
+
+.col-4 {
+    max-width: 500px; /* Ancho máximo de las tarjetas */
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px auto; /* Auto en el eje horizontal para centrar */
+}
+
+.card {
+    width: 350px;
+    height: 350px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    object-fit: cover; /* Ajusta la imagen para cubrir todo el contenedor sin deformarla */
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.card img:hover{
+    border: solid 1px rgb(95, 92, 92);
+}
+
+.contenidoCard {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white; 
+    background: rgba(0, 0, 0, 0.5); 
+    padding: 25px; 
+    box-sizing: border-box; 
+    opacity: 0; 
+    transition: opacity 0.7s;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.card:hover .contenidoCard{
+    opacity: 1; /* Mostrar cuando se hace hover sobre la tarjeta */
+}
+
+.paginador{
+    text-align: center;
+    position: relative;
+}
+
+.paginador .etiquetaPaginador{
+    display: inline-block;
+    margin-right: 10px;
+    color: black;   
+}
+
+#numPag{
+    padding: 5px;
+    border: solid 1px;
+    border-radius: 20%;
+    transition: transform 0.3s;
+}
+
+#numPag:hover{
+    color:#b5daff;
+    background-color: black;
+}
+
+.close{
+    cursor: pointer;
+}
+
+
+/*---------------------------------------------------------------------------*/
+*{
+    --varFuente1: 'Trebuchet MS';
+}
+.articulos_cabecera{
+    font-family: var(--varFuente1);
+    width: 100%;
+    display: flex;
+    margin: 0 20px;
+    background-color: #b8b2b2;
+    height: 50px;
+    align-items: center;
+}
+.articulos_cabecera .col1{
+    width: 10%;
+}
+.articulos_cabecera .col2{
+    width: 10%;
+}
+.articulos_cabecera .col3{
+    width: 40%;
+}
+.articulos_cabecera .col4{
+    width: 10%;
+}
+.articulos_cabecera .col5{
+    width: 10%;
+}
+.articulos_cabecera .col5{
+    width: 10%;
+}
+.articulos_cabecera .col6{
+    width: 10%;
+}
+
+
+.col{
+    background-color: aquamarine;
+}
+.grilla_articulos_detalle{
+    font-family: var(--varFuente1);
+    width: 100%;
+    margin: 0 20px;
+    background-color: whitesmoke;
+    display: grid;
+    grid-template-columns: 10% 10% 40% 10% 10% 10%;
+    grid-template-rows: 85px;
+    align-items: center;
+    border: gray;
+    border-style: solid;
+    border-width: 0 2px 2px;
+}
+.col-g-1{
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+
+}
+
+.col-g-2{
+    align-items: initial;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.col-g-2 img{
+    height: 85px;
+    object-fit: scale-down;
+}
+
+.col-g-4{
+    align-items: center;
+}
+
+.lblForm{
+    max-width: 100px;
+}
+
