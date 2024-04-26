@@ -143,3 +143,8 @@ para continuar con el desarrollo del sistema.
 - css/usuario/articulos.css
 ## changed
 - interfaz/usuario/articulos.php
+
+## Se crearon los 2 modales para el carrito y el detalle de los artículos y se agregó una barra de progreso al final, también se realizó control de cantidad para que no permita pedir más que el stock y además se va a pintar en rojo aquel stock que se encuentre por debajo del mínimo.
+## Changed
+    - css/usuario/articulos.css
+    - interfaz/usuario/articulos.php

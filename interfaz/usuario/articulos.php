@@ -9,6 +9,7 @@
     <title>Articulos</title>
 </head>
 <body>
+<div class="contenedor">
     <?php
     include '../../helper/usuarioValidar.php';
     include("../../modelo/articulo.php");
@@ -34,101 +35,157 @@
     $cantidadPaginas = $articulo->cantidadPaginas($pagina, $_SESSION['buscado']);
 
     ?> 
-<div class="contenedor">
+
     <header class="cabecera">
-        <div class="titulo">
+        <div class="usuario">
+            <span>Mauricio</span>
+        </div>
+        <div class="seccion">
             acá va el título
         </div>
-        <div class="carrito">
+        <div class="contiene-carrito">
             <div class = "carro">
             <i id="changuito" class="fi fi-sr-shopping-cart"></i>
-                <span class="carrito"> 0 </span>
+                <span id="carrito" class="carrito"> 150 </span>
             </div>
         </div>
     </header>
-    <div>
-    <form class="formulario" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        <div class="containerBuscador">
-            <input type="text" class="inputBuscar" name="buscado" placeholder="Search..." value="<?php echo $_SESSION['buscado']; ?>">
-            <button class="btnBuscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
+    <div class="buscador">
+        <form class="formulario" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+            <div class="containerBuscador">
+                <input type="text" class="inputBuscar" name="buscado" placeholder="Search..." value="<?php echo $_SESSION['buscado']; ?>">
+                <button class="btnBuscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
         </form>
     </div>
     <div class="articulos">
         <div class="articulos_cabecera">
             <div class="col1">
-                <DIV>Favorito</DIV>
+                <DIV>Artículo</DIV>
             </div>
             <div class="col2">
-                <DIV>Articulo</DIV>
-            </div>
-            <div class="col3">
-                <DIV>Descripción</DIV>
-            </div>
-            <div class="col4">
                 <DIV>Stock</DIV>
             </div>
-            <div class="col5">
+            <div class="col3">
                 <DIV>Cantidad</DIV>
             </div>
-            <div class="col6">
+            <div class="col4">
 
             </div>
         </div>
         <form class="form-articulos">
             <div class="grilla_articulos_detalle">
                 <div id="col-g-1" class="col-g-1">
-                    <i class="fi fi-sr-icon-star"></i>
+                    <img id="detalle" src="../../imagenes/productos/celular1.jpg">
                 </div>
                 <div id="col-g-2" class="col-g-2">
-                    <img src="../../imagenes/productos/celular1.jpg">
-                </div>
-                <div id="col-g-3" class="col-g-3">
                     <span>Celular Samsung A24 64gb Almacenamiento, 2gb Ram, pantalla 6.5', color azul</span>
                 </div>
+                <div id="col-g-3" class="col-g-3">
+                    <span id="cant-art">60</span>
+                </div>
                 <div id="col-g-4" class="col-g-4">
-                    <span>6000</span>
+                    <input type="number" class="lblForm" id="cantidad-1" name="cantidad" placeholder="0" min=0>
                 </div>
                 <div id="col-g-5" class="col-g-5">
-                    <input type="number" class="lblForm" id="cantidad" name="cantidad" placeholder="0">
+                    <button type="submit" class="btn-pedido" id='btnPedir'>Agregar al Carrito</button>
                 </div>
-                <div id="col-g-7" class="col-g-7"> 
-                    <button type="submit" class="btn2" id='btnPedir'>Agregar al Carrito</button>
-                </div>
-            </div>
-            <div class="grilla_articulos_detalle">
+<!--             </div> -->
+<!--             <div class="grilla_articulos_detalle"> -->
                 <div id="col-g-1" class="col-g-1">
-                    <i class="fi fi-sr-icon-star"></i>
-                </div>
-                <div id="col-g-2" class="col-g-2">
                     <img src="../../imagenes/productos/termo1.webp">
                 </div>
+                <div id="col-g-2" class="col-g-2">
+                <span>Celular Samsung A24 64gb Almacenamiento, 2gb Ram, pantalla 6.5', color azul</span>
+                </div>
                 <div id="col-g-3" class="col-g-3">
-                    <span>Celular Samsung A24 64gb Almacenamiento, 2gb Ram, pantalla 6.5', color azul</span>
+                    <span id="cant-art-2">60</span>
                 </div>
                 <div id="col-g-4" class="col-g-4">
-                    <span>60</span>
+                    <input type="number" class="lblForm" id="cantidad-2" name="cantidad" placeholder="0" min=0>
                 </div>
                 <div id="col-g-5" class="col-g-5">
-                    <input type="number" class="lblForm" id="cantidad" name="cantidad" placeholder="0">
-                </div>
-                <div id="col-g-7" class="col-g-7"> 
-                    <button type="submit" class="btn2" id='btnPedir'>Agregar al Carrito</button>
+                    <button type="submit" class="btn-pedido" id='btnPedir'>Agregar al Carrito</button>
                 </div>
             </div>
         </form>
     </div>
-    <div class="carrito">
-
+</div>
+<div id="modalCarrito" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form class="form-articulos" action="">
+        <div class="Contenedor-form-modal">
+            <div class="titulo-Modal">
+                <h2>Carrito</h2>
+            </div>
+            <div class="grilla_articulos_detalle">
+                <div id="col-g-1" class="col-g-1">
+                    <img id="detalle" src="../../imagenes/productos/celular1.jpg">
+                </div>
+                <div id="col-g-2" class="col-g-2">
+                    <span>Celular Samsung A24 64gb Almacenamiento, 2gb Ram, pantalla 6.5', color azul</span>
+                </div>
+                <div id="col-g-3" class="col-g-3">
+                    <span id="cant-art-2">60</span>
+                </div>
+                <div id="col-g-4" class="col-g-4">
+                    <input type="number" class="lblForm" id="cantidad-1" name="cantidad" placeholder="0">
+                </div>
+                <div id="col-g-5" class="col-g-5">
+                    <button type="submit" class="btn-pedido" id='btnPedir'>Quitar</button>
+                </div>
+            </div>
+            <div class="contiene-boton">
+                <button id="btn-confirm_add" class="btn-enviar" type="submit">Finalizar pedido</button>
+            </div>
+        </div>
+        </form>
     </div>
 </div>
-<Form class="form-articulos">
 
-
-    </Form>
-        <table>
-
-        </table>
+<div id="modalDetalle" class="modal">
+    <span class="close2 close">&times;</span>
+    <form class="form-articulos" action="">
+        <div class="Contenedor-form-modal">
+            <div class="slider">
+                <div class="slider-Inner">
+                    <div class="contiene-slider">
+                        <ul class="slider">
+                            <li>
+                                <input type="radio" id="sbutton1" name="sradio" checked>
+                                <label for="sbutton1"></label>
+                                <img src="../../imagenes/productos/celular1.jpg" alt="Celular1">
+                            </li>
+                            <li>
+                                <input type="radio" id="sbutton2" name="sradio">
+                                <label for="sbutton2"></label>
+                                <img src="../../imagenes/productos/celular3.jpg" alt="Celular3">
+                            </li>
+                            <li>
+                                <input type="radio" id="sbutton3" name="sradio">
+                                <label for="sbutton3"></label>
+                                <img src="../../imagenes/productos/termo1.webp" alt="termo1">
+                            </li>
+                        </ul>
+                        <div class="descripcion">
+                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio iusto atque deleniti reiciendis molestiae doloribus quo fugit explicabo corporis, quis temporibus. Illo eum tenetur cumque quam fuga ullam et ad!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form> 
+</div>
+<script src="../../js/usuario/articulos.js"></script>
+<footer class="pie-de-pagina">
+    <div class=progreso>
+       
     </div>
+    <div class="texto-progreso">
+            Sección 1 de 4 
+        </div>
+</footer>
 </body>
 </html>
