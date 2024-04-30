@@ -132,7 +132,7 @@ para continuar con el desarrollo del sistema.
 - interfaz/usuario/barraNavegacion.php
 - interfaz/usuario/barraNavegacion.css
 
-## Se agregó la nueva sección de destinatario de envío. 13/04/2024 (Mauri)
+## Se agregó la nueva sección de destinatario de envío. 26/04/2024 (Mauri)
 ## Added
 - interfaz/usuario/destinatarioPedido.php
 - interfaz/usuario/destinatarioPedido.css
@@ -144,7 +144,11 @@ para continuar con el desarrollo del sistema.
 ## changed
 - interfaz/usuario/articulos.php
 
-## Se crearon los 2 modales para el carrito y el detalle de los artículos y se agregó una barra de progreso al final, también se realizó control de cantidad para que no permita pedir más que el stock y además se va a pintar en rojo aquel stock que se encuentre por debajo del mínimo.
+## Se crearon los 2 modales para el carrito y el detalle de los artículos y se agregó una barra de progreso al final, también se realizó control de cantidad para que no permita pedir más que el stock y además se va a pintar en rojo aquel stock que se encuentre por debajo del mínimo. 26/04/2024 (Mauri)
 ## Changed
     - css/usuario/articulos.css
     - interfaz/usuario/articulos.php
+
+## Se creó la sección final de pedidos 30/04/2024 (Mauri)
+- css/usuario/datosFinalesPedidos.css
+- interfaz/usuario/datosFinalesPedidos.php

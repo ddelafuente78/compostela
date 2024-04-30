@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    --fuente-1: 'Trebuchet MS';
+}
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    padding: 150px 0 0 20px;
+    width: 100%;
+    align-items: center;    
+    height: 97vh;
+}
+
+.btn-enviar{
+    background-color: #ccc;
+    color: rgb(26, 25, 25);
+    font-size: 13px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: center;
+    font-family: var(--fuente-1);
+    border: 1px;
+    align-self: center;
+}
+
+.btn-enviar:hover{
+background-color: #b8b2b2;
+}
+
+.btn-enviar:active{
+background-color: #888888;
+}
+
+.campo-form{
+    max-width: 40%;
+    padding: 12px 20px;
+    margin: 8px 8px;
+    font-family: var(--fuente-1);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-datos-finales{
+    min-width: 60%;
+}
+.datos-finales{
+    flex-direction: column;
+    font-family: var(--fuente-1);
+    width: 100%;
+}
+
+.btn{
+    text-align: center;
+}
+
+.pie-de-pagina{
+    position: relative;
+    height: 15px;
+    border-top: 2px solid #8888;
+    align-items: center;
+    background: rgb(247,3,3);
+}
+
+.progreso{
+    width: 25%;
+    height: 15px;
+    position: absolute;
+}
+
+.texto-progreso{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    height: 15px;
+    font-family: var(--varFuente1);
+    font-size: 12px;
+}
