@@ -8,7 +8,7 @@ var img = document.getElementById("detalle");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-var span2 = document.getElementsByClassName("close2")[0];
+var span2 = document.getElementsByClassName("close")[1];
 // When the user clicks on the button, open the modal
 open1.onclick = function() {
     modal.style.display = "block";
@@ -33,16 +33,14 @@ if (event.target == modal) {
     modal.style.display = "none";
 }
 } */
-document.getElementsByClassName("seccion").innerHTML="<H1>Destinatario</H1>";
+/* document.getElementById("seccion").innerHTML="<H1>Destinatario</H1>"; */
 
 document.addEventListener("DOMContentLoaded", function() {
     
-
     var span = document.getElementById("carrito");  
 
     // Obtener el valor numérico del span
     var valorNumerico = parseInt(span.textContent);
-    console.log(valorNumerico);
 
     // Verificar si el valor es mayor que cero y cambiar el color
     if (valorNumerico > 0) {

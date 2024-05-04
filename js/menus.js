@@ -1,4 +1,4 @@
-document.getElementById("btn_open").addEventListener("click",open_close_menu)
+/* document.getElementById("btn_open").addEventListener("click",open_close_menu) */
 
 var side_menu = document.getElementById("menu_side");
 var btn_open = document.getElementById("btn_open");

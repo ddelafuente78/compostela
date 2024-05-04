@@ -93,7 +93,7 @@
         
         <script src="../../js/slider.js"></script>
         <script src="../../js/usuario/articulosDetalles.js"></script>
-        <script lang='JavaScript'>
+                <script lang='JavaScript'>
             // Get the modal
             var modal = document.getElementById("myModal");
             

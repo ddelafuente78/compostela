@@ -127,4 +127,4 @@ span.onclick = function() {
     modal.style.display = "none";
   }
 } */
-document.getElementById("seccion").innerText="Destinatario";
+/* document.getElementById("seccion").innerHTML="<H1>Destinatario</H1>"; */

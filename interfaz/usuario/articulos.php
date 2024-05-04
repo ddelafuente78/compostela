@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>Articulos</title>
+    <title>Articulos - <!Puerto Compostela</title>
 </head>
 <body>
 <div class="contenedor">
@@ -36,12 +36,12 @@
 
     ?> 
 
-    <header class="cabecera">
+    <header id="cabecera">
         <div class="usuario">
             <span>Mauricio</span>
         </div>
-        <div class="seccion">
-            acá va el título
+        <div class="titulo">
+            <span>Artículos</span>
         </div>
         <div class="contiene-carrito">
             <div class = "carro">
@@ -146,7 +146,7 @@
 </div>
 
 <div id="modalDetalle" class="modal">
-    <span class="close2 close">&times;</span>
+    <span class="close">&times;</span>
     <form class="form-articulos" action="">
         <div class="Contenedor-form-modal">
             <div class="slider">
@@ -181,11 +181,10 @@
 <script src="../../js/usuario/articulos.js"></script>
 <footer class="pie-de-pagina">
     <div class=progreso>
-       
     </div>
     <div class="texto-progreso">
-            Sección 1 de 4 
-        </div>
+        Sección 1 de 3 
+    </div>
 </footer>
 </body>
 </html>
