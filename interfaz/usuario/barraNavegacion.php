@@ -14,7 +14,6 @@
             <a href="javascript:history.back()"alt="selected">
                 <div class="option">
                     <i class="fi fi-sr-left" title="Atrás"></i>
-                <!-- <i class="fas fa-bars" id="btn_open"></i> -->
                 </div>
             </a>
             <a href="usuarioInicio.php" class="selected">
@@ -22,7 +21,7 @@
                     <i class="fi fi-sr-home" title="Principal"></i> <!--<i class="fa-regular fa-star" title="Principal"></i> -->
                 </div>
             </a>
-            <a href="../../helper/nropedido.php?pag=0" class="selected">
+            <a href="articulos.php" class="selected">
                 <div class="option">
                     <i class="fa-solid fa-box-open" title="Consultar Stock"></i>
                 </div>
