@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     minval = 10
     if(spanCant<=minval) {
-
+        
     }
 
     myInput.addEventListener("input", function() {

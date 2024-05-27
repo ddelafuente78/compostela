@@ -1,5 +1,6 @@
 @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-thin-straight/css/uicons-thin-straight.css');
 /* @import url(../slider.css); */
+
 *{
     padding: 0;
     margin: 0;
@@ -19,6 +20,11 @@ header{
     top: 0;
     z-index: 200;
     justify-content: space-between;
+}
+
+.contiene-carrito{
+    width: 15%;
+    text-align: center;
 }
 
 .carrito{
@@ -61,10 +67,6 @@ header{
     color: rgb(26, 25, 25);   
     font-family: var(--varFuente1);
     font-size: 20px;
-}
-
-.contiene-carrito{
-    padding-right: 10px;
 }
 
 #seccion {
@@ -468,3 +470,27 @@ background-color: #888888;
     font-size: 12px;
 }
 
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination{
+    text-align: center;
+    display: block;
+    margin: 10px 0;
+}
+.pagination a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+  }
+  
+
+  .pagination a.active {
+    background-color: #b5daff;
+    color: white;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #ddd;}

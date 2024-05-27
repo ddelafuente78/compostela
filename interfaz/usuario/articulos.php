@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>Articulos - <!Puerto Compostela</title>
+    <title>Articulos - Puerto Compostela</title>
 </head>
 <body>
 <div class="contenedor">
@@ -108,6 +108,20 @@
                     <button type="submit" class="btn-pedido" id='btnPedir'>Agregar al Carrito</button>
                 </div>
             </div>
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a class="active" href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+            </div>
+            <div class="contiene-boton">
+                <button id="btn-confirm_add" class="btn-enviar" type="submit">Finalizar pedido</button>
+            </div>
+
         </form>
     </div>
 </div>
@@ -136,9 +150,6 @@
                 <div id="col-g-5" class="col-g-5">
                     <button type="submit" class="btn-pedido" id='btnPedir'>Quitar</button>
                 </div>
-            </div>
-            <div class="contiene-boton">
-                <button id="btn-confirm_add" class="btn-enviar" type="submit">Finalizar pedido</button>
             </div>
         </div>
         </form>
