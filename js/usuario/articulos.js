@@ -1,39 +1,105 @@
-/*Modal*/
-  // Get the modal
-var modal = document.getElementById("modalCarrito");
-var modal2 = document.getElementById("modalDetalle");
-// Get the button that opens the modal
-var open1 = document.getElementById("carrito");
-var img = document.getElementById("detalle");
+// Funcionalidad del slideshow
+var slideIndex = 1;
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-var span2 = document.getElementsByClassName("close")[1];
-// When the user clicks on the button, open the modal
-open1.onclick = function() {
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+let div_p = document.querySelector('div.options__menu');
+let ancla = document.createElement('a');
+ancla.href='http://localhost/compostela/interfaz/usuario/usuarioInicio.php';
+ancla.alt='selected'
+
+let div = document.createElement('div');
+div.className = 'option';
+
+let icon = document.createElement('i');
+icon.className = 'fi fi-sr-left';
+icon.title = 'Atrás';
+
+div.appendChild(icon);
+ancla.appendChild(div);
+div_p.appendChild(ancla);
+
+function mostrarModalImagenes(imagen1, imagen2){
+    // Obtener el modal
+    var modal = document.getElementById("imagenesModal");
+    var img1 = document.getElementById("imgModal1");
+    var img2 = document.getElementById("imgModal2");
+
+    img1.src = '../../imagenes/productos/' + imagen1
+    img2.src = '../../imagenes/productos/' + imagen2
+
+    showSlides(slideIndex);
     modal.style.display = "block";
 }
 
-img.onclick = function(){
-    modal2.style.display = "block";
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[slideIndex-1].style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+function mostrarModalCarrito(){
+    var modal = document.getElementById("modalCarrito");
+    modal.style.display = "block";
+}
+function ocultarModalImagenes(){
+    var modal = document.getElementById("imagenesModal");
+    modal.style.display = "none";
+}
+function ocultarModalCarrito(){
+    var modal = document.getElementById("modalCarrito");
     modal.style.display = "none";
 }
 
-span2.onclick = function() {
-    modal2.style.display = "none";
+function controlaLimiteStock(stockActual, idCantidad){
+    console.log("stockActual" + stockActual)
+    var cantidad = document.getElementById("cantidad"+idCantidad)
+    console.log("pedido: " + cantidad.value)
+
+    if(cantidad.value > stockActual){
+        cantidad.style.backgroundColor = "#FFCCCC";
+        cantidad.focus();
+    }else{
+        cantidad.style.backgroundColor = "white";
+    }
 }
+
+function checkMax(event, maxLength) {
+
+    // Obtener el valor actual del campo de entrada
+    let valor = event.target.value;
+    event.target.style.backgroundColor = "white"
     
-// When the user clicks anywhere outside of the modal, close it
-/* window.onclick = function(event) {
-if (event.target == modal) {
-    modal.style.display = "none";
+    // Verificar si la longitud del valor supera el límite
+    if (valor > maxLength) {
+        // Evitar que el evento predeterminado (pérdida de foco) se propague
+        event.preventDefault();
+        event.target.focus();
+        event.target.style.backgroundColor = "#FADBD8"
+        showSnackbar("La cantidad supera al stock")
+        // Puedes mostrar un mensaje de advertencia o realizar otra acción aquí si lo deseas
+    }
 }
-} */
-/* document.getElementById("seccion").innerHTML="<H1>Destinatario</H1>"; */
+
+function showSnackbar(mensaje) {
+    var snackbar = document.getElementById("snackbar");
+    snackbar.innerText = mensaje;
+    snackbar.className = "show";
+    setTimeout(function() { snackbar.className = snackbar.className.replace("show", ""); }, 3000);
+}
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
     
@@ -51,22 +117,5 @@ document.addEventListener("DOMContentLoaded", function() {
     var cantidad = parseInt(spanCant.textContent); //Obtengo el valor de span de la col 3
 
     var myInput=document.getElementById("cantidad-1"); //Obtengo el input
-    myInput.max = cantidad
 
-    minval = 10
-    if(spanCant<=minval) {
-        
-    }
-
-    myInput.addEventListener("input", function() {
-        var valor = parseInt(myInput.value); // Obtener el valor actual del input como un número
-        var max = parseInt(myInput.getAttribute("max")); // Obtener el valor máximo del atributo max
-        // Verificar si el valor ingresado es mayor que el valor máximo
-        if (valor > max) {
-            alert("No se puede ingresar un valor mayor al stock actual")
-            // Si es mayor, establecer el valor del input como el valor máximo
-            myInput.value = max;
-        };
-    });
 });
-

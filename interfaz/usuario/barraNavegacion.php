@@ -22,7 +22,7 @@
                     <i class="fi fi-sr-home" title="Principal"></i> <!--<i class="fa-regular fa-star" title="Principal"></i> -->
                 </div>
             </a>
-            <a href="../../helper/nropedido.php?pag=0" class="selected">
+            <a href="articulos.php" class="selected">
                 <div class="option">
                     <i class="fa-solid fa-box-open" title="Consultar Stock"></i>
                 </div>

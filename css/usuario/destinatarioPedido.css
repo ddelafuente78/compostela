@@ -18,24 +18,12 @@ header{
   position: sticky;
   top: 0;
   justify-content: space-around;
-
+  z-index: 200;
 }
 
-.contiene-titulo{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: space-around;
-}
-
-.option{
-  text-decoration: none;
-}
 .titulo{
   margin: 0;
   text-align: center;
-  line-height: auto;
   width: 70%;
   color: rgb(26, 25, 25);    
 }
@@ -53,6 +41,22 @@ header{
   font-family: 'Trebuchet MS';
   padding-left: 10px;
 }
+
+.cabecera{
+  position: relative;
+}
+.contiene-titulo{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-around;
+}
+
+.option{
+  text-decoration: none;
+}
+
 /*fin header*/
 
 form{
@@ -63,7 +67,7 @@ form{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 15px;
+    padding: 15px 0;
 }
 
 .contForm{
@@ -280,4 +284,28 @@ input[type=submit] {
 .usuario{
   padding-left: 10px;
   font-family: var(--varFuente1);
+}
+
+.pie-de-pagina{
+  position: relative;
+  height: 15px;
+  border-top: 2px solid #8888;
+  align-items: center;
+  background: rgb(247,3,3);
+  background: linear-gradient(90deg, rgba(247,3,3,1) 0%, rgba(247,3,3,1)50%,  rgba(255,255,255,1) 55%);
+}
+
+.progreso{
+  width: 25%;
+  height: 15px;
+  position: absolute;
+}
+
+.texto-progreso{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  height: 15px;
+  font-family: var(--varFuente1);
+  font-size: 12px;
 }

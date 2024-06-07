@@ -103,6 +103,13 @@
       </form>
     </div>
   </div>
+  <footer class="pie-de-pagina">
+    <div class=progreso>
+    </div>
+    <div class="texto-progreso">
+        Sección 2 de 3 
+    </div>
+  </footer>
   <script src="../../js/usuario/destinatarioPedido.js"></script>
 </body> 
 </html>

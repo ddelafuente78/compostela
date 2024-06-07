@@ -8,18 +8,18 @@
     <meta charset="UTF-8">
     <title>Articulos - <!Puerto Compostela</title>
 </head>
-<body>
+<body class="body-finales">
     <?php
         include '../../helper/usuarioValidar.php';
         include("../../modelo/articulo.php");
         include 'barraNavegacion.php';
     ?>
-    <header>
-        <div class="titulo">
+    <header id="cabecera">
+        <div id="usuario">
             <span>Mauricio</span>
         </div>
-        <div class="titulo">
-            <h1>Datos Finales del Pedido</h1>
+        <div class="seccion">
+            <span>Datos Finales del Pedido</span>
         </div>
     </header>
     <div class="contenedor">
@@ -34,7 +34,7 @@
                 </datalist><br>  -->
 
                 <p>Prioridad:</p>
-                    <input class="campo-form" type="radio" id="r-u" name="prioridad" value="normal">
+                    <input class="campo-form" type="radio" id="r-u" name="prioridad" value="normal" checked>
                     <label for="r-u">Normal</label><br>
                     <input class="campo-form" type="radio" id="r-n" name="prioridad" value="urgente">
                     <label for="r-n">Urgente</label><br>

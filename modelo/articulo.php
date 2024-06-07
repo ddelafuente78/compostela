@@ -35,10 +35,10 @@
             public function obtenerArticulos($pagina, $filtro = null){
                 include 'conexion.php';
 
-                $numero_pagina = ($pagina - 1) * 18;
+                $numero_pagina = ($pagina - 1) * 15;
 
                 if($filtro == null){
-                    $selArticulos = "SELECT * FROM articulos WHERE fecha_baja IS NULL LIMIT 18 OFFSET " . $numero_pagina  . ";";
+                    $selArticulos = "SELECT * FROM articulos WHERE fecha_baja IS NULL LIMIT 15 OFFSET " . $numero_pagina  . ";";
                 } else {
                     $selArticulos = "SELECT * FROM articulos WHERE fecha_baja IS NULL AND nombre LIKE '%". $filtro ."%' LIMIT 20 OFFSET " . $numero_pagina . ";";
                 }
@@ -50,13 +50,13 @@
                 return $rsArticulos;
             }
 
-            public function cantidadPaginas($pagina, $filtro = null){
+            public function cantidadPaginas($filtro = null){
                 include 'conexion.php';
 
                 if($filtro == null){
-                    $selCantidad = "SELECT ceil(count(*)/18) as totalpaginas FROM articulos WHERE fecha_baja IS NULL ;";
+                    $selCantidad = "SELECT ceil(count(*)/15) as totalpaginas FROM articulos WHERE fecha_baja IS NULL ;";
                 } else {
-                    $selCantidad = "SELECT ceil(count(*)/18) as totalpaginas FROM articulos WHERE fecha_baja IS NULL AND nombre LIKE '%". $filtro ."%';";
+                    $selCantidad = "SELECT ceil(count(*)/15) as totalpaginas FROM articulos WHERE fecha_baja IS NULL AND nombre LIKE '%". $filtro ."%';";
                 }
 
                 $rsCantidadPaginas = mysqli_query($conexion, $selCantidad) or

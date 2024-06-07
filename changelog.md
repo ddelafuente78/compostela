@@ -138,7 +138,7 @@ para continuar con el desarrollo del sistema.
 - interfaz/usuario/destinatarioPedido.css
 - interfaz/usuario/destinatarioPedido.js
 
-## Modificamos estructura de la página articulos.php 
+## Modificamos estructura de la página articulos.php  
 ## Added
 - css/usuario/articulos.css
 ## changed
@@ -152,3 +152,18 @@ para continuar con el desarrollo del sistema.
 ## Se creó la sección final de pedidos 30/04/2024 (Mauri)
 - css/usuario/datosFinalesPedidos.css
 - interfaz/usuario/datosFinalesPedidos.php
+
+## Final pantalla 1 wizard carga de pedido 22/05/24 (diego)
+# modificados:
+    - interfaz/usuario/articulos.php
+    - js/usuario/articulos.js
+    - modelo/conexion.php
+    - css/usuario/articulos.css
+    - interfaz/usuario/articulos.php
+    - modelo/articulo.php
+    - interfaz/usuario/barraNavegacion.php
+# borrados:
+    - imagenes/productos/img1 - copia.webp
+# nuevos:
+    - modelo/carrito.php
+    - modelo/destinatario.php
