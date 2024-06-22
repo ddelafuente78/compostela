@@ -51,6 +51,7 @@ function showSlides(n) {
 
 function mostrarModalCarrito(){
     var modal = document.getElementById("modalCarrito");
+    console.log(modal)
     modal.style.display = "block";
 }
 function ocultarModalImagenes(){

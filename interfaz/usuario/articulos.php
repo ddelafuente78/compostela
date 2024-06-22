@@ -93,10 +93,8 @@
                         <div>Cantidad</div>
                     </div>
                     <div class="col4">
-
                     </div>
                 </div>
-
                 <form class="form-articulos" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                     <?php
                         foreach($listaArticulos as $articulo) {
@@ -147,20 +145,21 @@
                 <!-- Slideshow container -->
                 <div class="slideshow-container">
                     <div style="text-align:center">
-                    <!-- Slides -->
-                    <div class="mySlides fade">
-                        <img id='imgModal1' src="" style="width:25%; height:25%">
+                        <!-- Slides -->
+                        <div class="mySlides fade">
+                            <img id='imgModal1' src="" style="max-width:20%; max-height:20%">
+                        </div>
+                        <div class="mySlides fade">
+                            <img id='imgModal2' src="" style="max-width:20%; max-height:20%">
+                        </div>
                     </div>
-                    <div class="mySlides fade">
-                        <img id='imgModal2' src="" style="width:25%, height:25%">
-                    </div>
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
-            <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span> 
-                <span class="dot" onclick="currentSlide(2)"></span> 
+                <div style="text-align:center">
+                    <span class="dot" onclick="currentSlide(1)"></span> 
+                    <span class="dot" onclick="currentSlide(2)"></span> 
+                </div>
             </div>
         </div>
         <div id="modalCarrito" class="modal">
