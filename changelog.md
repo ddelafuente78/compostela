@@ -167,3 +167,20 @@ para continuar con el desarrollo del sistema.
 # nuevos:
     - modelo/carrito.php
     - modelo/destinatario.php
+# Final pantalla de carga de destinatarios y datos finales 22/06/24 (diego)
+# modifiados:   
+    - css/login.css
+    - css/usuario/articulos.css
+    - css/usuario/datosFinalesPedido.css
+    - css/usuario/destinatarioPedido.css
+    - default.php
+    - interfaz/usuario/articulos.php
+    - interfaz/usuario/articulosDetalles.php
+    - interfaz/usuario/datosFinalesPedido.php
+    - interfaz/usuario/destinatarioPedido.php
+    - js/usuario/destinatarioPedido.js
+    - modelo/carrito.php
+    - modelo/conexion.php
+    - modelo/destinatario.php
+# nuevos:
+    - js/usuario/datosFinalesPedido.js

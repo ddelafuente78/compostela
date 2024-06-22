@@ -78,24 +78,38 @@
             $rsTotalDetalle = mysqli_query($conexion, $selTotalDetalle);
             $total = mysqli_fetch_assoc($rsTotalDetalle);
 
-            if ($total["total"] < 5){
+            if ($total["total"] < 2){
                 $insDetalle = "INSERT INTO carrito_det (carrito_cab_id,articulo_id,cantidad)
                           VALUES(". $nroCarrito . "," . $articulo_id . "," . $cantidad . ")";
             
                 mysqli_query($conexion,$insDetalle);        
             } else {
-                $message = "El limite del carrito es de 5 productos";
+                $message = "El limite del carrito es de 30 productos";
                 echo "<script>showSnackbar('".htmlspecialchars($message, ENT_QUOTES, 'UTF-8')."');</script>";
 
-            }
-            
+            }            
             mysqli_close($conexion);
+        }
+
+        function insertar_datos_finales($carrito_id, $prioridad, $fecha_entrega,$campania){
+            include 'conexion.php';
+
+            $updCarritoCab = "UPDATE carrito_cab SET prioridad_importante=$prioridad,fecha_entrega='$fecha_entrega',campania='$campania'
+                            WHERE id=$carrito_id;";
+
+            $response=true;
+            if(!mysqli_query($conexion,$updCarritoCab)){
+                $response = false;
+            }; 
+
+            mysqli_close($conexion);
+            return $response;
         }
 
     }
 
     class carrito_det {
-        private $ID;
+        private $id;
         private $articulo;
         private $cantidad;
 

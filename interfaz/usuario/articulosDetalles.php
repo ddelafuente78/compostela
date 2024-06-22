@@ -42,8 +42,8 @@
 
                         </div>
                     </div>    
-                    <div class="contenedorSec"> <!--CONTENEDOR FORM-->
-                            
+                    
+                    <div class="contenedorSec">
                         <div class="contenedorFormulario">
                             <h4 class="tituloCard"><div>Artículo: <?php echo $articulo["nombre"] ?> </div></h4>
                                 <p class="textoCard">
@@ -64,17 +64,12 @@
                             <div class="detalleCarrito">
                                 <h6>Artículos cargados <i class="fa-solid fa-cart-shopping"></i> :</h6> 
                             </div>
-                            
-                    
-                        
                         <?php
                             $i=1;
                             foreach ($carrito as $car) {
                                 echo $i++ . "- " . $car['nombre'] . " x " . $car['cantidad'] . " unidades. <br>";
                             } 
                         ?>
-                    
-                
             </div>
             <!--<div class="row filaDescripcion">
                 <div class="col-8">
