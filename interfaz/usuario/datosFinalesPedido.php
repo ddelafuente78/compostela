@@ -9,7 +9,7 @@
     <title>Puerto Compostela</title>
     <script src='../../js/usuario/datosFinalesPedido.js'></script>
 </head>
-<body>
+<body class="body-finales">
     <div id="snackbar"></div>
     <?php
         include '../../helper/usuarioValidar.php';
@@ -27,12 +27,12 @@
         }
     ?>
     
-    <header>
-        <div class="titulo">
+    <header id="cabecera">
+        <div id="usuario">
             <span><?php echo $_SESSION["usuario"]?></span>
         </div>
-        <div class="titulo">
-            <h1>Datos Finales del Pedido</h1>
+        <div class="seccion">
+            <span>Datos Finales del Pedido</span>
         </div>
     </header>
     <div class="contenedor">      

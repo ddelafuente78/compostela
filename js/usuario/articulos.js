@@ -7,7 +7,23 @@ function plusSlides(n) {
 
 function currentSlide(n) {
     showSlides(slideIndex = n);
-  }
+}
+
+let div_p = document.querySelector('div.options__menu');
+let ancla = document.createElement('a');
+ancla.href='http://localhost/compostela/interfaz/usuario/usuarioInicio.php';
+ancla.alt='selected'
+
+let div = document.createElement('div');
+div.className = 'option';
+
+let icon = document.createElement('i');
+icon.className = 'fi fi-sr-left';
+icon.title = 'Atrás';
+
+div.appendChild(icon);
+ancla.appendChild(div);
+div_p.appendChild(ancla);
 
 function mostrarModalImagenes(imagen1, imagen2){
     // Obtener el modal

@@ -167,6 +167,18 @@ para continuar con el desarrollo del sistema.
 # nuevos:
     - modelo/carrito.php
     - modelo/destinatario.php
+
+## Merging nivelatorio con el repositorio 07/06/2024 (Mauri)
+# Modificados:
+    - css/usuario/destinatarioPedidos.css
+    - css/usuario/datosFinalesPedidos.css
+    - interfaz/usuario/barraNavegacion.php
+
+# Nuevos:
+    -/interfaz/admin/pedidos.php
+    -/css/admin/pedidos.css
+    -/interfaz/admin/abmdestinatarios.php
+    -/css/admin/abmdestinatarios.css
 # Final pantalla de carga de destinatarios y datos finales 22/06/24 (diego)
 # modifiados:   
     - css/login.css

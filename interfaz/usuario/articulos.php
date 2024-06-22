@@ -7,7 +7,7 @@
         <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
         <meta charset="UTF-8">
         <script src="../../js/usuario/articulos.js"></script>
-        <title>Articulos</title>
+        <title>Articulos - Puerto Compostela</title>
     </head>
     <body>
         <div id="snackbar"></div>

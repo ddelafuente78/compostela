@@ -14,6 +14,7 @@
             <a href="javascript:history.back()"alt="selected">
                 <div class="option">
                     <i class="fi fi-sr-left" title="Atrás"></i>
+                <!-- <i class="fas fa-bars" id="btn_open"></i> -->
                 </div>
             </a>
             <a href="usuarioInicio.php" class="selected">
