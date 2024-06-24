@@ -20,7 +20,7 @@
             $carrito_cab = new carrito_cab(null,null);
             $idCarrito = $carrito_cab->obtener_carrito($_SESSION["id"]);
             if($carrito_cab->insertar_datos_finales($idCarrito,$_POST['prioridad'],$_POST['fechaEntrega'],$_POST['campania'])){
-                header('location:https://www.google.com');
+                header('location:pedidoProcesar.php');
             }else{
                 echo "<script>showSnackbar('".htmlspecialchars('Hubo un error', ENT_QUOTES, 'UTF-8')."');</script>";
             };
@@ -32,7 +32,7 @@
             <span><?php echo $_SESSION["usuario"]?></span>
         </div>
         <div class="seccion">
-            <span>Datos Finales del Pedido</span>
+            <span>Datos finales del pedido</span>
         </div>
     </header>
     <div class="contenedor">      
@@ -43,15 +43,12 @@
                 <label for="r-u">Normal</label><br>
                 <input class="campo-form" type="radio" id="r-n" name="prioridad" value="1">
                 <label for="r-n">Urgente</label><br>
-            
                 <label for="fechaL">Fecha límite de entrega:</label>
                 <input class="campo-form" type="date" id="fechaL" name="fechaEntrega" min="<?php echo date('Y-m-d'); ?>" required><br>
                 <label for="campania">Campaña:</label>
                 <input class="campo-form" type="text" id="campania" name="campania"><br> 
-                <label for="nPedidoExt">Nro. pedido externo:</label>
-                <input class="campo-form" type="text" id="nPedidoExt" name="pedidoExt"><br>
                 <div class="btn">
-                    <button id="btn-enviar" class="btn-enviar" type="submit">Terminar</button>
+                    <button id="btn-enviar" class="btn-enviar" type="submit">Terminar y procesar</button>
                 </div>
             </div>
         </form>
@@ -60,7 +57,7 @@
             <div class=progreso>
             </div>
             <div class="texto-progreso">
-                Sección 3 de 3 
+                Sección 3 de 4 
             </div>
         </footer>
 </body>

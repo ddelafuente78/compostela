@@ -179,6 +179,7 @@ para continuar con el desarrollo del sistema.
     -/css/admin/pedidos.css
     -/interfaz/admin/abmdestinatarios.php
     -/css/admin/abmdestinatarios.css
+
 # Final pantalla de carga de destinatarios y datos finales 22/06/24 (diego)
 # modifiados:   
     - css/login.css
@@ -196,3 +197,13 @@ para continuar con el desarrollo del sistema.
     - modelo/destinatario.php
 # nuevos:
     - js/usuario/datosFinalesPedido.js
+
+# Final del proceso de creacion de pedido y mover los articulos de carrito a pedidos 23/06/2024 (diego)
+# modificados:
+    - css/usuario/datosFinalesPedido.css
+    - interfaz/usuario/datosFinalesPedido.php
+    - modelo/carrito.php
+# nuevos:
+    - css/usuario/pedidoProcesar.css
+    - interfaz/usuario/pedidoProcesar.php
+        

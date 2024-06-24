@@ -106,6 +106,103 @@
             return $response;
         }
 
+        function moverCarritoAPedido($idcarrito){
+            include 'conexion.php';
+
+            try{
+                mysqli_begin_transaction($conexion);
+
+                $selControlStock = "SELECT a.id, a.nombre, a.stock, cd.cantidad FROM compostela.carrito_det cd
+	                JOIN articulos a ON cd.articulo_id = a.id
+                        WHERE cd.carrito_cab_id = $idcarrito;";
+            
+                $rsControlStock = mysqli_query($conexion, $selControlStock);
+
+                //var_dump($rsControlStock);
+
+                $controlStockResult = []; 
+                foreach ($rsControlStock as $stock) {
+                    $controlStockResult[] = array(
+                        'id' => $stock['id'],
+                        'nombre' => $stock['nombre'],
+                        'estado' => ($stock['stock'] >= $stock['cantidad']) ? 'ok' : 'Er: stock insuficiente.'
+                    );
+                }
+                
+                //var_dump($controlStockResult);
+
+                $resultOK = true;
+                foreach($controlStockResult as $resultado){
+                    if(substr($resultado['estado'], 0, 2) !== 'ok'){
+                        $resultOK = false;
+                    }
+                }
+            
+                //var_dump($resultOK);
+                if ($resultOK) {
+                    //mover los datos de carrito a pedidos.
+                    $selCarrito = "SELECT fecha_entrega, prioridad_importante, direccion_id, usuario_id, campania 
+                            FROM carrito_cab WHERE id=$idcarrito";
+                
+                    //var_dump($selCarrito);
+
+                    $rsCarrito = mysqli_query($conexion, $selCarrito);
+                    $arrCarrito = mysqli_fetch_assoc($rsCarrito);
+
+                    //var_dump($arrCarrito);
+
+                    $insPedido = "INSERT INTO pedidoscab (carrito_id, estado_id, fecha_entrega, prioridad_importante, direccion_id, usuario_id, campania)
+                                VALUES($idcarrito, 1,'" . $arrCarrito['fecha_entrega'] . "'," . $arrCarrito['prioridad_importante'] . "," .
+                                    $arrCarrito['direccion_id'] . "," . $arrCarrito['usuario_id'] . ",'" .$arrCarrito['campania']  . "');";
+
+                    
+                    //var_dump($insPedido);
+
+                    if(!mysqli_query($conexion,$insPedido)){
+                        throw new Exception("Error al pasar la cabecera del Carrito a Pedido");
+                    }
+
+                    $idpedido = mysqli_insert_id($conexion);
+
+                    //var_dump($idpedido);
+
+                    foreach ($rsControlStock as $pedido) {
+                        $insDestallePedido = "INSERT INTO pedidosdet (articulo_id, cantidad, pedidoscab_id)
+                                        VALUES(" . $pedido['id'] . "," . $pedido['cantidad'] . ",$idpedido)";
+                        //var_dump($insDestallePedido);
+                        if(!mysqli_query($conexion,$insDestallePedido)){
+                            throw new Exception("Error al pasar el detalle del Carrito a Pedido");
+                        }   
+                    }   
+
+                    //desactivar el carrito
+                    $updCarritoCab = "UPDATE carrito_cab SET en_carrito=0 WHERE id=$idcarrito";
+
+                    //var_dump($updCarritoCab);
+
+                    if(!mysqli_query($conexion,$updCarritoCab)){
+                        throw new Exception("Error al desactivar el carrito");
+                    }
+
+                    //inserta los movimientos de los articulos en movimientos
+                    foreach($rsControlStock as $resultado){
+                        $insMovimientos = "INSERT INTO movimientos_stock (movimientos_descripcion_id, articulo_id, cantidad) 
+                                    VALUES(5," . $resultado['id'] . "," . (-$resultado['cantidad']) . ");";
+                        //var_dump($insMovimientos);
+                        if(!mysqli_query($conexion,$insMovimientos)){   
+                            throw new Exception("Error al insertar movimientos de stock de articulos");
+                        }  
+                    }
+                    mysqli_commit($conexion);
+                }else{
+                    mysqli_rollback($conexion);
+                }
+                return $controlStockResult;
+            } catch (Exception $ex) {
+                return $ex->getMessage();
+            }
+        }
+
     }
 
     class carrito_det {
