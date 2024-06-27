@@ -171,6 +171,16 @@
                                     </tbody>
                                 </table>
                             </fieldset>
+                            <fieldset>
+                                <legend>Envío:</legend>
+                            
+                                    <span class="detalle-e">Localidad destino: </span><span class="detalle-e">acá va la localidad</span><br><br>
+                                    <label for="transp">Transporte:</label>
+                                    <select class="input" id="transp" name="transp">
+                                        <option value="1">Juancito</option>
+                                    </select>
+                                
+                            </fieldset>
                             <div class="btn-pedidos">
                                 <button type="submit" id='btnCambioEstado' class="btn">Procesar</button>
                             </div> 

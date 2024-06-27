@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
         <meta charset="UTF-8">
-        <script src="../../js/usuario/articulos.js"></script>
         <title>Articulos - Puerto Compostela</title>
     </head>
 <body>
@@ -21,7 +20,7 @@
         $carrito_cab = new carrito_cab();
         $carrito_det = new carrito_det();
         $pagina = 1;
-      
+        
 
         if(!isset($_SESSION['buscado'])){
             $_SESSION['buscado'] = "";
@@ -262,5 +261,6 @@
             Sección 1 de 4 
         </div>
     </footer>
+    <script src="../../js/usuario/articulos.js"></script>
 </body>
 </html>

@@ -119,3 +119,5 @@ document.addEventListener("DOMContentLoaded", function() {
     var myInput=document.getElementById("cantidad-1"); //Obtengo el input
 
 });
+const btn_a = document.getElementsByClassName('back')
+btn_a.href = 'usuarioinicio.php'

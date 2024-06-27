@@ -49,6 +49,7 @@ background-color: #888888;
 .form-datos-finales{
     min-width: 60%;
 }
+
 .datos-finales{
     flex-direction: column;
     font-family: var(--fuente-1);
@@ -93,7 +94,6 @@ header{
     padding-left: 60px;
 }
 
-
 .titulo{
     position: absolute;
     margin: 0;
@@ -114,9 +114,11 @@ header{
     display: flex;
     align-items: center;
 }
+
 .seccion span{
     width: 100%;
 }
+
 #usuario{
     align-items: center;
     display: flex;

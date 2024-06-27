@@ -16,7 +16,7 @@
     <body>
       <?php
         
-       $query="";
+      $query="";
 
         
         if ($_SERVER["REQUEST_METHOD"] === "POST") {

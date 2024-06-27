@@ -179,3 +179,21 @@ para continuar con el desarrollo del sistema.
     -/css/admin/pedidos.css
     -/interfaz/admin/abmdestinatarios.php
     -/css/admin/abmdestinatarios.css
+
+## Añadida la opción para elegir transporte en Pedidos
+# Modificados:
+    -/interfaz/admin/pedidos.php
+    -/css/admin/pedidos.css
+
+## Creación interfaz para ABM Transportes 27/06/24
+## Nuevos:
+    -/interfaz/admin/abmTransportes.php
+    -/css/admin/abmTransportes.css
+    -/js/admin/abmTransportes.js
+
+## Modificación estética en barra de navegación. 27/06/24 - Se agregó enlace a css externo para botón atrás y se corrigió un defecto por el cual no se veía correctamente el color. Se agregó clase "back" a dicho botón para luego recuperarlo en el js de cada pag. y configurar la página a la cual debe ir. Se agregaron 2 nuevos campos a mostrar en el apartado "proceso" de pedidos en Admin para que se muestre el codp y la localidad
+# Modificados:
+    - /interfaz/admin/barranavegacion.php
+    - /interfaz/admin/pedidos.php
+    - /js/admin/pedidos.js
+    - /interfaz/usuario/barranavegacion.php

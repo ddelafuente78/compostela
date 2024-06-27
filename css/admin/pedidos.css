@@ -18,15 +18,18 @@ body, html {
 
 .contenedor{
     margin-left: 80px;
+    padding-top: 60px;
 }
 
 .cabecera{
     height: 40px;
     background-color: #f5f5f5;
-    position: relative;
+    position: fixed;
     font-family: var(--varFuente1);
     box-shadow: 10px 10px 10px #ccc;
+    width: 100%;
 }
+
 #cab-usuario{
     position: absolute;
     padding-left: 100px;
@@ -68,7 +71,7 @@ body, html {
     padding: 80px 20px;
     height: 100%;
     width: 95%;
-    margin: 5px auto;
+    margin: 0 auto;
     box-shadow: 0px 3px 20px 0px #ccc;
     border-radius: 0px 20px 0px 20px;
 }
@@ -293,4 +296,8 @@ background-color: #888888;
 
 .envios{
     cursor:default;
+}
+
+#transp{
+    max-width: fit-content;
 }
