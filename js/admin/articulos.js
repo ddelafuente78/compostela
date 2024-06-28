@@ -14,4 +14,3 @@ function mostrar(nro,texto){
   function modalEliminacion(idborrar){
     document.getElementById("id"+idborrar).style.display="block";
   }
-
