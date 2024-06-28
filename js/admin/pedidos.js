@@ -48,6 +48,9 @@ for (i = 0; i < acc2.length; i++) {
         panelsup[1].style.maxHeight = panelgral + "px"; 
     }
     }); 
+
+const btn_a = document.getElementsByClassName('back')
+btn_a[0].href = 'articulos.php'
 }
 function generar(){
     var myInput = document.getElementById("cant-b");

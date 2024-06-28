@@ -166,11 +166,15 @@ tr:hover{
     padding-left: 10px;
 }
 .col1, .col2, .col3{
-    width: 16%;
+    width: 13%;
 }
 
 .col4, .col5{
-    width: 21%;
+    width: 17%;
+}
+.col6{
+    width: 27%;
+    padding-left: 10px;
 }
 
 .col3_1{

@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="../../css/barraNavegacion.css">
     <link rel="stylesheet" href="../../css/uicons-solid-rounded.css">
     <script src="https://kit.fontawesome.com/7568cd4100.js" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 </head>
 <body id="body-barra">
     <div class="menu__side" id="menu_side">
         <div class="options__menu">
-            <a href="javascript:history.back()"alt="selected">
+            <a href="javascript:history.back()" class="selected back">
                 <div class="option">
                     <i class="fi fi-sr-left" title="Atrás"></i>
                 <!-- <i class="fas fa-bars" id="btn_open"></i> -->
@@ -25,6 +26,11 @@
             <a href="articulos.php" class="selected">
                 <div class="option">
                     <i class="fa-solid fa-box-open" title="Consultar Stock"></i>
+                </div>
+            </a>
+            <a href="abmDestinatarios.php" class="selected">
+                <div class="option">
+                    <i class="fa-solid fa-users" title="Destinatarios"></i>
                 </div>
             </a>
             <!--<a href="pendientes.php" class="selected">

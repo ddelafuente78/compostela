@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="../../css/admin/pedidos.css">
     <link rel="stylesheet" href="../../css/uicons-solid-rounded.css">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedidos - Puerto Compostela</title>
@@ -107,6 +108,9 @@
                 <div class="col5">
                     <span>Destinatario</span>
                 </div>
+                <div class="col6">
+                    <span>Destino</span>
+                </div>
             </section>
             <section class="det-pedidos accordion">
                 <div class="col1">
@@ -123,6 +127,9 @@
                 </div>
                 <div class="col5">
                     <span id="destinatario">Diego De La Fuente</span>
+                </div>
+                <div class="col6">
+                    <span id="cp">2322</span><span> - </span><span id="localidad">Sunchales</span>
                 </div>
             </section>
             <div class="panel">

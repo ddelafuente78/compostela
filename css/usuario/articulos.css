@@ -5,6 +5,7 @@
     padding: 0;
     margin: 0;
 }
+
 body{
     min-width: 100%;
     padding-left: 80px;
@@ -55,14 +56,19 @@ header{
 .option{
     text-decoration: none;
 }
+
 .titulo{
-    margin: 0 auto;
-    text-align: center;
+    text-align: left;
     line-height: auto;
     width: 70%;
     color: rgb(26, 25, 25);   
     font-family: var(--varFuente1);
     font-size: 20px;
+}
+
+.tiuloCentrado{
+    width: 80%;
+    text-align: center;
 }
 
 #seccion {
@@ -424,8 +430,6 @@ img {
     to {opacity: 1}
 }
 
-
-
 .btn-enviar{
     background-color: #ccc;
     color: rgb(26, 25, 25);
@@ -465,18 +469,16 @@ img {
     display: none;
 }
 
-
 .pie-de-pagina{
     position: relative;
     height: 15px;
     border-top: 2px solid #8888;
     align-items: center;
-    background: rgb(247,3,3);
-    background: linear-gradient(90deg, rgba(247,3,3,1) 0%, rgba(247,3,3,1)30%,  rgba(255,255,255,1) 33%);
+    background: linear-gradient(90deg, rgba(247,3,3,1) 0%, rgba(247,3,3,1)10%,  rgba(255,255,255,1) 25%);
 }
 
 .progreso{
-    width: 25%;
+    width: 20%;
     height: 15px;
     position: absolute;
 }
@@ -505,15 +507,15 @@ img {
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
-  }
+}
 
 
 .pagination a.active {
     background-color: #b5daff;
     color: white;
-  }
+}
 
-  .pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination a:hover:not(.active) {background-color: #ddd;}
 
 /* SNACKBAR */
 /* The snackbar - position it at the bottom and in the middle of the screen */
@@ -521,7 +523,7 @@ img {
     visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
     margin-left: -125px; /* Divide value of min-width by 2 */
-    background-color: #333; /* Black background color */
+    background-color: #ff0000; /* Black background color */
     color: #fff; /* White text color */
     text-align: center; /* Centered text */
     border-radius: 2px; /* Rounded borders */

@@ -30,7 +30,6 @@
                                     die("Problemas en el select:" . mysqli_error($conexion));
 
             $carrito =  mysqli_fetch_all($registros, MYSQLI_ASSOC);
-
         ?>
             <div class="contenedorGrl">
                     <div class="contenedorSec" id="contImg">
@@ -39,11 +38,9 @@
                                 <li><img src="../../imagenes/productos/<?php echo $articulo["foto1"] ?>" alt="<?php echo $articulo["foto1"] ?>" class="imagenArt" /></li>
                                 <li><img src="../../imagenes/productos/<?php echo $articulo["foto2"] ?>" alt="<?php echo $articulo["foto2"] ?>" class="imagenArt"/></li>
                             </ul>
-
                         </div>
-                    </div>    
-                    <div class="contenedorSec"> <!--CONTENEDOR FORM-->
-                            
+                    </div>                        
+                    <div class="contenedorSec">
                         <div class="contenedorFormulario">
                             <h4 class="tituloCard"><div>Artículo: <?php echo $articulo["nombre"] ?> </div></h4>
                                 <p class="textoCard">
@@ -64,17 +61,12 @@
                             <div class="detalleCarrito">
                                 <h6>Artículos cargados <i class="fa-solid fa-cart-shopping"></i> :</h6> 
                             </div>
-                            
-                    
-                        
                         <?php
                             $i=1;
                             foreach ($carrito as $car) {
                                 echo $i++ . "- " . $car['nombre'] . " x " . $car['cantidad'] . " unidades. <br>";
                             } 
                         ?>
-                    
-                
             </div>
             <!--<div class="row filaDescripcion">
                 <div class="col-8">
