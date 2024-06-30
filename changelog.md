@@ -226,3 +226,11 @@ para continuar con el desarrollo del sistema.
     - interfaz/usuario/pedidoProcesar.php
         
 ## Merging nivelatorio con el repositorio 28/06/2024 (Mauri)
+
+## Cambios en modificacion de usuarios 30/06/2024 (Maxi)
+
+# Modificado: 
+    - interfaz/admin/usuariomodificar.php
+
+# Nuevo:
+    - css/admin/usuariomodificar.css
